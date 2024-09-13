@@ -126,19 +126,20 @@ export const styles = StyleSheet.create({
         marginBottom: '140%',
     },
 
-    btnSelection:{
+    mood:{
         flexDirection:'row',
         gap: 20,
-
+        marginTop: '5%',
     },
-
     wrapper:{
-        flexDirection: 'row',
+        flexDirection:'row',
         justifyContent:'space-evenly',
+        marginTop:'8%',
+        marginLeft:'-20%',
     },
     outter:{
-        width: 30,
-        height: 30,
+        width: 25,
+        height: 25,
         borderWidth: 1,
         borderRadius: 15,
         justifyContent: 'center',
@@ -146,10 +147,35 @@ export const styles = StyleSheet.create({
     },
 
     inner:{
-        width: 20,
-        height: 20,
+        width: 18,
+        height: 18,
         backgroundColor: '#B6B6B6',
         borderRadius: 10,
+    },
+    Usuario:{
+        fontSize: 18,
+        textTransform: 'capitalize',
+        color:'#163D89',
+        fontWeight: '400',
+    },
+
+    viewContinuar:{
+      marginTop:'70%',  
+    },
+    buttonContinuar:{
+        marginLeft:'45%',
+        marginRight:'14%',
+        marginTop:'30%',
+        backgroundColor: '#10C18D',
+        borderRadius: 100,
+        justifyContent:'center',
+    },
+    txtContinuar:{
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 18,
+        fontWeight: '600',
+        padding: 10,
     },
 //------------------CADASTRO CONTRATANTE------------------------
     txtcad :{
@@ -204,6 +230,12 @@ export const styles = StyleSheet.create({
 
 //------------------------CADASTRO MOTORISTA---------------------------
 
+txt_cad: {
+    flex: 1,
+    marginLeft: '16%',
+    marginTop: '30%',
+    marginBottom:'6%',
+},
 Text_1: {
     color: '#057856',
     textAlign: 'center',
@@ -236,11 +268,65 @@ inputCadM: {
     padding: 10,
     marginTop: '8%',
 },
-
-BotaoEntrar: {
-
+Texto_1: {
+    color: '#000',
+    textAlign: 'center',
+    marginTop: '20%',
+    fontSize: 21,
+    fontWeight: '500',
 },
-BotaoEntrarTxt: {
 
+Texto_2: {
+    color: '#163D89',
+    textAlign: 'center',
+    marginTop: '20%',
+    fontSize: 21,
+    fontWeight: '500',
+},
+
+texto: {
+    color: '#163D89',
+    textAlign: 'center',
+    marginTop: '50%',
+    fontSize: 28,
+    fontWeight: '600',
+},
+txt: {
+    
+},
+Cad_imputes: {
+    flex: 1,
+    alignItems:'center',
+    justifyContent: 'center',
+    width:'70%',
+    height:'80%',
+    marginLeft: '15%',
+},
+input_CadM: {
+    backgroundColor:'#E1E1E1',
+    width:'100%',
+    marginBottom: 15,
+    color: '#222',
+    fontSize: 15,
+    borderRadius: 13,
+    padding: 10,
+    marginTop: '3%',
+},
+BtnProx: {
+    backgroundColor: '#10C18D',
+    height: '22%',
+    justifyContent: "flex-end",
+    alignItems: 'flex-end',
+    marginTop:'20%',
+    borderRadius: 100,
+    marginBottom:'8%',
+},
+BtnProxTxt:{
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 22,
+    fontWeight: '600',
+    paddingLeft: 40,
+    paddingRight: 40,
 },
 })

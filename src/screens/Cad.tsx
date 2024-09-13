@@ -1,8 +1,11 @@
 import {ImageBackground,KeyboardAvoidingView, StyleSheet, Text, TextInput, View, TouchableOpacity, Pressable, Platform, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { styles } from '../styles/styles';
+import { useState } from 'react';
 
 export default function Cad(){
+  const [mood, setMood] = useState("")
+
   return(
     <KeyboardAvoidingView  
     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -32,16 +35,29 @@ export default function Cad(){
 
             <View style={styles.wrapper}>
             {['Contratante', 'Motorista'].map(Usuario =>(
+
                 <View 
                 key={Usuario} 
-                style={styles.btnSelection}>
-                  
-                  <TouchableOpacity style={styles.outter}>
-                    <View style={styles.inner}/> 
+                style={styles.mood}>
+
+                  <Text style={styles.Usuario}>{Usuario}</Text>
+                  <TouchableOpacity style={styles.outter}
+                  onPress={()=> setMood(Usuario)}>
+                    
+                    { mood === Usuario && <View style={styles.inner}/>} 
+
                   </TouchableOpacity>
 
                 </View>
               ))}
+                </View>
+              
+                <View style={styles.viewContinuar}>
+                    <TouchableOpacity
+                        style={styles.buttonContinuar}
+                        activeOpacity={0.6}>
+                        <Text style={styles.txtContinuar}>Continuar</Text>
+                    </TouchableOpacity>
                 </View>
         </View>
 

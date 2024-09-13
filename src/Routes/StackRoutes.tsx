@@ -15,10 +15,6 @@ export default function StackRoutes(){
             name="home" 
             component={ Home }/>
 
-            <Stack.Screen 
-            name="cadastro" 
-            component={ CadC }/>
-
             <Stack.Screen
             name="loging"
             component={ LoginG }/>
@@ -27,12 +23,17 @@ export default function StackRoutes(){
             name="Cad"
             component={ Cad }/>
 
+            <Stack.Screen 
+            name="CadContratante" 
+            component={ CadC }/>
+
             <Stack.Screen
-            name="cadmotorista"
+            name="CadMotorista"
             component={ CadM }/>
         </Stack.Navigator>
     )
 }
+
 
 /*      
 

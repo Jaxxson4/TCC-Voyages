@@ -66,16 +66,34 @@ export default function CadMotorista(){
                 autoCorrect={false}//pro corretor não funcionar
                 onChangeText={() => {}}/>
 
-                <View>
-                    <TouchableOpacity
-                        style={styles.BotaoEntrar}
-                        activeOpacity={0.6}>
-                        <Text style={styles.BotaoEntrarTxt}>Entrar</Text>
-                    </TouchableOpacity>
-                </View>
+            <View style={styles.txt_cad}>
+              <Text style = {styles.Texto_1}> Já tem uma conta? </Text> 
+              <Text style = {styles.Texto_2}> Faça login </Text>
+            </View>
             </View>
 
+            <View style={styles.txt}>
+              <Text style = {styles.texto}> Dados para receber o pagamento </Text> 
+            </View>
+
+              <View style={styles.Cad_imputes}>
+            <TextInput
+                style={styles.input_CadM}
+                placeholder='Chave Pix'
+                autoCorrect={false}//pro corretor não funcionar
+                onChangeText={() => {}}/>
+            </View>
+
+            <View>
+                    <TouchableOpacity
+                        style={styles.BtnProx}
+                        activeOpacity={0.6}>
+                        <Text style={styles.BtnProxTxt}>Próximo</Text>
+                    </TouchableOpacity>
+                </View>
+              
             </ImageBackground>
             </ScrollView>
             </KeyboardAvoidingView>
-    )}
+
+        )}
