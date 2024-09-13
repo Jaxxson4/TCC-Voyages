@@ -1,4 +1,4 @@
-import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, View, TouchableOpacity, Pressable, Platform, ScrollView, TouchableWithoutFeedback} from 'react-native';
+import {ImageBackground,KeyboardAvoidingView, StyleSheet, Text, TextInput, View, TouchableOpacity, Pressable, Platform, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { Stack } from 'expo-router';
 import { styles } from '../styles/styles';
@@ -22,22 +22,28 @@ export default function Cad(){
               <Ionicons title="home" size={33} style={{ color: 'white' }}></Ionicons>
             </Pressable>
         </View>
-
-
-        <View>
-            <View>
-              <Text>Cadastro</Text>
-
-              <Text>Seja bem vindo, crie uma conta</Text>
-            </View>
+        
+        <View style={styles.Cadwelcome}>
+            <Text style={styles.cadwelco}>Cadastro</Text>
+            <Text style={styles.txtwelcome}>Seja bem vindo, crie uma conta</Text>
         </View>
 
-        <View>
-            <Text>Escolha uma opção. Você é:</Text>
-            <Text>Contratante</Text>
-            <Text>Motorista</Text>
-        </View>
+        <View style={styles.Cadwelcome2}>
 
+            <Text style={styles.txtwelcome}>Escolha uma opção. Você é:</Text>
+
+                <View style={styles.btnSelection}>
+
+                  <TouchableOpacity style={styles.outter}>
+                    <View style={styles.inner}></View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={styles.outter}>
+                    <View style={styles.inner}></View>
+                  </TouchableOpacity>
+
+                </View>
+        </View>
 
     </ImageBackground>
     </ScrollView>

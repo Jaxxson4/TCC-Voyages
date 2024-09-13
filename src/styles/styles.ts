@@ -98,6 +98,58 @@ export const styles = StyleSheet.create({
         paddingRight: 40,
     },
 
+//-----------------------CADASTRO CHOICE------------------------
+    Cadwelcome:{
+        justifyContent: 'center',
+        textAlign:'center',
+        marginLeft:'15%',
+    },
+
+    cadwelco:{
+        color:'#10C18D',
+        fontSize: 30,
+        fontWeight: '700',
+        marginTop:'10%',
+    },
+
+    txtwelcome:{
+        color:'#163D89',
+        fontSize: 20,
+        fontWeight: '500',
+    },
+
+    Cadwelcome2:{
+        justifyContent: 'center',
+        textAlign:'center',
+        marginLeft:'15%',
+        marginTop:'15%',
+    },
+
+    btnSelection:{
+        flexDirection:'row',
+        gap: 20,
+    },
+
+    CadButtonSelect:{
+        color:'#163D89',
+        fontSize: 20,
+    },
+
+    outter:{
+        width: 25,
+        height: 25,
+        borderBottomWidth: 1,
+        borderRadius: 15,
+        justifyContent:'center',
+        alignItems:'center',
+    },
+
+    inner:{
+        width: 15,
+        height: 15,
+        backgroundColor: 'gray',
+        borderRadius: 10,
+    },
 //------------------CADASTRO CONTRATANTE------------------------
     txtcad :{
         justifyContent: "center",
