@@ -1,6 +1,5 @@
 import {ImageBackground,KeyboardAvoidingView, StyleSheet, Text, TextInput, View, TouchableOpacity, Pressable, Platform, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
-import { Stack } from 'expo-router';
 import { styles } from '../styles/styles';
 
 export default function Cad(){
@@ -8,7 +7,7 @@ export default function Cad(){
     <KeyboardAvoidingView  
     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })} // ajustar
-    style={{ flex: 1 }}>
+    style={{ flex: 1}}>
 
     <ScrollView style={{flex: 1}}
     showsHorizontalScrollIndicator={false}>
@@ -29,19 +28,20 @@ export default function Cad(){
         </View>
 
         <View style={styles.Cadwelcome2}>
-
             <Text style={styles.txtwelcome}>Escolha uma opção. Você é:</Text>
 
-                <View style={styles.btnSelection}>
-
+            <View style={styles.wrapper}>
+            {['Contratante', 'Motorista'].map(Usuario =>(
+                <View 
+                key={Usuario} 
+                style={styles.btnSelection}>
+                  
                   <TouchableOpacity style={styles.outter}>
-                    <View style={styles.inner}></View>
+                    <View style={styles.inner}/> 
                   </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.outter}>
-                    <View style={styles.inner}></View>
-                  </TouchableOpacity>
-
+                </View>
+              ))}
                 </View>
         </View>
 

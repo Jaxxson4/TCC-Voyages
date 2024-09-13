@@ -123,31 +123,32 @@ export const styles = StyleSheet.create({
         textAlign:'center',
         marginLeft:'15%',
         marginTop:'15%',
+        marginBottom: '140%',
     },
 
     btnSelection:{
         flexDirection:'row',
         gap: 20,
+
     },
 
-    CadButtonSelect:{
-        color:'#163D89',
-        fontSize: 20,
+    wrapper:{
+        flexDirection: 'row',
+        justifyContent:'space-evenly',
     },
-
     outter:{
-        width: 25,
-        height: 25,
-        borderBottomWidth: 1,
+        width: 30,
+        height: 30,
+        borderWidth: 1,
         borderRadius: 15,
-        justifyContent:'center',
-        alignItems:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
     inner:{
-        width: 15,
-        height: 15,
-        backgroundColor: 'gray',
+        width: 20,
+        height: 20,
+        backgroundColor: '#B6B6B6',
         borderRadius: 10,
     },
 //------------------CADASTRO CONTRATANTE------------------------
