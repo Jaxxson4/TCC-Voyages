@@ -228,9 +228,7 @@ export const styles = StyleSheet.create({
         padding: 10,
     },
 
-//------------------------CADASTRO MOTORISTA---------------------------
-
-
+//------------------------CADASTRO MOTORISTA 1---------------------------
 Text_1: {
     color: '#057856',
     textAlign: 'center',
@@ -340,5 +338,120 @@ BtnProxTxt:{
     padding: 8,
 },
 
+//------------------CADASTRO MOTORISTA 2 ------------------------
+txtcad2: {
+    flex: 1,
+    marginLeft: '16%',
+    flexDirection:'row',
+},
+Text_cad1: {
+    color: '#057856',
+    textAlign: 'center',
+    marginTop: '20%',
+    fontSize: 30,
+    fontWeight: '700',
+},
+Text_cad2: {
+    color: '#10C18D',
+    textAlign: 'center',
+    marginTop: '20%',
+    fontSize: 30,
+    fontWeight: '500',
+},
+CadMimputes2: { 
+    flex: 1,
+    alignItems:'center',
+    justifyContent: 'center',
+    width:'70%',
+    height:'80%',
+    marginLeft: '15%',
+},
+inputCadM2: {
+    backgroundColor:'#E1E1E1',
+    width:'100%',
+    marginBottom: 15,
+    color: '#222',
+    fontSize: 14,
+    borderRadius: 13,
+    padding: 10,
+    marginTop: '8%',
+},
+txt2: {
+    marginTop:'10%',
+},
+texto2: {
+    color:'#113164',
+    textAlign: 'center',
+    marginTop: '7%',
+    marginBottom:'20%',
+    fontSize: 25,
+    fontWeight: '500',
+},
+txtt2: {
+
+},
+text2: {
+    color: '#10C18D',
+    textAlign: 'center',
+    marginTop: '20%',
+    fontSize: 25,
+    fontWeight: '400',
+},
+BtnsDad: {
+    flexDirection:'row',
+},
+BtnConfirmar: {
+    backgroundColor: '#10C18D',
+    height:'12%',
+    justifyContent: "flex-end",
+    alignItems: 'flex-end',
+    marginTop:'20%',
+    borderRadius: 50,
+    marginBottom:'8%',
+
+},
+BtnConfirmarTxt: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 22,
+    fontWeight: '600',
+    paddingLeft: 40,
+    paddingRight: 40,
+},
+BtnPagAnterior: {
+    backgroundColor: '#113164',
+    height:'12%',
+    justifyContent: "flex-start",
+    alignItems: 'flex-start',
+    marginTop:'20%',
+    borderRadius: 50,
+    marginBottom:'8%',
+},
+BtnAnteriorTxt: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '600',
+    paddingLeft: 40,
+    paddingRight: 40,
+},
+container2: {
+    marginLeft:'-30%',
+},
+row: {
+    flexDirection:'row',
+    justifyContent: 'flex-start',
+    marginTop:'10%',
+},
+column: {
+    justifyContent: 'flex-start',
+    flexDirection:'column',
+    marginLeft:'10%',
+    marginTop:'10%',
+    height: 20,
+},
+checkbox: {
+    
+},
 
 })
