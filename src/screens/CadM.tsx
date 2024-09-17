@@ -65,15 +65,10 @@ export default function CadMotorista(){
                 placeholder='Senha'
                 autoCorrect={false}//pro corretor não funcionar
                 onChangeText={() => {}}/>
+        </View>
 
-            <View style={styles.txt_cad}>
-              <Text style = {styles.Texto_1}> Já tem uma conta? </Text> 
-              <Text style = {styles.Texto_2}> Faça login </Text>
-            </View>
-            </View>
-
-            <View style={styles.txt}>
-              <Text style = {styles.texto}> Dados para receber o pagamento </Text> 
+            <View style={styles.txtPag}>
+              <Text style = {styles.Pagamento}> Dados para receber o pagamento </Text> 
             </View>
 
               <View style={styles.Cad_imputes}>
@@ -84,7 +79,7 @@ export default function CadMotorista(){
                 onChangeText={() => {}}/>
             </View>
 
-            <View>
+              <View style={styles.ProximoBtn}>
                     <TouchableOpacity
                         style={styles.BtnProx}
                         activeOpacity={0.6}>
