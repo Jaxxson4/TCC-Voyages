@@ -343,6 +343,7 @@ txtcad2: {
     flex: 1,
     marginLeft: '16%',
     flexDirection:'row',
+    gap: 10,
 },
 Text_cad1: {
     color: '#057856',
@@ -365,6 +366,7 @@ CadMimputes2: {
     width:'70%',
     height:'80%',
     marginLeft: '15%',
+    marginTop:'-20%',
 },
 inputCadM2: {
     backgroundColor:'#E1E1E1',
@@ -389,35 +391,37 @@ texto2: {
 },
 txtt2: {
 
+
 },
 text2: {
     color: '#10C18D',
-    textAlign: 'center',
     marginTop: '20%',
-    fontSize: 25,
-    fontWeight: '400',
+    fontSize: 21,
+    fontWeight: '600',
 },
 BtnsDad: {
     flexDirection:'row',
+    gap: 70,
+    marginLeft:'8%',
 },
 BtnConfirmar: {
     backgroundColor: '#10C18D',
-    height:'12%',
-    justifyContent: "flex-end",
-    alignItems: 'flex-end',
+    height:'18%',
+    justifyContent: "flex-start",
+    alignItems: 'flex-start',
     marginTop:'20%',
     borderRadius: 50,
-    marginBottom:'8%',
+    marginBottom:'22%',
 
 },
 BtnConfirmarTxt: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 22,
+    fontSize: 17,
     fontWeight: '600',
     paddingLeft: 20,
     paddingRight: 20,
-    paddingTop: 8,
+    paddingTop: 6,
 },
 BtnPagAnterior: {
     backgroundColor: '#113164',
@@ -435,7 +439,7 @@ BtnAnteriorTxt: {
     fontWeight: '600',
     paddingLeft: 20,
     paddingRight: 20,
-    paddingTop: 8,
+    paddingTop: 6,
 },
 containerpai: {
     flexDirection: 'row',
