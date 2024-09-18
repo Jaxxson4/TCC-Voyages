@@ -415,12 +415,13 @@ BtnConfirmarTxt: {
     color: 'white',
     fontSize: 22,
     fontWeight: '600',
-    paddingLeft: 40,
-    paddingRight: 40,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 8,
 },
 BtnPagAnterior: {
     backgroundColor: '#113164',
-    height:'12%',
+    height:'18%',
     justifyContent: "flex-start",
     alignItems: 'flex-start',
     marginTop:'20%',
@@ -430,28 +431,37 @@ BtnPagAnterior: {
 BtnAnteriorTxt: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 20,
+    fontSize: 17,
     fontWeight: '600',
-    paddingLeft: 40,
-    paddingRight: 40,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 8,
+},
+containerpai: {
+    flexDirection: 'row',
+    gap: 3,
 },
 container2: {
-    marginLeft:'-30%',
+    marginLeft:'10%',
 },
 row: {
     flexDirection:'row',
     justifyContent: 'flex-start',
-    marginTop:'10%',
+    marginTop:'30%',
+},
+container22: {
+    justifyContent: 'flex-start',
+    flexDirection:'column',
+    marginLeft: '30%',
 },
 column: {
     justifyContent: 'flex-start',
-    flexDirection:'column',
+    flexDirection:'row',
     marginLeft:'10%',
-    marginTop:'10%',
-    height: 20,
+    marginTop:'30%',
 },
 checkbox: {
-    
+    marginRight: '5%',
 },
 
 })

@@ -6,10 +6,25 @@ import React from 'react';
 import { useState } from 'react';
 
     export default function CadMotorista(){
-    const [isChecked, setChecked] = useState(false);
+    const [isChecked, setChecked] = useState(true);
+    const CheckboxGroup = () => {
+    // Estado inicial para os checkboxes
+        const [checkedState, setCheckedState] = useState({
+          VUC: true,
+          Carreta: true,
+          SemiPesado: true,
+          Bitrem: true,
+          Pesado: true,
+          Tanque: true,
+          Basculante: true,
+          Rodotrem: true,
+          Tritrem: true,
+          Cegonha: true,
+        });
     function setSelectedLanguages(selected: any, arg1: any) {
     throw new Error('Function not implemented.');
     }
+}
 
     return(
         <KeyboardAvoidingView  
@@ -66,28 +81,51 @@ import { useState } from 'react';
             <View style={styles.txtt2}>
             <Text style = {styles.text2}> Qual o tipo do seu caminhão: </Text> 
             </View>
-
-            <View style = {styles.container2}>
-            <View style = {styles.row}>
+            <View style = {styles.containerpai}>
+        <View style = {styles.container2}>
+        <View style = {styles.row}>
             <CheckBox style = {styles.checkbox} color = '#057856' value = {isChecked} onValueChange = {setChecked}/>
-            <Text>VUC</Text>
+        <Text>VUC</Text>
             </View>
             <View style = {styles.row}>
             <CheckBox style = {styles.checkbox} color = '#057856' value = {isChecked} onValueChange = {setChecked}/>
-            <Text>Carreta</Text>
+        <Text>Carreta</Text>
             </View>
             <View style = {styles.row}>
             <CheckBox style = {styles.checkbox} color = '#057856' value = {isChecked} onValueChange = {setChecked}/>
-            <Text>Semi-pesado</Text>
+        <Text>Semi-pesado</Text>
             </View>
             <View style = {styles.row}>
             <CheckBox style = {styles.checkbox} color = '#057856' value = {isChecked} onValueChange = {setChecked}/>
-            <Text>Bitrem</Text>
+        <Text>Bitrem</Text>
             </View>
             <View style = {styles.row}>
             <CheckBox style = {styles.checkbox} color = '#057856' value = {isChecked} onValueChange = {setChecked}/>
-            <Text>Pesado</Text>
+        <Text>Pesado</Text>
             </View>
+            </View>
+        <View style = {styles.container22}>
+            <View style = {styles.column}>
+            <CheckBox style = {styles.checkbox} color = '#057856' value = {isChecked} onValueChange = {setChecked}/>
+        <Text>Tanque</Text>
+            </View>
+            <View style = {styles.column}>
+            <CheckBox style = {styles.checkbox} color = '#057856' value = {isChecked} onValueChange = {setChecked}/>
+        <Text>Basculante</Text>
+            </View>
+            <View style = {styles.column}>
+            <CheckBox style = {styles.checkbox} color = '#057856' value = {isChecked} onValueChange = {setChecked}/>
+        <Text>Rodotrem</Text>
+            </View>
+            <View style = {styles.column}>
+            <CheckBox style = {styles.checkbox} color = '#057856' value = {isChecked} onValueChange = {setChecked}/>
+        <Text>Tritrem</Text>
+            </View>
+             <View style = {styles.column}>
+            <CheckBox style = {styles.checkbox} color = '#057856' value = {isChecked} onValueChange = {setChecked}/>
+        <Text>Cegonha</Text>
+        </View>
+        </View>
 </View>
 </View>
             <View style={styles.BtnsDad}>
