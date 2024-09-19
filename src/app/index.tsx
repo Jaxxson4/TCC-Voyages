@@ -1,3 +1,4 @@
+//import './gesture-handler';
 import StackRoutes from '../Routes/StackRoutes';
 
 export default function App(){
