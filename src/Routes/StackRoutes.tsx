@@ -39,8 +39,7 @@ export default function StackRoutes(){
 
             <Stack.Screen
             name="C_Princ"
-            component={ C_Princ }/> 
-            
+            component={ C_Princ }/>             
         </Stack.Navigator>
     )
 }

@@ -26,18 +26,26 @@ export default function C_Princ(){
         </View>
 
         <View style={stylesContrat.Cards}>
-            <View>
-                <TouchableOpacity>
-                    <Text>Buscar motoristas</Text>
-                    <Image source={require('../assets/images/Caminh_1.png')} className='w-72 h-72' />
-                    </TouchableOpacity>
+            
+            <View style={stylesContrat.CardBuscar}>
+
+                <TouchableOpacity style={stylesContrat.BuscarM} activeOpacity={0.6}>
+                    <Text style={stylesContrat.BuscarTxt}>Buscar motoristas</Text>
+                    <Image  source={require('../assets/images/Caminh_1.png')} 
+                            className='w-40 h-40'
+                            style={stylesContrat.ImagTruck1} />
+                </TouchableOpacity>
             </View>
 
-            <View>
-                <TouchableOpacity>
-                    <Text>Divulgar entrega</Text>
-                    <Image source={require('../assets/images/Caminh_2.png')} className='w-72 h-72' />
-                    </TouchableOpacity>
+
+            <View style={stylesContrat.CardDivulgar}>
+
+                <TouchableOpacity style={stylesContrat.Divulgar} activeOpacity={0.6}>
+                    <Text style={stylesContrat.DivulgarTxt}>Buscar motoristas</Text>
+                    <Image  source={require('../assets/images/Caminh_2.png')}
+                            className='w-40 h-40'
+                            style={stylesContrat.ImagTruck2} />
+                </TouchableOpacity>
             </View>
         </View>
 
