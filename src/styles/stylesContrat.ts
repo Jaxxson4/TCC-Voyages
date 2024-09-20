@@ -45,5 +45,139 @@ export const stylesContrat = StyleSheet.create({
 
 
 
- //---------------------------------------------------------------------   
+//------------------------------SOLICITAR SERVIÇO---------------------------------------   
+txtservico: {
+    flex: 1,
+},
+Txtservico_1: {
+    color: '#10C18D',
+    textAlign: 'center',
+    marginTop: '10%',
+    fontSize: 20,
+    fontWeight: '600',
+},
+solcimputes: {
+    flex: 1,
+    alignItems:'center',
+    justifyContent: 'center',
+    width:'70%',
+    height:'80%',
+    marginLeft: '15%',
+},
+inputservico: {
+    backgroundColor:'#E1E1E1',
+    width:'100%',
+    marginBottom: 15,
+    color: '#222',
+    fontSize: 15,
+    borderRadius: 13,
+    padding: 10,
+    marginTop: '3%',
+},
+txtservico2: {
+    flex: 1,
+    marginTop: '5%',
+},
+Txtservico_2: {
+    color: '#10C18D',
+    textAlign: 'center',
+    marginTop: '10%',
+    fontSize: 20,
+    fontWeight: '600',
+},
+Txtservico_3: {
+    color: '#113164',
+    textAlign: 'center',
+    marginTop: '10%',
+    fontSize: 20,
+    fontWeight: '600',
+},
+solcimputes2: {
+    flex: 1,
+    alignItems:'center',
+    justifyContent: 'center',
+    width:'70%',
+    height:'80%',
+    marginLeft: '15%',
+},
+inputservico2: {
+    backgroundColor:'#E1E1E1',
+    width:'100%',
+    marginBottom: 15,
+    color: '#222',
+    fontSize: 15,
+    borderRadius: 13,
+    padding: 10,
+    marginTop: '3%',
+},
+Txtservico_4: {
+    flex: 1,
+    marginTop: '20%',
+},
+Txtservico_5: {
+    color: '#10C18D',
+    textAlign: 'center',
+    marginTop: '10%',
+    fontSize: 20,
+    fontWeight: '600',
+},
+solcimputes3: {
+    flex: 1,
+    alignItems:'center',
+    justifyContent: 'center',
+    width:'70%',
+    height:'80%',
+    marginLeft: '15%',
+},
+inputservico3: {
+    backgroundColor:'#E1E1E1',
+    width:'100%',
+    marginBottom: 15,
+    color: '#222',
+    fontSize: 15,
+    borderRadius: 13,
+    padding: 10,
+    marginTop: '3%',
+},
+Txtservico_6: {
+    flex: 1,
+    marginTop: '20%',
+},
+Txtservico_7:{
+    color: '#000',
+    textAlign: 'center',
+    fontSize: 13,
+    fontWeight: '500',
+},
+checkbox: {
+    marginRight:'2%',
+},
+Termos:{
+    flexDirection:'row',
+    marginHorizontal:'16%',
+    marginRight:'10%',
+    marginTop:'7%',
+},
+
+BtnConfirmar: {
+    backgroundColor: '#10C18D',
+    height: 40,
+    width: 200,
+    justifyContent: "center",
+    alignItems: 'center',
+    marginTop:'10%',
+    marginLeft: '40%',
+    borderRadius: 100,
+    marginBottom:'8%',
+
+},
+BtnConfirmarTxt: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
+    fontWeight: '500',
+    paddingLeft: 10,
+    paddingRight: 10,
+},
+
 })
