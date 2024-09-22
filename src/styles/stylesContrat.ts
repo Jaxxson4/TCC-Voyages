@@ -50,8 +50,8 @@ txtservico: {
     flex: 1,
 },
 Txtservico_1: {
+    marginLeft: '14%',
     color: '#10C18D',
-    textAlign: 'center',
     marginTop: '10%',
     fontSize: 20,
     fontWeight: '600',
@@ -76,20 +76,19 @@ inputservico: {
 },
 txtservico2: {
     flex: 1,
-    marginTop: '5%',
+    marginTop: '10%',
 },
 Txtservico_2: {
+    marginLeft: '14%',
     color: '#10C18D',
-    textAlign: 'center',
-    marginTop: '10%',
     fontSize: 20,
     fontWeight: '600',
 },
 Txtservico_3: {
     color: '#113164',
-    textAlign: 'center',
-    marginTop: '10%',
-    fontSize: 20,
+    marginTop: '3%',
+    marginLeft: '17%',
+    fontSize: 17,
     fontWeight: '600',
 },
 solcimputes2: {
@@ -112,11 +111,11 @@ inputservico2: {
 },
 Txtservico_4: {
     flex: 1,
-    marginTop: '20%',
+    marginTop: '3%',
 },
 Txtservico_5: {
     color: '#10C18D',
-    textAlign: 'center',
+    marginLeft: '14%',
     marginTop: '10%',
     fontSize: 20,
     fontWeight: '600',
@@ -146,8 +145,8 @@ Txtservico_6: {
 Txtservico_7:{
     color: '#000',
     textAlign: 'center',
-    fontSize: 13,
-    fontWeight: '500',
+    fontSize: 14,
+    fontWeight: '400',
 },
 checkbox: {
     marginRight:'2%',

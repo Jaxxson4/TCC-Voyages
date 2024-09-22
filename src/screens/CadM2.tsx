@@ -1,5 +1,6 @@
 import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
+import { useNavigation } from 'expo-router';
 import CheckBox from 'expo-checkbox';
 import { styles } from '../styles/styles';
 import React from 'react';

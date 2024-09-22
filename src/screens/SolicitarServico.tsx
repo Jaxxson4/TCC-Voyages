@@ -4,6 +4,7 @@ import CheckBox from 'expo-checkbox';
 import { stylesContrat } from '../styles/stylesContrat';
 import { useState } from 'react';
 import React from 'react';
+import { useNavigation } from 'expo-router';
 
 export default function SolicitarServico(){
   const handleLinkPress = () => {
@@ -17,13 +18,13 @@ export default function SolicitarServico(){
         <KeyboardAvoidingView  
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })} // ajustar
-        style={{ flex: 1 }}>
+        style={{ flex: 1}}>
     
         <ScrollView style={{flex: 1}}
         showsHorizontalScrollIndicator={false}>
 
-        <View className=" bg-blue-III h-24 shadow-slate-300 items-center justify-between flex flex-row">
-            <Text style={{color: '#10C18D', fontSize: 24, marginLeft:'20%', marginTop:'2%'}}>Solicitar serviço</Text>
+        <View className=" bg-blue-III h-28 shadow-slate-300 items-center justify-between flex flex-row">
+            <Text style={{color: '#10C18D', fontSize: 24, marginLeft:'20%', marginTop:'3%', fontWeight:'500',}}>Solicitar serviço</Text>
             <Pressable className="w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center ">
               <Ionicons title="home" size={33} style={{ color: 'white' }}></Ionicons>
             </Pressable>
@@ -49,27 +50,27 @@ export default function SolicitarServico(){
         </View>
 
         <View style={stylesContrat.txtservico2}>
-        <Text style = {stylesContrat.Txtservico_2}> 2. Detalhes da entrega </Text>
-        <Text style = {stylesContrat.Txtservico_3}> Rua, número, cidade, estado, CEP. </Text> 
-            <View style={stylesContrat.solcimputes2}>
-                <TextInput
-                style={stylesContrat.inputservico2}
-                placeholder='Data para retirar a carga'
-                autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+          <Text style = {stylesContrat.Txtservico_2}> 2. Detalhes da entrega </Text>
+          <Text style = {stylesContrat.Txtservico_3}> Rua, número, cidade, estado, CEP. </Text> 
+              <View style={stylesContrat.solcimputes2}>
+                  <TextInput
+                  style={stylesContrat.inputservico2}
+                  placeholder='Data para retirar a carga'
+                  autoCorrect={false}//pro corretor não funcionar
+                  onChangeText={() => {}}/>
 
-                <TextInput
-                style={stylesContrat.inputservico2}
-                placeholder='Endereço de retirada'
-                autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                  <TextInput
+                  style={stylesContrat.inputservico2}
+                  placeholder='Endereço de retirada'
+                  autoCorrect={false}//pro corretor não funcionar
+                  onChangeText={() => {}}/>
 
-                <TextInput
-                style={stylesContrat.inputservico2}
-                placeholder='Endereço de entrega'
-                autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
-            </View>
+                  <TextInput
+                  style={stylesContrat.inputservico2}
+                  placeholder='Endereço de entrega'
+                  autoCorrect={false}//pro corretor não funcionar
+                  onChangeText={() => {}}/>
+              </View>
         </View>
 
         <View style={stylesContrat.Txtservico_4}>
@@ -105,6 +106,7 @@ export default function SolicitarServico(){
             <View style={stylesContrat.Termos}>
               <CheckBox style = {stylesContrat.checkbox} color = '#163D89' value = {isChecked} onValueChange = {setChecked}/>
                 <Text style = {stylesContrat.Txtservico_7}> Li e concordo com os </Text> 
+                
                 <Text onPress={handleLinkPress} style={{ color: 'blue', textDecorationLine: 'underline' }}> Termos de uso </Text>  
                 <Text style = {stylesContrat.Txtservico_7}>e </Text> 
             </View>                

@@ -1,6 +1,7 @@
 import { Image, ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { stylesContrat } from '../styles/stylesContrat';
+import { useNavigation } from 'expo-router';
 import React from 'react';
   
 export default function C_Princ(){

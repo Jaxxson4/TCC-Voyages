@@ -1,9 +1,9 @@
-import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, View, TouchableOpacity, Pressable, Platform} from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons';
-import { Stack } from 'expo-router';
+import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, View, TouchableOpacity, Pressable, Platform, Image} from 'react-native';
+import { useNavigation } from 'expo-router';
 import { styles } from '../styles/styles';
 
 export default function Login(){
+  const navigation = useNavigation()
   return(
     <KeyboardAvoidingView  
     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -15,9 +15,12 @@ export default function Login(){
       style={styles.bkgd}>
 
         <View className=" bg-blue-III h-24 shadow-slate-300 items-center justify-between flex flex-row">
-            <Pressable className="w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center ">
-              <Ionicons title="goBack" size={33} style={{ color: 'white' }}></Ionicons>
-            </Pressable>
+            <TouchableOpacity className="w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center "
+            onPress={ () => navigation.navigate({name: 'home'} as never)}>
+
+            <Image source={require("../assets/images/arrow-back.png")} 
+                    className='w-7 h-7 ml-7 mt-5' />
+            </TouchableOpacity>
         </View>
 
           <View style={styles.container}>
@@ -41,6 +44,7 @@ export default function Login(){
 
                 <View>
                     <TouchableOpacity
+                        onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}
                         style={styles.BtnEntrar}
                         activeOpacity={0.6}>
                         <Text style={styles.BtnEntrarTxt}>Entrar</Text>

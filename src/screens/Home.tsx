@@ -1,6 +1,9 @@
 import { useNavigation } from 'expo-router';
-import { View, Text, KeyboardAvoidingView, Image, Pressable, StyleSheet, TouchableOpacity, ImageBackgroundBase, ImageBackground } from 'react-native';
+import { View, Text, KeyboardAvoidingView, Image, Pressable, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import { styles } from '../styles/styles';
+import Login from './LoginG';
+import Cad from './Cad';
+
 
 export function Home(){
 const navigation = useNavigation()
@@ -25,9 +28,7 @@ function onPress(){
 
                 <View className='mt-24 justify-center items-center' >
                     <TouchableOpacity
-                    onPress={ () => navigation.navigate({name: 'Login'} as never)}
-
-
+                    onPress={ () => navigation.navigate({name: 'loging'} as never)}
                     activeOpacity={0.6}
                     style={styles.btn1}
                     className="bg-green-lin-I w-72 h-12 rounded-full flex justify-center items-center hover:bg-green-II">
@@ -37,6 +38,7 @@ function onPress(){
                     </TouchableOpacity>
 
                     <TouchableOpacity
+                    onPress={ () => navigation.navigate({name: 'Cad'} as never)}
                     style={styles.btn2}
                     activeOpacity={0.6}
                     className=" mt-6 bg-green-lin-I w-72 h-12 rounded-full flex justify-center items-center hover:bg-green-II" >
