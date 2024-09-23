@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform, StatusBar, Linking } from 'react-native';
+import { KeyboardAvoidingView, Image, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform, StatusBar, Linking } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import CheckBox from 'expo-checkbox';
 import { stylesContrat } from '../styles/stylesContrat';
@@ -8,8 +8,10 @@ import { useNavigation } from 'expo-router';
 
 export default function SolicitarServico(){
   const handleLinkPress = () => {
-    Linking.openURL('https://www.example.com');
+    Linking.openURL('https://raquelagostini4.wixsite.com/meusite');
   };
+  const navigation = useNavigation()
+
   const [isChecked, setChecked] = useState(false);
   function setSelectedLanguages(selected: any, arg1: any) {
   throw new Error('Function not implemented.');
@@ -23,11 +25,15 @@ export default function SolicitarServico(){
         <ScrollView style={{flex: 1}}
         showsHorizontalScrollIndicator={false}>
 
-        <View className=" bg-blue-III h-28 shadow-slate-300 items-center justify-between flex flex-row">
-            <Text style={{color: '#10C18D', fontSize: 24, marginLeft:'20%', marginTop:'3%', fontWeight:'500',}}>Solicitar serviço</Text>
-            <Pressable className="w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center ">
-              <Ionicons title="home" size={33} style={{ color: 'white' }}></Ionicons>
-            </Pressable>
+        <View className=" bg-blue-III h-28 shadow-slate-300 items-center justify-between flex-row">
+            <TouchableOpacity 
+            onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}>
+              <Image source={require("../assets/images/arrow-back.png")} 
+                    className='w-7 h-7 ml-7 -mr-11 mt-5' />
+            </TouchableOpacity>
+            <Text style={{color: '#10C18D', fontSize: 24, marginLeft:'20%', marginTop:'3%', fontWeight:'500',}}
+                  className='mr-44'>Solicitar serviço</Text>
+
         </View>
 
     <View>
