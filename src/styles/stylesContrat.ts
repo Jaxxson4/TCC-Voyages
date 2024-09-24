@@ -6,7 +6,7 @@ export const stylesContrat = StyleSheet.create({
         flexDirection:'row',
         margin:'7%',
         marginRight:'15%',
-        gap:40,
+        gap:30,
     },
     CardBuscar:{
         backgroundColor:'#DEDEDE',
