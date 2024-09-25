@@ -6,7 +6,7 @@ export const stylesContrat = StyleSheet.create({
         flexDirection:'row',
         margin:'7%',
         marginRight:'15%',
-        gap:30,
+        gap: 25,
     },
     CardBuscar:{
         backgroundColor:'#DEDEDE',
@@ -14,6 +14,12 @@ export const stylesContrat = StyleSheet.create({
         paddingHorizontal: 12,
         borderRadius: 10,
         marginLeft:'-2%',
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 3,
+  
     },
     BuscarM:{
     },
@@ -30,6 +36,12 @@ export const stylesContrat = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 12,
         borderRadius: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 3,
+  
     },
     Divulgar:{
         

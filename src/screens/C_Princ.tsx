@@ -38,7 +38,9 @@ export default function C_Princ(){
           <Text style={styles.label}>Pedido feito</Text>
           <Text style={styles.date}>12/03/2024</Text>
           <Text style={styles.time}>12:36</Text>
-          <View style={styles.circle} />
+          <TouchableOpacity>
+          <Image source={require('../assets/images/ButtonBlue.png')} style={styles.imageButton} />
+          </TouchableOpacity>
 
         </View>
 
@@ -50,8 +52,9 @@ export default function C_Princ(){
           <Text style={styles.label}>Carga carregada</Text>
           <Text style={styles.date}>14/03/2024</Text>
           <Text style={styles.time}>16:21</Text>
-          <View style={styles.circle} />
-
+          <TouchableOpacity>
+          <Image source={require('../assets/images/ButtonBlue.png')} style={styles.imageButton} />
+          </TouchableOpacity>
         </View>
 
         {/* Linha de conexão */}
@@ -62,7 +65,9 @@ export default function C_Princ(){
           <Text style={styles.label}>Sua carga saiu para entrega</Text>
           <Text style={styles.date}>14/03/2024</Text>
           <Text style={styles.time}>17:12</Text>
-          <View style={styles.circle} />
+          <TouchableOpacity>
+          <Image source={require('../assets/images/ButtonBlue.png')} style={styles.imageButton} />
+          </TouchableOpacity>
         </View>
 
         {/* Linha de conexão */}
@@ -72,13 +77,13 @@ export default function C_Princ(){
         <View style={styles.item}>
           <Text style={styles.label}>Sua carga passou pelo Km. 114</Text>
           <Text style={styles.date}>Rod. Carvalho Pinto</Text>
-          <Text style={styles.time}>15/03/2024 - 01:43</Text>          
-          <View style={styles.circle} />
-
+          <Text style={styles.time}>15/03/2024 - 01:43</Text>
+          <TouchableOpacity>
+          <Image source={require('../assets/images/ButtonBlue.png')} style={styles.imageButton} />
+          </TouchableOpacity>
         </View>
 
-        {/* Próximo item */}
-        </ScrollView>
+      </ScrollView>
 
         <View style={styles.LineDivisoria} />
 
@@ -93,6 +98,9 @@ export default function C_Princ(){
                             style={stylesContrat.ImagTruck1} />
                 </TouchableOpacity>
             </View>
+
+
+
             <View style={stylesContrat.CardDivulgar}>
 
                 <TouchableOpacity style={stylesContrat.Divulgar} activeOpacity={0.6}>
@@ -105,12 +113,52 @@ export default function C_Princ(){
         </View>
 
         <View style={styles.LineDivisoria} />
+        
+        <View>
+          <Text className='mt-8' style={styles.header} >Cargas já entregues</Text>
+        </View>
 
-            <View>
-                <View>
-                    <Text>Cargas já estregues</Text>
-                </View>
-            </View>
+      <View style={{justifyContent:'center', marginLeft: 19}}>
+             {/* Primeiro cartão */}
+        <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Text style={styles.cardTitle}>Entrega de Terra - 11 m³</Text>
+            <Text style={styles.cardDate}>21/04/2023</Text>
+          </View>
+          <View style={styles.cardBody}>
+            <Ionicons name="person" size={16} color="#666" />
+            <Text style={styles.boldText}> Felipe Braga</Text>
+            <Text style={styles.infoText}> Caminhão Basculante</Text>
+          </View>
+          <Text style={styles.locationText}>
+            Local: Rua João Alves, nº 334, Pinheiros, São Paulo - SP
+          </Text>
+          <View style={styles.cardFooter}>
+            <Text style={styles.paidText}>Pago</Text>
+            <Ionicons name="chevron-down" size={20} color="gray" />
+          </View>
+        </View>
+
+        {/* Segundo cartão */}
+        <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Text style={styles.cardTitle}>Entrega de Cimento</Text>
+            <Text style={styles.cardDate}>17/05/2023</Text>
+          </View>
+          <View style={styles.cardBody}>
+            <Ionicons name="person" size={16} color="#666" />
+            <Text style={styles.boldText}> Paulo A.</Text>
+            <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
+          </View>
+          <Text style={styles.locationText}>
+            Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
+          </Text>
+          <View style={styles.cardFooter}>
+            <Text style={styles.paidText}>Pago</Text>
+            <Ionicons name="chevron-down" size={20} color="gray" />
+          </View>
+        </View>
+      </View>
     </View>
 </ScrollView>
 </KeyboardAvoidingView>
@@ -134,15 +182,17 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     item: {
+      backgroundColor:'#E1E1E1',
+      padding: 12,
+      borderRadius: 10,
       alignItems: 'center',
       justifyContent: 'center',
     },
-    circle: {
-      width: 20,
-      height: 20,
-      borderRadius: 10,
-      backgroundColor: '#113164', // Azul
-      marginBottom: 5,
+    imageButton: {
+      width: 30, // Ajuste o tamanho da imagem conforme necessário
+      height: 30,
+      marginBottom: 8,
+      marginTop:'10%',
     },
     line: {
       width: 40,
@@ -175,5 +225,62 @@ const styles = StyleSheet.create({
     },
     icon: {
       marginLeft: 10,
+    },
+
+
+    card: {
+      backgroundColor: '#E1E1E1',
+      borderRadius: 10,
+      marginTop:'5%',
+      maxWidth:'96%',
+      padding: 15,
+      marginBottom: '10%',
+      shadowColor: '#000',
+      shadowOpacity: 0.1,
+      shadowRadius: 5,
+      shadowOffset: { width: 0, height: 2 },
+      elevation: 3,
+    },
+    cardHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+    cardTitle: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      color: '#333',
+    },
+    cardDate: {
+      fontSize: 12,
+      color: '#999',
+    },
+    cardBody: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: 5,
+    },
+    boldText: {
+      fontWeight: 'bold',
+      color: '#333',
+      marginLeft: 5,
+    },
+    infoText: {
+      color: '#163D89',
+      marginLeft: 10,
+      fontWeight:'500',
+    },
+    locationText: {
+      fontSize: 12,
+      color: '#666',
+      marginTop: 5,
+    },
+    cardFooter: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginTop: 10,
+    },
+    paidText: {
+      color: '#10C18D',
+      fontWeight: 'bold',
     },
   });
