@@ -7,13 +7,12 @@ export const styles = StyleSheet.create({
     btn1:{
         backgroundColor: '#1F9C69',
         height: '14%',
+        width:'48%',
         justifyContent: "center",
         alignItems: 'center',
         marginTop: '-10%',
         borderRadius: 100,
         marginBottom:'8%',
-        paddingLeft: 20,
-        paddingRight: 20,
     },
 
     btn1Text:{
@@ -28,12 +27,14 @@ export const styles = StyleSheet.create({
     btn2:{
         backgroundColor: '#1F9C69',
         height: '14%',
+        width:'50%',
         justifyContent: "center",
         alignItems: 'center',
         marginTop:'10%',
         borderRadius: 100,
         marginBottom:'8%',
-    },
+        paddingHorizontal: 24,
+        },
 
     bkgd:{
         flex: 1,
@@ -149,7 +150,7 @@ export const styles = StyleSheet.create({
     inner:{
         width: 18,
         height: 18,
-        backgroundColor: '#B6B6B6',
+        backgroundColor: '#475c86',
         borderRadius: 10,
     },
     Usuario:{

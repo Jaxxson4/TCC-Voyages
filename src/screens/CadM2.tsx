@@ -1,4 +1,4 @@
-import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
+import { ImageBackground, KeyboardAvoidingView, StyleSheet, Image, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 import CheckBox from 'expo-checkbox';
@@ -7,6 +7,8 @@ import React from 'react';
 import { useState } from 'react';
 
 export default function CadMotorista() {
+    const navigation = useNavigation()
+
     const [selectedTrucks, setSelectedTrucks] = useState<string[]>([]); // Armazena os tipos de caminhões selecionados
   
     const handleCheckBoxChange = (truckType: string) => {
@@ -30,11 +32,16 @@ export default function CadMotorista() {
             source={require('../assets/images/bg-white.png')}
             style={styles.bkgd}
           >
-            <View className="bg-blue-III h-24 shadow-slate-300 items-center justify-between flex flex-row">
-              <Pressable className="w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center">
-                <Ionicons title="home" size={33} style={{ color: 'white' }} />
-              </Pressable>
-            </View>
+        
+        <View className=" bg-blue-III h-24 shadow-slate-300 items-center justify-between flex flex-row">
+            <TouchableOpacity className="w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center "
+            onPress={ () => navigation.navigate({name: 'Cad'} as never)}>
+
+            <Image source={require("../assets/images/arrow-back.png")} 
+                    className='w-7 h-7 ml-7 mt-5' />
+            </TouchableOpacity>
+        </View>
+
   
             <View style={styles.txtcad2}>
               <Text style={styles.Text_cad1}>Cadastro</Text>
@@ -176,11 +183,14 @@ export default function CadMotorista() {
             </View>
   
             <View style={styles.BtnsDad}>
-              <TouchableOpacity style={styles.BtnPagAnterior} activeOpacity={0.6}>
+              <TouchableOpacity style={styles.BtnPagAnterior} activeOpacity={0.6}
+                          onPress={ () => navigation.navigate({name: 'CadMotorista'} as never)}>
                 <Text style={styles.BtnAnteriorTxt}>Página anterior</Text>
               </TouchableOpacity>
   
-              <TouchableOpacity style={styles.BtnConfirmar} activeOpacity={0.6}>
+              <TouchableOpacity style={styles.BtnConfirmar} activeOpacity={0.6}
+                          onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}>{/*TELA PRINCIPAL DO MOTORISTA*/}
+
                 <Text style={styles.BtnConfirmarTxt}>Confirmar</Text>
               </TouchableOpacity>
             </View>

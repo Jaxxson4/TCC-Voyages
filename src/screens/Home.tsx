@@ -28,21 +28,21 @@ function onPress(){
 
                 <View className='mt-24 justify-center items-center' >
                     <TouchableOpacity
-                    onPress={ () => navigation.navigate({name: 'loging'} as never)}
-                    activeOpacity={0.6}
-                    style={styles.btn1}
-                    className="bg-green-lin-I w-72 h-12 rounded-full flex justify-center items-center hover:bg-green-II">
-                    <View>
-                    <Text style={styles.btn1Text} className='text-white font-bold'>LOGIN</Text>
-                    </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
                     onPress={ () => navigation.navigate({name: 'Cad'} as never)}
-                    style={styles.btn2}
+                    style={styles.btn1}
                     activeOpacity={0.6}
                     className=" mt-6 bg-green-lin-I w-72 h-12 rounded-full flex justify-center items-center hover:bg-green-II" >
                     <Text style={styles.btn1Text} className='text-white font-bold'>CADASTRO</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                    onPress={ () => navigation.navigate({name: 'loging'} as never)}
+                    activeOpacity={0.6}
+                    style={styles.btn2}
+                    className="bg-green-lin-I  h-12 rounded-full flex justify-center items-center hover:bg-green-II">
+                    <View>
+                    <Text style={styles.btn1Text} className='text-white font-bold'>LOGIN</Text>
+                    </View>
                     </TouchableOpacity>
                 </View>
             </View>

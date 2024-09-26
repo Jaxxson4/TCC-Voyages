@@ -1,5 +1,4 @@
 import {ImageBackground,KeyboardAvoidingView, StyleSheet, Text, Image, TextInput, View, TouchableOpacity, Pressable, Platform, ScrollView, TouchableWithoutFeedback} from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 import { styles } from '../styles/styles';
 import { useState } from 'react';
@@ -7,10 +6,17 @@ import { useState } from 'react';
 export default function Cad(){
   const [mood, setMood] = useState("")
   const navigation = useNavigation()
-  function onPress(){
-    console.log("Puta");
-}
 
+  const [selectedOption, setSelectedOption] = useState(null); // Estado para a opção selecionada
+
+    const handleConfirm = () => {
+      if (selectedOption === 'Contratante') {
+        navigation.navigate({name:'CadContratante'} as never); // Navegar para a tela de Cadastro Contratante
+      } else if (selectedOption === 'Motorista') {
+        navigation.navigate({name:'CadMotorista'} as never); // Navegar para a tela de Cadastro Motorista
+      }
+    }
+    
   return(
     <KeyboardAvoidingView  
     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -55,7 +61,6 @@ export default function Cad(){
                     { mood === Usuario && <View style={styles.inner}/>} 
 
                   </TouchableOpacity>
-
                 </View>
               ))}
                 </View>
@@ -75,9 +80,3 @@ export default function Cad(){
     </KeyboardAvoidingView>
   )
 }
-
-
-
-/*  <Stack>
-       <Stack.Screen name='login' options={{ title: 'Login' }}/>
-    </Stack>  */
