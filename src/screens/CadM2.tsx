@@ -20,6 +20,33 @@ export default function CadMotorista() {
         setSelectedTrucks([...selectedTrucks, truckType]);
       }
     };
+
+
+    const ChassiInput = () => {
+      const [chassi, setChassi] = useState('');
+    
+      // Função para formatar a entrada no estilo "XXX-XXXXX-X-XX-XXXXXX"
+      const formatChassi = (text:String) => {
+        // Remove todos os caracteres que não sejam números ou letras
+        let cleaned = text.replace(/[^A-Za-z0-9]/g, '');
+    
+        // Aplica a formatação "XXX-XXXXX-X-XX-XXXXXX"
+        if (cleaned.length > 3) {
+          cleaned = cleaned.replace(/^(.{3})(.*)/, '$1-$2');
+        }
+        if (cleaned.length > 9) {
+          cleaned = cleaned.replace(/^(.{3})-(.{5})(.*)/, '$1-$2-$3');
+        }
+        if (cleaned.length > 11) {
+          cleaned = cleaned.replace(/^(.{3})-(.{5})-(.{1})(.*)/, '$1-$2-$3-$4');
+        }
+        if (cleaned.length > 13) {
+          cleaned = cleaned.replace(/^(.{3})-(.{5})-(.{1})-(.{2})(.*)/, '$1-$2-$3-$4-$5');
+        }
+    
+        setChassi(cleaned);
+
+      }}
   
     return (
       <KeyboardAvoidingView
@@ -56,15 +83,19 @@ export default function CadMotorista() {
               <TextInput
                 style={styles.inputCadM2}
                 placeholder="Placa do caminhão"
-                autoCorrect={false}
+                autoCorrect={false}                
                 onChangeText={() => {}}
+                maxLength={7}
               />
   
               <TextInput
                 style={styles.inputCadM2}
                 placeholder="Número do chassi"
                 autoCorrect={false}
-                onChangeText={() => {}}
+                keyboardType="default"
+                value={chassi}
+                onChangeText={formatChassi} // Aplica a formatação sempre que o texto mudar
+                maxLength={21} // Limite de caracteres total com os traços
               />
   
               <TextInput
@@ -199,5 +230,4 @@ export default function CadMotorista() {
       </KeyboardAvoidingView>
     );
   }
-  
   

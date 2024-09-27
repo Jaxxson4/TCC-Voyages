@@ -57,7 +57,7 @@ export default function SolicitarServico(){
 
         <View style={stylesContrat.txtservico2}>
           <Text style = {stylesContrat.Txtservico_2}> 2. Detalhes da entrega </Text>
-          <Text style = {stylesContrat.Txtservico_3}> Rua, número, cidade, estado, CEP. </Text> 
+          <Text style = {stylesContrat.Txtservico_3}> Rua, número, cidade e estado. </Text> 
               <View style={stylesContrat.solcimputes2}>
                   <TextInput
                   style={stylesContrat.inputservico2}

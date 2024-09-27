@@ -37,11 +37,7 @@ export default function C_Princ(){
         <View style={styles.item}>
           <Text style={styles.label}>Pedido feito</Text>
           <Text style={styles.date}>12/03/2024</Text>
-          <Text style={styles.time}>12:36</Text>
-          <TouchableOpacity>
-          <Image source={require('../assets/images/ButtonBlue.png')} style={styles.imageButton} />
-          </TouchableOpacity>
-
+          <Image source={require('../assets/images/true.png')} style={styles.imageButton} />
         </View>
 
         {/* Linha de conexão */}
@@ -52,9 +48,7 @@ export default function C_Princ(){
           <Text style={styles.label}>Carga carregada</Text>
           <Text style={styles.date}>14/03/2024</Text>
           <Text style={styles.time}>16:21</Text>
-          <TouchableOpacity>
-          <Image source={require('../assets/images/ButtonBlue.png')} style={styles.imageButton} />
-          </TouchableOpacity>
+          <Image source={require('../assets/images/true.png')} style={styles.imageButton} />
         </View>
 
         {/* Linha de conexão */}
@@ -65,9 +59,7 @@ export default function C_Princ(){
           <Text style={styles.label}>Sua carga saiu para entrega</Text>
           <Text style={styles.date}>14/03/2024</Text>
           <Text style={styles.time}>17:12</Text>
-          <TouchableOpacity>
-          <Image source={require('../assets/images/ButtonBlue.png')} style={styles.imageButton} />
-          </TouchableOpacity>
+          <Image source={require('../assets/images/true.png')} style={styles.imageButton} />
         </View>
 
         {/* Linha de conexão */}
@@ -78,9 +70,7 @@ export default function C_Princ(){
           <Text style={styles.label}>Sua carga passou pelo Km. 114</Text>
           <Text style={styles.date}>Rod. Carvalho Pinto</Text>
           <Text style={styles.time}>15/03/2024 - 01:43</Text>
-          <TouchableOpacity>
-          <Image source={require('../assets/images/ButtonBlue.png')} style={styles.imageButton} />
-          </TouchableOpacity>
+          <Image source={require('../assets/images/true.png')} style={styles.imageButton} />
         </View>
 
       </ScrollView>
@@ -135,7 +125,7 @@ export default function C_Princ(){
           </Text>
           <View style={styles.cardFooter}>
             <Text style={styles.paidText}>Pago</Text>
-            <Ionicons name="chevron-down" size={20} color="gray" />
+          
           </View>
         </View>
 
@@ -155,7 +145,6 @@ export default function C_Princ(){
           </Text>
           <View style={styles.cardFooter}>
             <Text style={styles.paidText}>Pago</Text>
-            <Ionicons name="chevron-down" size={20} color="gray" />
           </View>
         </View>
       </View>
@@ -184,6 +173,8 @@ const styles = StyleSheet.create({
     item: {
       backgroundColor:'#E1E1E1',
       padding: 12,
+      width:'20%',
+      paddingVertical: 13,
       borderRadius: 10,
       alignItems: 'center',
       justifyContent: 'center',

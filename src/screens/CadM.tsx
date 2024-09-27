@@ -110,8 +110,7 @@ export default function CadMotorista(){
                 placeholder='CNH'
                 autoCorrect={false}//pro corretor não funcionar
                 keyboardType='numeric'
-                value={dateOfBirth}
-                onChangeText={handleDateInput}  // Formata a entrada do usuário
+                onChangeText={() => {}}  // Formata a entrada do usuário
                 maxLength={9}/>
 
                 <TextInput

@@ -17,11 +17,10 @@ export default function CargasDivulgadas(){
         showsHorizontalScrollIndicator={false}>
 
         <View className= " bg-blue-III h-24 shadow-slate-300 items-center justify-between flex flex-row">
-            <TouchableOpacity classname="w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center "
+            <TouchableOpacity className= "w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center"
             onPress={ () => navigation.navigate({name: 'home'} as never)}>
 
-            <Image source={require("../assets/images/arrow-back.png")} 
-                    classname='w-7 h-7 ml-7 mt-5' />
+            <Image className='w-7 h-7 ml-7 mt-5' source={require("../assets/images/arrow-back.png")} />
             </TouchableOpacity>
         </View>
 
