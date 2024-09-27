@@ -55,6 +55,7 @@ export default function Cad(){
                 style={styles.mood}>
 
                   <Text style={styles.Usuario}>{Usuario}</Text>
+
                   <TouchableOpacity style={styles.outter}
                   onPress={()=> setMood(Usuario)}>
                     

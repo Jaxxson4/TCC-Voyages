@@ -5,6 +5,8 @@ import { useNavigation } from 'expo-router';
 import React from 'react';
   
 export default function C_Princ(){
+  const navigation = useNavigation()
+
     return(
         <KeyboardAvoidingView  
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -81,7 +83,8 @@ export default function C_Princ(){
         <View style={stylesContrat.Cards}>
             <View style={stylesContrat.CardBuscar}>
 
-                <TouchableOpacity style={stylesContrat.BuscarM} activeOpacity={0.6}>
+                <TouchableOpacity style={stylesContrat.BuscarM} activeOpacity={0.6}
+                onPress={ () => navigation.navigate({name: 'Motoristas'} as never)}>
                     <Text style={stylesContrat.BuscarTxt}>Buscar motoristas</Text>
                     <Image  source={require('../assets/images/Caminh_1.png')} 
                             className='w-32 h-32'
@@ -93,8 +96,9 @@ export default function C_Princ(){
 
             <View style={stylesContrat.CardDivulgar}>
 
-                <TouchableOpacity style={stylesContrat.Divulgar} activeOpacity={0.6}>
-                    <Text style={stylesContrat.DivulgarTxt}>Buscar motoristas</Text>
+                <TouchableOpacity style={stylesContrat.Divulgar} activeOpacity={0.6}
+                onPress={ () => navigation.navigate({name: 'Divulgação'} as never)}>
+                    <Text style={stylesContrat.DivulgarTxt}>Divulgar carga</Text>
                     <Image  source={require('../assets/images/Caminh_2.png')}
                             className='w-32 h-32'
                             style={stylesContrat.ImagTruck2} />

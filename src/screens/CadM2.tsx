@@ -21,32 +21,30 @@ export default function CadMotorista() {
       }
     };
 
+    const [chassi, setChassi] = useState(''); // Estado para armazenar o valor do chassi
 
-    const ChassiInput = () => {
-      const [chassi, setChassi] = useState('');
-    
-      // Função para formatar a entrada no estilo "XXX-XXXXX-X-XX-XXXXXX"
-      const formatChassi = (text:String) => {
-        // Remove todos os caracteres que não sejam números ou letras
-        let cleaned = text.replace(/[^A-Za-z0-9]/g, '');
-    
-        // Aplica a formatação "XXX-XXXXX-X-XX-XXXXXX"
-        if (cleaned.length > 3) {
-          cleaned = cleaned.replace(/^(.{3})(.*)/, '$1-$2');
-        }
-        if (cleaned.length > 9) {
-          cleaned = cleaned.replace(/^(.{3})-(.{5})(.*)/, '$1-$2-$3');
-        }
-        if (cleaned.length > 11) {
-          cleaned = cleaned.replace(/^(.{3})-(.{5})-(.{1})(.*)/, '$1-$2-$3-$4');
-        }
-        if (cleaned.length > 13) {
-          cleaned = cleaned.replace(/^(.{3})-(.{5})-(.{1})-(.{2})(.*)/, '$1-$2-$3-$4-$5');
-        }
-    
-        setChassi(cleaned);
+    // Função para formatar a entrada no estilo "XXX-XXXXX-X-XX-XXXXXX"
+    const formatChassi = (text:string) => {
+      // Remove todos os caracteres que não sejam números ou letras
+      let cleaned = text.replace(/[^A-Za-z0-9]/g, '');
 
-      }}
+      // Aplica a formatação "XXX-XXXXX-X-XX-XXXXXX"
+      if (cleaned.length > 3) {
+        cleaned = cleaned.slice(0, 3) + '-' + cleaned.slice(3);
+      }
+      if (cleaned.length > 9) {
+        cleaned = cleaned.slice(0, 9) + '-' + cleaned.slice(9);
+      }
+      if (cleaned.length > 11) {
+        cleaned = cleaned.slice(0, 11) + '-' + cleaned.slice(11);
+      }
+      if (cleaned.length > 14) {
+        cleaned = cleaned.slice(0, 14) + '-' + cleaned.slice(14);
+      }
+  
+      // Atualiza o estado com a string formatada
+      setChassi(cleaned);
+    }
   
     return (
       <KeyboardAvoidingView
@@ -94,8 +92,8 @@ export default function CadMotorista() {
                 autoCorrect={false}
                 keyboardType="default"
                 value={chassi}
-                onChangeText={formatChassi} // Aplica a formatação sempre que o texto mudar
-                maxLength={21} // Limite de caracteres total com os traços
+                onChangeText={formatChassi}
+                maxLength={21}
               />
   
               <TextInput
