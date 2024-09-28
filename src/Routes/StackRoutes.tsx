@@ -12,12 +12,13 @@ import Pagamento from "../screens/Pagamento";
 import Motoristas from "../screens/Motoristas";
 import CargasDivulgadas from "../screens/CargasDivlg";
 import DivulgarCarga from "../screens/DivulgCarga";
+import M_Princ from "../screens/M_Princ";
 
 const Stack = createNativeStackNavigator()
 
 export default function StackRoutes(){
     return(
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="CadM2">
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="CadContratante">
             <Stack.Screen 
             name="home" 
             component={ Home }/>
@@ -45,6 +46,10 @@ export default function StackRoutes(){
             <Stack.Screen
             name="C_Princ"
             component={ C_Princ }/>   
+
+            <Stack.Screen
+            name="M_Princ"
+            component={ M_Princ }/>   
 
             <Stack.Screen
             name="Sol_Servico"

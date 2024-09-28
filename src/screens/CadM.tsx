@@ -1,14 +1,17 @@
-import { ImageBackground, KeyboardAvoidingView, StyleSheet, Image, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
+import { ImageBackground, KeyboardAvoidingView, Image, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 import { useState } from 'react';
 import { styles } from '../styles/styles';
 import React from 'react';
 
+
 export default function CadMotorista(){
   const navigation = useNavigation()
 
   const [dateOfBirth, setDateOfBirth] = useState('');
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleDateInput = (text: string) => {
     // Remove qualquer caractere que não seja número
@@ -119,11 +122,21 @@ export default function CadMotorista(){
                 autoCorrect={false}//pro corretor não funcionar
                 onChangeText={() => {}}/>
 
-                <TextInput
-                style={styles.inputCadM}
-                placeholder='Senha'
-                autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                <View style={styles.inputesCADSenha}>
+                    <TextInput
+                      style={styles.inptCC}
+                      placeholder='Senha'
+                      secureTextEntry={!passwordVisible} // alterna entre visível ou não
+                      autoCorrect={false}
+                      onChangeText={() => {}}
+                      className='ml-2'
+                    />
+
+                    {/* Botão para alternar visibilidade, dentro do campo */}
+                    <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)} >
+                      <Ionicons name={passwordVisible ? 'eye-off' : 'eye'} size={24} color='#B2B2B2' className='ml-1'/>
+                    </TouchableOpacity>
+                </View>
         </View>
 
             <View style={styles.txtPag}>

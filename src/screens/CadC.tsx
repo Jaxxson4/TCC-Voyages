@@ -10,6 +10,8 @@ export default function CadC(){
 
   const [dateOfBirth, setDateOfBirth] = useState('');
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
 const handleDateInput = (text: string) => {
   // Remove qualquer caractere que não seja número
   let cleaned = text.replace(/[^0-9]/g, '');
@@ -115,13 +117,24 @@ const handleCpfCnpjInput = (text: string) => {
                 autoCorrect={false}//pro corretor não funcionar
                 onChangeText={() => {}}/>
 
-                <TextInput
-                style={styles.inptCC}
-                placeholder='Senha'
-                secureTextEntry
-                autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
-            </View>
+
+              <View style={styles.inputesCADSenha}>
+                    <TextInput
+                      style={styles.inptCC}
+                      placeholder='Senha'
+                      secureTextEntry={!passwordVisible} // alterna entre visível ou não
+                      autoCorrect={false}
+                      onChangeText={() => {}}
+                      className='ml-2'
+                    />
+
+                    {/* Botão para alternar visibilidade, dentro do campo */}
+                    <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)} >
+                      <Ionicons name={passwordVisible ? 'eye-off' : 'eye'} size={24} color='#B2B2B2' className='ml-1'/>
+                    </TouchableOpacity>
+                </View>
+                 
+            </View> 
 
             <TouchableOpacity
                 onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}

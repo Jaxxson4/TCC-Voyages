@@ -6,6 +6,7 @@ export const stylesContrat = StyleSheet.create({
         flexDirection:'row',
         margin:'7%',
         marginRight:'15%',
+        marginTop:'13%',
         gap: 25,
     },
     CardBuscar:{
@@ -22,10 +23,12 @@ export const stylesContrat = StyleSheet.create({
   
     },
     BuscarM:{
+        alignItems:'center',
     },
     BuscarTxt:{
         fontSize: 17,
         fontWeight: '400',
+        justifyContent:'center',
     },
     ImagTruck1:{
         marginLeft:'10%',
@@ -44,7 +47,7 @@ export const stylesContrat = StyleSheet.create({
   
     },
     Divulgar:{
-        
+        alignItems:'center',
     },
     DivulgarTxt:{
         fontSize: 17,
@@ -172,12 +175,12 @@ Termos:{
 
 BtnConfirmar: {
     backgroundColor: '#10C18D',
-    height: 40,
-    width: 200,
+    width: 150,
+    paddingVertical: 5,
     justifyContent: "center",
     alignItems: 'center',
     marginTop:'10%',
-    marginLeft: '40%',
+    marginLeft: '50%',
     borderRadius: 100,
     marginBottom:'8%',
 

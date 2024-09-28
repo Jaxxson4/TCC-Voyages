@@ -114,9 +114,10 @@ export const styles = StyleSheet.create({
     },
 
     txtwelcome:{
+        justifyContent:'center',
         color:'#163D89',
         fontSize: 20,
-        fontWeight: '500',
+        fontWeight: '400',
     },
 
     Cadwelcome2:{
@@ -204,6 +205,12 @@ export const styles = StyleSheet.create({
         width:'70%',
         height:'80%',
         marginLeft: '15%',
+    },
+    inputesCADSenha:{
+        flexDirection: 'row', // Coloca o ícone ao lado do input
+        alignItems: 'center',
+        borderRadius: 8,
+        paddingHorizontal: 10,
     },
     inptCC:{
         backgroundColor:'#E1E1E1',
@@ -319,24 +326,36 @@ input_CadM: {
     padding: 10,
     marginTop: '3%',
 },
+picker: {
+    height: 50,
+    marginBottom: 20,
+  },
+  keypix: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 10,
+    fontSize: 16,
+  },
 ProximoBtn:{
-    marginRight:'-15%',
+    marginRight:'15%',
     marginLeft:'15%',
-    marginTop:'-10%',
+    marginTop:'10%',
 },
 BtnProx: {
     backgroundColor: '#10C18D',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin:'30%',
     borderRadius: 50,
+    paddingHorizontal: '10%',
+    marginLeft: '40%',
+    marginBottom: '8%',
 },
 BtnProxTxt:{
     textAlign: 'center',
     color: 'white',
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: '600',
-    padding: 8,
+    paddingHorizontal: 7,
+    paddingVertical: 6,
 },
 
 //------------------CADASTRO MOTORISTA 2 ------------------------

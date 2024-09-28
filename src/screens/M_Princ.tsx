@@ -4,7 +4,7 @@ import { stylesContrat } from '../styles/stylesContrat';
 import { useNavigation } from 'expo-router';
 import React from 'react';
   
-export default function C_Princ(){
+export default function M_Princ(){
   const navigation = useNavigation()
 
     return(
@@ -28,96 +28,22 @@ export default function C_Princ(){
             </Pressable>
         </View>
 
-        <View style={styles.ButtonsOptions}>
-              <View style={styles.btn}>
-              <TouchableOpacity style={styles.Button}
-              onPress={ () => navigation.navigate({name: ''} as never)}>
-                <Image className='w-12 h-12' source={require('../assets/images/conversas.png')}/>
-              </TouchableOpacity>
-              <Text style={styles.txtbuttons}>Chat</Text>
-              </View>
-          
-
-              <View style={styles.btn}>
-                <TouchableOpacity style={styles.Button}
-                onPress={ () => navigation.navigate({name: 'CargasD'} as never)}>
-                <Image className='w-14 h-14' source={require('../assets/images/caminhao-de-entrega.png')}/>
-                </TouchableOpacity>
-                <Text style={styles.txtbuttons}>Cargas</Text>
-              </View>
-
-              <View style={styles.btn}>
-                <TouchableOpacity style={styles.Button}
-                onPress={ () => navigation.navigate({name: 'Pagamento'} as never)}>
-                <Image className='w-12 h-12' source={require('../assets/images/pagamento.png')}/>
-                </TouchableOpacity>
-                <Text style={styles.txtbuttons}>Pagamentos</Text>
-              </View>
-          </View>
-          <View style={styles.LineDivisoria} />
-
-
     <View style={styles.container}>
+
       <Text style={styles.header}>Acompanhamento da entrega</Text>
-      <ScrollView 
-        horizontal 
-        showsHorizontalScrollIndicator={false} 
-        contentContainerStyle={styles.progressContainer}
-      >
+      
         {/* Primeiro ponto */}
-        <View style={styles.item}>
-          <Text style={styles.label}>Pedido feito</Text>
-          <Text style={styles.date}>12/03/2024</Text>
-          <Image source={require('../assets/images/true.png')} style={styles.imageButton} />
-        </View>
-
-        {/* Linha de conexão */}
-        <View style={styles.line} />
-
-        {/* Segundo ponto */}
-        <View style={styles.item}>
-          <Text style={styles.label}>Carga carregada</Text>
-          <Text style={styles.date}>14/03/2024</Text>
-          <Text style={styles.time}>16:21</Text>
-          <Image source={require('../assets/images/true.png')} style={styles.imageButton} />
-        </View>
-
-        {/* Linha de conexão */}
-        <View style={styles.line} />
-
-        {/* Terceiro ponto */}
-        <View style={styles.item}>
-          <Text style={styles.label}>Sua carga saiu para entrega</Text>
-          <Text style={styles.date}>14/03/2024</Text>
-          <Text style={styles.time}>17:12</Text>
-          <Image source={require('../assets/images/true.png')} style={styles.imageButton} />
-        </View>
-
-        {/* Linha de conexão */}
-        <View style={styles.line} />
-
-        {/* Quarto ponto */}
-        <View style={styles.item}>
-          <Text style={styles.label}>Sua carga passou pelo Km. 114</Text>
-          <Text style={styles.date}>Rod. Carvalho Pinto</Text>
-          <Text style={styles.time}>15/03/2024 - 01:43</Text>
-          <Image source={require('../assets/images/true.png')} style={styles.imageButton} />
-        </View>
-
-      </ScrollView>
-
-
+        
 
         <View style={styles.LineDivisoria} />
+
 
         <View style={stylesContrat.Cards}>
             <View style={stylesContrat.CardBuscar}>
 
                 <TouchableOpacity style={stylesContrat.BuscarM} activeOpacity={0.6}
                 onPress={ () => navigation.navigate({name: 'Motoristas'} as never)}>
-
                     <Text style={stylesContrat.BuscarTxt}>Buscar motoristas</Text>
-
                     <Image  source={require('../assets/images/Caminh_1.png')} 
                             className='w-32 h-32'
                             style={stylesContrat.ImagTruck1} />
@@ -130,9 +56,7 @@ export default function C_Princ(){
 
                 <TouchableOpacity style={stylesContrat.Divulgar} activeOpacity={0.6}
                 onPress={ () => navigation.navigate({name: 'Divulgação'} as never)}>
-
                     <Text style={stylesContrat.DivulgarTxt}>Divulgar carga</Text>
-
                     <Image  source={require('../assets/images/Caminh_2.png')}
                             className='w-32 h-32'
                             style={stylesContrat.ImagTruck2} />
@@ -150,7 +74,7 @@ export default function C_Princ(){
              {/* Primeiro cartão */}
         <View style={styles.card}>
           <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>Entrega de Terra</Text>
+            <Text style={styles.cardTitle}>Entrega de Terra - 11 m³</Text>
             <Text style={styles.cardDate}>21/04/2023</Text>
           </View>
           <View style={styles.cardBody}>
@@ -209,18 +133,13 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     item: {
-      backgroundColor: '#EBEBEB',
+      backgroundColor:'#E1E1E1',
       padding: 12,
       width:'20%',
-      marginVertical: '3%',
+      paddingVertical: 13,
       borderRadius: 10,
       alignItems: 'center',
       justifyContent: 'center',
-      shadowColor: '#000',
-      shadowOpacity: 0.1,
-      shadowRadius: 5,
-      shadowOffset: { width: 0, height: 3 },
-      elevation: 5,
     },
     imageButton: {
       width: 30, // Ajuste o tamanho da imagem conforme necessário
@@ -316,35 +235,5 @@ const styles = StyleSheet.create({
     paidText: {
       color: '#10C18D',
       fontWeight: 'bold',
-    },
-
-    ButtonsOptions: {
-      marginTop:'5%',
-      marginBottom:'-5%',
-      justifyContent:'center',
-      alignItems:'center',
-      flexDirection:'row',
-      gap: 45,
-    },
-    Button: {
-      backgroundColor:'#E0E0E0',
-      alignItems:'center',
-      padding: 13,
-      borderRadius: 100,
-      shadowColor: '#000',
-      shadowOpacity: 0.1,
-      shadowRadius: 5,
-      shadowOffset: { width: 0, height: 3 },
-      elevation: 5,
-    },
-    btn: {
-      display:'flex',
-      alignItems:'center',
-    },
-    txtbuttons: {
-      fontSize: 15,
-      fontWeight: '500',
-      marginTop:'10%',
-      color:'#10C18D',
     },
   });
