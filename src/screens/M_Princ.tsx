@@ -28,38 +28,48 @@ export default function M_Princ(){
             </Pressable>
         </View>
 
-    <View style={styles.container}>
+        <View style={styles.ButtonsOptions}>
+              <View style={styles.btn}>
+              <TouchableOpacity style={styles.Button}
+              onPress={ () => navigation.navigate({name: ''} as never)}>
+                <Image className='w-9 h-9' source={require('../assets/images/conversas.png')}/>
+              </TouchableOpacity>
+              <Text style={styles.txtbuttons}>Chat</Text>
+              </View>
+          
 
-      <Text style={styles.header}>Acompanhamento da entrega</Text>
-      
+              <View style={styles.btn} className='ml-3'>
+                <TouchableOpacity style={styles.Button}
+                onPress={ () => navigation.navigate({name: 'CargasD'} as never)}>
+                <Image className='w-10 h-10' source={require('../assets/images/rota.png')}/>
+                </TouchableOpacity>
+                <Text style={styles.txtbuttons}>Trajetos</Text>
+              </View>
+
+              <View style={styles.btn}>
+                <TouchableOpacity style={styles.Button}
+                onPress={ () => navigation.navigate({name: 'Pagamento'} as never)}>
+                <Image className='w-9 h-9' source={require('../assets/images/pagamento.png')}/>
+                </TouchableOpacity>
+                <Text style={styles.txtbuttons}>Pagamentos</Text>
+              </View>
+          </View>
+    <View style={styles.container}>
         {/* Primeiro ponto */}
         
 
         <View style={styles.LineDivisoria} />
 
 
-        <View style={stylesContrat.Cards}>
-            <View style={stylesContrat.CardBuscar}>
+        <View style={styles.Cards}>
+            <View style={styles.CardDivulgar}>
 
-                <TouchableOpacity style={stylesContrat.BuscarM} activeOpacity={0.6}
-                onPress={ () => navigation.navigate({name: 'Motoristas'} as never)}>
-                    <Text style={stylesContrat.BuscarTxt}>Buscar motoristas</Text>
-                    <Image  source={require('../assets/images/Caminh_1.png')} 
-                            className='w-32 h-32'
-                            style={stylesContrat.ImagTruck1} />
-                </TouchableOpacity>
-            </View>
-
-
-
-            <View style={stylesContrat.CardDivulgar}>
-
-                <TouchableOpacity style={stylesContrat.Divulgar} activeOpacity={0.6}
+                <TouchableOpacity style={styles.Divulgar} activeOpacity={0.6}
                 onPress={ () => navigation.navigate({name: 'Divulgação'} as never)}>
-                    <Text style={stylesContrat.DivulgarTxt}>Divulgar carga</Text>
+                    <Text style={styles.DivulgarTxt}>Cargas divulgadas</Text>
                     <Image  source={require('../assets/images/Caminh_2.png')}
                             className='w-32 h-32'
-                            style={stylesContrat.ImagTruck2} />
+                            style={styles.ImagTruck2} />
                 </TouchableOpacity>
             </View>
         </View>
@@ -128,31 +138,6 @@ const styles = StyleSheet.create({
       marginLeft:'3%',
       color: '#10C18D', // Verde
     },
-    progressContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    item: {
-      backgroundColor:'#E1E1E1',
-      padding: 12,
-      width:'20%',
-      paddingVertical: 13,
-      borderRadius: 10,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    imageButton: {
-      width: 30, // Ajuste o tamanho da imagem conforme necessário
-      height: 30,
-      marginBottom: 8,
-      marginTop:'10%',
-    },
-    line: {
-      width: 40,
-      height: 2,
-      backgroundColor: '#113164', // Azul
-      marginHorizontal: 5,
-    },
     LineDivisoria:{
         marginTop: '8%',
         width: '100%',
@@ -160,27 +145,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#E1E1E1', // Azul
         marginHorizontal: 5,
     },
-    label: {
-      fontSize: 13,
-      fontWeight:'500',
-      color: '#113164',
-      textAlign: 'center',
-    },
-    date: {
-      fontSize: 11,
-      color: '#666',
-      textAlign: 'center',
-    },
-    time: {
-      fontSize: 11,
-      color: '#666',
-      textAlign: 'center',
-    },
-    icon: {
-      marginLeft: 10,
-    },
-
-
     card: {
       backgroundColor: '#E1E1E1',
       borderRadius: 10,
@@ -235,5 +199,65 @@ const styles = StyleSheet.create({
     paidText: {
       color: '#10C18D',
       fontWeight: 'bold',
+    },
+
+    Cards:{
+      justifyContent: 'center',
+      alignItems:'center',
+      marginTop:'5%',
+      gap: 25,
+    },
+
+    CardDivulgar:{
+      backgroundColor:'#DEDEDE',
+      paddingVertical: 10,
+      paddingHorizontal: 12,
+      borderRadius: 10,
+      shadowColor: '#000',
+      shadowOpacity: 0.1,
+      shadowRadius: 5,
+      shadowOffset: { width: 0, height: 2 },
+      elevation: 3,
+
+  },
+  Divulgar:{
+      alignItems:'center',
+  },
+  DivulgarTxt:{
+      fontSize: 17,
+      fontWeight: '400',
+  },
+  ImagTruck2:{
+      marginLeft:'10%',
+      marginTop:'5%',
+  },
+    ButtonsOptions: {
+      marginTop:'5%',
+      marginBottom:'-5%',
+      justifyContent:'center',
+      alignItems:'center',
+      flexDirection:'row',
+      gap: 45,
+    },
+    Button: {
+      backgroundColor:'#E0E0E0',
+      alignItems:'center',
+      padding: 13,
+      borderRadius: 100,
+      shadowColor: '#000',
+      shadowOpacity: 0.1,
+      shadowRadius: 5,
+      shadowOffset: { width: 0, height: 3 },
+      elevation: 5,
+    },
+    btn: {
+      display:'flex',
+      alignItems:'center',
+    },
+    txtbuttons: {
+      fontSize: 15,
+      fontWeight: '500',
+      marginTop:'10%',
+      color:'#10C18D',
     },
   });

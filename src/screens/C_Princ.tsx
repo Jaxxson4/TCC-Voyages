@@ -32,7 +32,7 @@ export default function C_Princ(){
               <View style={styles.btn}>
               <TouchableOpacity style={styles.Button}
               onPress={ () => navigation.navigate({name: ''} as never)}>
-                <Image className='w-12 h-12' source={require('../assets/images/conversas.png')}/>
+                <Image className='w-9 h-9' source={require('../assets/images/conversas.png')}/>
               </TouchableOpacity>
               <Text style={styles.txtbuttons}>Chat</Text>
               </View>
@@ -41,7 +41,7 @@ export default function C_Princ(){
               <View style={styles.btn}>
                 <TouchableOpacity style={styles.Button}
                 onPress={ () => navigation.navigate({name: 'CargasD'} as never)}>
-                <Image className='w-14 h-14' source={require('../assets/images/caminhao-de-entrega.png')}/>
+                <Image className='w-10 h-10' source={require('../assets/images/caminhao-de-entrega.png')}/>
                 </TouchableOpacity>
                 <Text style={styles.txtbuttons}>Cargas</Text>
               </View>
@@ -49,7 +49,7 @@ export default function C_Princ(){
               <View style={styles.btn}>
                 <TouchableOpacity style={styles.Button}
                 onPress={ () => navigation.navigate({name: 'Pagamento'} as never)}>
-                <Image className='w-12 h-12' source={require('../assets/images/pagamento.png')}/>
+                <Image className='w-9 h-9' source={require('../assets/images/pagamento.png')}/>
                 </TouchableOpacity>
                 <Text style={styles.txtbuttons}>Pagamentos</Text>
               </View>
