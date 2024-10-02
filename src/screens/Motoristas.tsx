@@ -1,113 +1,71 @@
+import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, Image, TouchableOpacity, View, Pressable, ScrollView, Platform, StatusBar, Linking } from 'react-native';
+import { stylesContrat } from '../styles/stylesContrat';
+import { useState } from 'react';
+import { useNavigation } from 'expo-router';
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
 
-const TrackingProgress = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Acompanhamento da entrega</Text>
-      <ScrollView 
-        horizontal 
-        showsHorizontalScrollIndicator={false} 
-        contentContainerStyle={styles.progressContainer}
-      >
-        {/* Primeiro ponto */}
-        <View style={styles.item}>
-          <View style={styles.circle} />
-          <Text style={styles.label}>Pedido feito</Text>
-          <Text style={styles.date}>12/03/2024</Text>
-          <Text style={styles.time}>12:36</Text>
+export default function CargasDivulgadas(){
+    const navigation = useNavigation()
+
+    return(
+        <KeyboardAvoidingView  
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })} // ajustar
+        style={{ flex: 1 }}>
+    
+        <ScrollView style={{flex: 1}}
+        showsHorizontalScrollIndicator={false}>
+
+        <View className= " bg-blue-III h-24 shadow-slate-300 items-center justify-between flex flex-row">
+            <TouchableOpacity className= "w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center"
+            onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}>
+
+            <Image className='w-7 h-7 ml-7 mt-5' source={require("../assets/images/arrow-back.png")} />
+            </TouchableOpacity>
+            <Text style={{color: '#10C18D', fontSize: 21, marginLeft:'8%', marginTop:'3%', fontWeight:'500',}}
+                  className='mr-44'>Buscar motoristas</Text>
         </View>
 
-        {/* Linha de conexão */}
-        <View style={styles.line} />
-
-        {/* Segundo ponto */}
-        <View style={styles.item}>
-          <View style={styles.circle} />
-          <Text style={styles.label}>Carga carregada</Text>
-          <Text style={styles.date}>14/03/2024</Text>
-          <Text style={styles.time}>16:21</Text>
+        <View style={stylemotoristas.ContainerMotoristas}>
+          <View style={stylemotoristas.div}>
+            <Image className='w-7 h-7 ml-7 mt-5' source={require("../assets/images/perfil.png")} />
+            <Text style={stylemotoristas.TxtNome}>Nome</Text>
+            <Text style={stylemotoristas.TxtTruck}>Tipo caminhão - Marca</Text>
+            <Text style={stylemotoristas.TxtPlaca}>Placa</Text>
+            <TouchableOpacity style={stylemotoristas.ButtonPerfil} 
+            onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}>
+              <Text style={stylemotoristas.TxtButton}>Perfil</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
-        {/* Linha de conexão */}
-        <View style={styles.line} />
 
-        {/* Terceiro ponto */}
-        <View style={styles.item}>
-          <View style={styles.circle} />
-          <Text style={styles.label}>Sua carga saiu para entrega</Text>
-          <Text style={styles.date}>14/03/2024</Text>
-          <Text style={styles.time}>17:12</Text>
-        </View>
 
-        {/* Linha de conexão */}
-        <View style={styles.line} />
-
-        {/* Quarto ponto */}
-        <View style={styles.item}>
-          <View style={styles.circle} />
-          <Text style={styles.label}>Sua carga passou pelo Km. 114</Text>
-          <Text style={styles.date}>Rod. Carvalho Pinto</Text>
-          <Text style={styles.time}>15/03/2024 - 01:43</Text>
-        </View>
-
-        {/* Próximo item */}
-      </ScrollView>
-    </View>
+        </ScrollView>
+        </KeyboardAvoidingView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-    paddingHorizontal: 10,
-    backgroundColor: '#fff',
+const stylemotoristas = StyleSheet.create({
+  ContainerMotoristas:{
+    flex: 1,
   },
-  header: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#4caf50', // Verde
+  div:{
+
   },
-  progressContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  TxtNome:{
+
   },
-  item: {
-    alignItems: 'center',
-    justifyContent: 'center',
+  TxtTruck:{
+
   },
-  circle: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    backgroundColor: '#006064', // Azul
-    marginBottom: 5,
-  },
-  line: {
-    width: 40,
-    height: 2,
-    backgroundColor: '#006064', // Azul
-    marginHorizontal: 5,
-  },
-  label: {
-    fontSize: 12,
-    color: '#333',
-    textAlign: 'center',
-  },
-  date: {
-    fontSize: 10,
-    color: '#666',
-    textAlign: 'center',
-  },
-  time: {
-    fontSize: 10,
-    color: '#666',
-    textAlign: 'center',
-  },
-  icon: {
-    marginLeft: 10,
+  TxtPlaca:{
+  }, 
+  ButtonPerfil:{
+
+  }, 
+  TxtButton:{
+    
   },
 });
 
-export default TrackingProgress;

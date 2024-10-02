@@ -24,53 +24,80 @@ export default function CargasDivulgadas(){
             </TouchableOpacity>
         </View>
 
+        <TouchableOpacity style={{flexDirection:'row',}} onPress={ () => navigation.navigate({name: 'Divulgação'} as never)}>
+        <Image className='w-7 h-7 ml-7 mt-5' source={require("../assets/images/mais.png")} />
+        <Text style={{marginTop:'5%', marginLeft:'2%', fontSize:15, color: '#BCBCBC', fontWeight:'700',}}>Divulgar outra carga</Text>
+        </TouchableOpacity>
 <View style={stylesContrat.container}>
     {/* Card 1 - Semente para Aves */}
             <View style={stylesContrat.card}>
-            <Text style={stylesContrat.title}>Semente para aves</Text>
-            <Text style={stylesContrat.subtitle}>Fernanda Lima</Text>
-            <Text style={stylesContrat.description}>Descrição: 45 sacos de sementes variadas para aves, pesando 40kg cada</Text>
-</View>
+                <Text style={stylesContrat.title}>Semente para aves</Text>
+                <Text style={stylesContrat.subtitle}>Fernanda Lima</Text>
+                <Text style={stylesContrat.description}>Descrição: 
+                    <Text style={{flexDirection:'row', fontWeight:'400', color:'#000'}}> 45 sacos de sementes variadas para aves, pesando 40kg cada</Text>
+                </Text>
 
-<View style={stylesContrat.infoContainer}>
-          <Text style={stylesContrat.infoTitle}>Carregamento</Text>
-          <Text style={stylesContrat.infoText}>Rua Tenente Souza, nº 802, Jacareí, SP - 12280-222</Text>
-</View>
+                <View style={stylesContrat.infoContainer}>
+                        <Text style={stylesContrat.infoTitle}>Carregamento</Text>
+                        <Text style={stylesContrat.infoText}>Rua Tenente Souza, nº 802, Jacareí, SP - 12280-222</Text>
+                </View>
 
-<View style={stylesContrat.infoContainer}>
-          <Text style={stylesContrat.infoTitle}>Descarregamento</Text>
-          <Text style={stylesContrat.infoText}>Avenida da Saudade, nº 213, Caçapava, SP - 12280-432</Text>
-</View>
+                <View style={stylesContrat.infoContainer}>
+                        <Text style={stylesContrat.infoTitle}>Descarregamento</Text>
+                        <Text style={stylesContrat.infoText}>Avenida da Saudade, nº 213, Caçapava, SP - 12280-432</Text>
+                </View>
 
-<TouchableOpacity style={stylesContrat.button}>
-          <Text style={stylesContrat.buttonText}>Realizar a retirada</Text>
-          <Text style={stylesContrat.dateText}>23/07/2024</Text>
-</TouchableOpacity>
-  
+                <View style={stylesContrat.infoContainer}>
+                        <Text style={stylesContrat.infoTitle}>Realizar a retirada</Text>
+                        <Text style={stylesContrat.infoText}>23/07/2024</Text>
+                </View>
+            </View>
   
   {/* Card 2 - Semente de Plantio */}
-<View style={stylesContrat.card}>
-    <Text style={stylesContrat.title}>Semente de plantio</Text>
-    <Text style={stylesContrat.subtitle}>Fernanda Lima</Text>
-    <Text style={stylesContrat.description}>Descrição: 60 sacos de sementes variadas</Text>
-        
-<View style={stylesContrat.infoContainer}>
-    <Text style={stylesContrat.infoTitle}>Carregamento</Text>
-    <Text style={stylesContrat.infoText}>Rua Jorge Bem Jor, nº 82, São Paulo, SP - 12280-111</Text>
-</View>
+            <View style={stylesContrat.card}>
+                <Text style={stylesContrat.title}>Semente de plantio</Text>
+                <Text style={stylesContrat.subtitle}>Fernanda Lima</Text>
+                <Text style={stylesContrat.description}>Descrição: 
+                    <Text style={{flexDirection:'row', fontWeight:'400', color:'#000'}}> 45 sacos de sementes variadas para aves, pesando 40kg cada</Text>
+                </Text>            
+                <View style={stylesContrat.infoContainer}>
+                    <Text style={stylesContrat.infoTitle}>Carregamento</Text>
+                    <Text style={stylesContrat.infoText}>Rua Jorge Bem Jor, nº 82, São Paulo, SP - 12280-111</Text>
+                </View>
 
-<View style={stylesContrat.infoContainer}>
-    <Text style={stylesContrat.infoTitle}>Descarregamento</Text>
-    <Text style={stylesContrat.infoText}>Rua Benedito da Silva, nº 131, Brasília, DF - 12612-432</Text>
- </View>
+                <View style={stylesContrat.infoContainer}>
+                    <Text style={stylesContrat.infoTitle}>Descarregamento</Text>
+                    <Text style={stylesContrat.infoText}>Rua Benedito da Silva, nº 131, Brasília, DF - 12612-432</Text>
+                </View>
 
-<TouchableOpacity style={stylesContrat.button}>
-    <Text style={stylesContrat.buttonText}>Realizar a retirada</Text>
-    <Text style={stylesContrat.dateText}>12/10/2024</Text>
-</TouchableOpacity>
-    </View>
+                <View style={stylesContrat.infoContainer}>
+                    <Text style={stylesContrat.infoTitle}>Realizar a retirada</Text>
+                    <Text style={stylesContrat.infoText}>12/10/2024</Text>
+                </View>
+            </View>
 
-</View>
+            <View style={stylesContrat.card}>
+                <Text style={stylesContrat.title}>Semente de plantio</Text>
+                <Text style={stylesContrat.subtitle}>Fernanda Lima</Text>
+                <Text style={stylesContrat.description}>Descrição: 
+                    <Text style={{flexDirection:'row', fontWeight:'400', color:'#000'}}> 45 sacos de sementes variadas para aves, pesando 40kg cada</Text>
+                </Text>            
+                <View style={stylesContrat.infoContainer}>
+                    <Text style={stylesContrat.infoTitle}>Carregamento</Text>
+                    <Text style={stylesContrat.infoText}>Rua Jorge Bem Jor, nº 82, São Paulo, SP - 12280-111</Text>
+                </View>
+
+                <View style={stylesContrat.infoContainer}>
+                    <Text style={stylesContrat.infoTitle}>Descarregamento</Text>
+                    <Text style={stylesContrat.infoText}>Rua Benedito da Silva, nº 131, Brasília, DF - 12612-432</Text>
+                </View>
+
+                <View style={stylesContrat.infoContainer}>
+                    <Text style={stylesContrat.infoTitle}>Realizar a retirada</Text>
+                    <Text style={stylesContrat.infoText}>12/10/2024</Text>
+                </View>
+            </View>
+        </View>
     </ScrollView>
     </KeyboardAvoidingView>
 )}

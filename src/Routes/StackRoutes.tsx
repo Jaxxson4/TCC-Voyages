@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Home from '../screens/Home';
+import Home from '../screens/Home'; // FAZER ANIMAÇÃO
 import LoginG from '../screens/LoginG'
 import CadC from "../screens/CadC";
 import CadM from "../screens/CadM";
@@ -18,7 +18,7 @@ const Stack = createNativeStackNavigator()
 
 export default function StackRoutes(){
     return(
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="M_Princ">
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Motoristas">
             <Stack.Screen 
             name="home" 
             component={ Home }/>

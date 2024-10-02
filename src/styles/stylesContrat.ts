@@ -312,11 +312,13 @@ container: {
     flex: 1,
     padding: 10,
     backgroundColor: '#f4f4f4',
+    alignItems:'center',
 },
 card: {
     backgroundColor: '#fff',
-    borderRadius: 8,
-    padding: 15,
+    width: '80%',
+    borderRadius: 20,
+    padding: 25,
     marginVertical: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -327,17 +329,18 @@ card: {
 title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000',
+    color: '#163D89',
     marginBottom: 5,
 },
 subtitle: {
-    fontSize: 14,
+    fontSize: 17,
     color: '#777',
     marginBottom: 10,
 },
 description: {
     fontSize: 14,
-    color: '#333',
+    color: '#10C18D',
+    fontWeight:'bold',
     marginBottom: 15,
 },
 infoContainer: {
@@ -346,7 +349,7 @@ infoContainer: {
 infoTitle: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#10C18D',
 },
 infoText: {
     fontSize: 14,
