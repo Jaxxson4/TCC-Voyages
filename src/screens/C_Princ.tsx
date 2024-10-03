@@ -1,4 +1,4 @@
-import { Image, ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
+import { Image, ImageBackground, KeyboardAvoidingView, StyleSheet, Alert, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { stylesContrat } from '../styles/stylesContrat';
 import { useNavigation } from 'expo-router';
@@ -6,6 +6,10 @@ import React from 'react';
   
 export default function C_Princ(){
   const navigation = useNavigation()
+
+  const handleChatPress = () => {
+    Alert.alert('Ainda em desenvolvimento :)');
+  }
 
     return(
         <KeyboardAvoidingView  
@@ -15,6 +19,8 @@ export default function C_Princ(){
     
         <ScrollView style={{flex: 1}}
         showsHorizontalScrollIndicator={false}>
+
+          
           <View className=" bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
 
             <Pressable className="w-20 h-16 rounded-full flex justify-center items-center ">
@@ -31,7 +37,7 @@ export default function C_Princ(){
         <View style={styles.ButtonsOptions}>
               <View style={styles.btn}>
               <TouchableOpacity style={styles.Button}
-              onPress={ () => navigation.navigate({name: ''} as never)}>
+              onPress={handleChatPress}>
                 <Image className='w-9 h-9' source={require('../assets/images/conversas.png')}/>
               </TouchableOpacity>
               <Text style={styles.txtbuttons}>Chat</Text>

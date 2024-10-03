@@ -13,12 +13,13 @@ import Motoristas from "../screens/Motoristas";
 import CargasDivulgadas from "../screens/CargasDivlg";
 import DivulgarCarga from "../screens/DivulgCarga";
 import M_Princ from "../screens/M_Princ";
-
+import Perfil from "../screens/perfil";
+import ConfirmarPedido from "../screens/confirmarP";
 const Stack = createNativeStackNavigator()
 
 export default function StackRoutes(){
     return(
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Motoristas">
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="perfil">
             <Stack.Screen 
             name="home" 
             component={ Home }/>
@@ -70,6 +71,14 @@ export default function StackRoutes(){
             <Stack.Screen
             name="Divulgação" //IGUAL SOLICITAÇÃO
             component={ DivulgarCarga } />
+
+            <Stack.Screen
+            name="perfil"
+            component={ Perfil } />
+
+            <Stack.Screen
+            name="Conf_Pedido"
+            component={ ConfirmarPedido } />
 
         </Stack.Navigator>
     )

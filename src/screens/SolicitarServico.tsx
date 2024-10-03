@@ -33,7 +33,6 @@ export default function SolicitarServico(){
             </TouchableOpacity>
             <Text style={{color: '#10C18D', fontSize: 24, marginLeft:'20%', marginTop:'3%', fontWeight:'500',}}
                   className='mr-44'>Solicitar serviço</Text>
-
         </View>
 
     <View>
@@ -123,7 +122,8 @@ export default function SolicitarServico(){
                 marginBottom:'15%',
              }}> Política de privacidade</Text>
 
-                <TouchableOpacity style={stylesContrat.BtnConfirmar} activeOpacity={0.6}>
+                <TouchableOpacity style={stylesContrat.BtnConfirmar} activeOpacity={0.6}
+                  onPress={ () => navigation.navigate({name:'Conf_Pedido'} as never)}>
                 <Text style={stylesContrat.BtnConfirmarTxt}>Confirmar pedido</Text>
               </TouchableOpacity>
         </ScrollView>
