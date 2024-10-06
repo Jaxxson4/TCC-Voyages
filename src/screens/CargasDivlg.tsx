@@ -19,9 +19,10 @@ export default function CargasDivulgadas(){
         <View className= " bg-blue-III h-24 shadow-slate-300 items-center justify-between flex flex-row">
             <TouchableOpacity className= "w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center"
             onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}>
-
             <Image className='w-7 h-7 ml-7 mt-5' source={require("../assets/images/arrow-back.png")} />
             </TouchableOpacity>
+            <Text style={{color: '#10C18D', fontSize: 21, marginLeft:'8%', marginTop:'3%', fontWeight:'500',}}
+                  className='mr-44'>Cargas divulgadas</Text>
         </View>
 
         <TouchableOpacity style={{flexDirection:'row',}} onPress={ () => navigation.navigate({name: 'Divulgação'} as never)}>

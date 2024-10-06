@@ -1,5 +1,4 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 import Home from '../screens/Home'; // FAZER ANIMAÇÃO
 import LoginG from '../screens/LoginG'
 import CadC from "../screens/CadC";
@@ -14,12 +13,27 @@ import CargasDivulgadas from "../screens/CargasDivlg";
 import DivulgarCarga from "../screens/DivulgCarga";
 import M_Princ from "../screens/M_Princ";
 import Perfil from "../screens/perfil";
+import PagEntregas from "../screens/PagEntregas";
 import ConfirmarPedido from "../screens/confirmarP";
+
 const Stack = createNativeStackNavigator()
 
 export default function StackRoutes(){
     return(
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="perfil">
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Pagamento">
+            {/*---------------------TELAS MOTORISTA--------------------*/}
+            
+            <Stack.Screen
+            name="M_Princ"
+            component={ M_Princ }/>   
+
+
+
+
+
+
+
+{/*--------------------TELAS DE ENTRADA---------------------*/}
             <Stack.Screen 
             name="home" 
             component={ Home }/>
@@ -44,13 +58,11 @@ export default function StackRoutes(){
             name="CadM2"
             component={ CadM2 }/> 
 
+{/*------------------TELAS CONTRATANTE------------------*/}
+
             <Stack.Screen
             name="C_Princ"
             component={ C_Princ }/>   
-
-            <Stack.Screen
-            name="M_Princ"
-            component={ M_Princ }/>   
 
             <Stack.Screen
             name="Sol_Servico"
@@ -80,6 +92,10 @@ export default function StackRoutes(){
             name="Conf_Pedido"
             component={ ConfirmarPedido } />
 
+            <Stack.Screen 
+            name="Entregas"
+            component={ PagEntregas }
+            options={{ title: 'Entregas' }}/>
         </Stack.Navigator>
     )
 }

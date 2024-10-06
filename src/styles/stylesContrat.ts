@@ -175,12 +175,12 @@ Termos:{
 
 BtnConfirmar: {
     backgroundColor: '#10C18D',
-    width: 200,
+    width: 150,
     paddingVertical: 5,
     justifyContent: "center",
     alignItems: 'center',
     marginTop:'10%',
-    marginLeft: '35%',
+    marginLeft: '50%',
     borderRadius: 100,
     marginBottom:'8%',
 
