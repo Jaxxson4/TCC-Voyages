@@ -15,19 +15,22 @@ import M_Princ from "../screens/M_Princ";
 import Perfil from "../screens/perfil";
 import PagEntregas from "../screens/PagEntregas";
 import ConfirmarPedido from "../screens/confirmarP";
+import Trajetos from "../screens/Trajetos";
 
 const Stack = createNativeStackNavigator()
 
 export default function StackRoutes(){
     return(
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Pagamento">
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="M_Princ">
             {/*---------------------TELAS MOTORISTA--------------------*/}
             
             <Stack.Screen
             name="M_Princ"
             component={ M_Princ }/>   
 
-
+            <Stack.Screen
+            name="Trajetos"
+            component={ Trajetos }/>
 
 
 
@@ -94,8 +97,8 @@ export default function StackRoutes(){
 
             <Stack.Screen 
             name="Entregas"
-            component={ PagEntregas }
-            options={{ title: 'Entregas' }}/>
+            component={ PagEntregas }/>
+
         </Stack.Navigator>
     )
 }

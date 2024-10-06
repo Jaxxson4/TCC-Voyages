@@ -1,6 +1,5 @@
 import { Image, ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
-import { stylesContrat } from '../styles/stylesContrat';
 import { useNavigation } from 'expo-router';
 import React from 'react';
   
@@ -40,7 +39,7 @@ export default function M_Princ(){
 
               <View style={styles.btn} className='ml-3'>
                 <TouchableOpacity style={styles.Button}
-                onPress={ () => navigation.navigate({name: 'CargasD'} as never)}>
+                onPress={ () => navigation.navigate({name: 'Trajetos'} as never)}>
                 <Image className='w-10 h-10' source={require('../assets/images/rota.png')}/>
                 </TouchableOpacity>
                 <Text style={styles.txtbuttons}>Trajetos</Text>
