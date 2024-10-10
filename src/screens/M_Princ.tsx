@@ -1,10 +1,14 @@
-import { Image, ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
+import { Image, ImageBackground, KeyboardAvoidingView, StyleSheet, Text, Alert, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 import React from 'react';
   
 export default function M_Princ(){
   const navigation = useNavigation()
+  const handleChatPress = () => {
+    Alert.alert('Ainda em desenvolvimento :)');
+  }
+
 
     return(
         <KeyboardAvoidingView  
@@ -30,7 +34,7 @@ export default function M_Princ(){
         <View style={styles.ButtonsOptions}>
               <View style={styles.btn}>
               <TouchableOpacity style={styles.Button}
-              onPress={ () => navigation.navigate({name: ''} as never)}>
+              onPress={handleChatPress}>
                 <Image className='w-9 h-9' source={require('../assets/images/conversas.png')}/>
               </TouchableOpacity>
               <Text style={styles.txtbuttons}>Chat</Text>
@@ -47,7 +51,7 @@ export default function M_Princ(){
 
               <View style={styles.btn}>
                 <TouchableOpacity style={styles.Button}
-                onPress={ () => navigation.navigate({name: 'Pagamento'} as never)}>
+                onPress={ () => navigation.navigate({name: 'M_Pagamento'} as never)}>
                 <Image className='w-9 h-9' source={require('../assets/images/pagamento.png')}/>
                 </TouchableOpacity>
                 <Text style={styles.txtbuttons}>Pagamentos</Text>

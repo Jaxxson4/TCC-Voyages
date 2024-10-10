@@ -16,6 +16,7 @@ import Perfil from "../screens/perfil";
 import PagEntregas from "../screens/PagEntregas";
 import ConfirmarPedido from "../screens/confirmarP";
 import Trajetos from "../screens/Trajetos";
+import M_Pagamento from "../screens/M_Pagamento";
 
 const Stack = createNativeStackNavigator()
 
@@ -32,7 +33,9 @@ export default function StackRoutes(){
             name="Trajetos"
             component={ Trajetos }/>
 
-
+            <Stack.Screen
+            name="M_Pagamento"
+            component={ M_Pagamento }/>
 
 
 
@@ -72,11 +75,11 @@ export default function StackRoutes(){
             component={ SolicitarServico }/>   
 
             <Stack.Screen
-            name="Pagamento" // PRÓXIMA PARA EDITAR!!!!
+            name="Pagamento" 
             component={ Pagamento }/>
 
             <Stack.Screen
-            name="Motoristas" // PRÓXIMA PARA EDITAR!!!!
+            name="Motoristas" 
             component={ Motoristas }/>
 
             <Stack.Screen
