@@ -22,7 +22,7 @@ const Stack = createNativeStackNavigator()
 
 export default function StackRoutes(){
     return(
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="M_Princ">
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="C_Princ">
             {/*---------------------TELAS MOTORISTA--------------------*/}
             
             <Stack.Screen

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Button, TextInput, Clipboard } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Platform, KeyboardAvoidingView, ScrollView, StyleSheet, Button, TextInput, Clipboard } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { useNavigation } from 'expo-router';
 
@@ -8,8 +8,16 @@ export default function PagEntregas(){
     const [imageUri, setImageUri] = useState<string | null>(null);
 
     return(
-        <View style={styles.container}>
-             <View className=" bg-blue-III h-28 shadow-slate-300 items-center justify-between flex-row">
+      <KeyboardAvoidingView  
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })} // ajustar
+        style={{ flex: 1 }}>
+    
+        <ScrollView style={{flex: 1}}
+        showsHorizontalScrollIndicator={false}>
+
+      <View className=" bg-blue-III h-28 shadow-slate-300 items-center justify-between flex-row">
+
             <TouchableOpacity 
             onPress={ () => navigation.navigate({name: 'Pagamento'} as never)}>
               <Image source={require("../assets/images/arrow-back.png")} 
@@ -18,22 +26,26 @@ export default function PagEntregas(){
             <Text 
             style={{color: '#10C18D', fontSize: 24,marginRight:'50%', marginTop:'3%', fontWeight:'500',}}
             >Pagamentos</Text>
-        </View>
+      </View>
+
+        <View style={styles.container}>
+
+            
         {/* Status de entrega */}
-        <Text style={styles.title}>Entrega concluída ✔</Text>
+        <Text style={styles.title}>Entrega concluída <Image source={require('../assets/images/true.png')}/></Text>
         <Text style={styles.subtitle}>Relatório do serviço</Text>
-        <Text style={styles.text}>Carga: Sementes para aves</Text>
-        <Text style={styles.text}>Entrega: Caçapava - SP</Text>
-        <Text style={styles.text}>Km rodados: 39 Km</Text>
-        <Text style={styles.text}>Motorista: João Paulo</Text>
-        <Text style={styles.text}>Placa: SHW-5IP2</Text>
-        <Text style={[styles.text, styles.price]}>Valor total do serviço: R$ 1.170</Text>
+        <Text style={styles.text}>Carga: <Text style={{ fontSize: 16, marginBottom: 5, fontWeight: '400'}}>xxxxxxxx</Text></Text>
+        <Text style={styles.text}>Entrega: <Text style={{ fontSize: 16, marginBottom: 5, fontWeight: '400'}}>xxxxxxxx</Text></Text>
+        <Text style={styles.text}>Motorista: <Text style={{ fontSize: 16, marginBottom: 5, fontWeight: '400'}}>xxxxxxxx</Text></Text>
+        <Text style={styles.text}>Placa: <Text style={{ fontSize: 16, marginBottom: 5, fontWeight: '400'}}>xxxxxxxx</Text></Text>
+        <Text style={styles.text}>Valor total do serviço: <Text style={{color: '#10C18D', fontWeight: 'bold',}}>R$ 1.170</Text></Text>
   
         {/* Pagamento no Pix */}
+        <View style={{alignItems: 'center', justifyContent: 'center'}}>
         <Text style={styles.sectionTitle}>Pagamento no Pix</Text>
-        <Text style={styles.text}>Escaneie este QR code ou copie a chave do pix motorista</Text>
+        <Text style={{color: 'grey', justifyContent: 'center', alignItems: 'center', fontSize: 15}}>Escaneie este QR code ou copie a chave do pix motorista</Text>
         <Text style={styles.textBold}>OBS: É obrigatório o envio do comprovante de pagamento para o motorista</Text>
-  
+        </View>
         {/* Upload de comprovante */}
         <TouchableOpacity style={styles.uploadContainer}>
           {imageUri ? (
@@ -55,6 +67,8 @@ export default function PagEntregas(){
           </TouchableOpacity>
         </View>
       </View>
+      </ScrollView>
+      </KeyboardAvoidingView>
     );
   }
 
@@ -68,19 +82,22 @@ export default function PagEntregas(){
       fontSize: 22,
       fontWeight: 'bold',
       marginBottom: 10,
+      color: '#0056FF',
     },
     subtitle: {
       fontSize: 18,
       fontWeight: 'bold',
       marginTop: 10,
       marginBottom: 5,
+      color: '#163D89',
     },
     text: {
       fontSize: 16,
       marginBottom: 5,
+      fontWeight: 'bold',
     },
     price: {
-      color: 'green',
+      color: '#10C18D',
       fontWeight: 'bold',
     },
     sectionTitle: {
@@ -88,6 +105,7 @@ export default function PagEntregas(){
       fontWeight: 'bold',
       marginTop: 20,
       marginBottom: 10,
+      color: '#163D89'
     },
     textBold: {
       fontWeight: 'bold',
@@ -128,7 +146,7 @@ export default function PagEntregas(){
       backgroundColor: '#FFF',
     },
     copyButton: {
-      backgroundColor: '#34C759',
+      backgroundColor: '#10C18D',
       padding: 10,
       borderRadius: 10,
     },
