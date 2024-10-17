@@ -9,7 +9,6 @@ export default function M_Princ(){
     Alert.alert('Ainda em desenvolvimento :)');
   }
 
-
     return(
         <KeyboardAvoidingView  
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -18,17 +17,20 @@ export default function M_Princ(){
     
         <ScrollView style={{flex: 1}}
         showsHorizontalScrollIndicator={false}>
-          <View className=" bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
 
-            <Pressable className="w-20 h-16 rounded-full flex justify-center items-center ">
-                <Ionicons name="menu" size={33} style={{ color: 'white' }}></Ionicons>
-            </Pressable>
+          <View className=" bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
+            <TouchableOpacity className="w-20 h-16 rounded-full flex justify-center items-center " style={{marginLeft: '5%', marginRight: '-5%' }}
+                              onPress={() => navigation.navigate({name: 'home'} as never)}>
+              <Image source={require('../assets/images/sair.png')}/>
+            </TouchableOpacity>
 
             <View><Text style={{fontSize:25}} className='font-bold text-green'> VOYAGES </Text></View>
 
-            <Pressable className="ml-5 w-20 h-14 rounded-full flex justify-center items-center ">
+            <TouchableOpacity className="ml-5 w-20 h-14 rounded-full flex justify-center items-center "
+                              onPress={() => navigation.navigate({name: 'MNotific'} as never)}
+                              style={{marginLeft: '-5%', marginRight: '5%'}}>
                 <Feather name="bell" size={30} style={{ color: 'white' }}></Feather>
-            </Pressable>
+            </TouchableOpacity>
         </View>
 
         <View style={styles.ButtonsOptions}>
@@ -68,7 +70,7 @@ export default function M_Princ(){
             <View style={styles.CardDivulgar}>
 
                 <TouchableOpacity style={styles.Divulgar} activeOpacity={0.6}
-                onPress={ () => navigation.navigate({name: 'Divulgação'} as never)}>
+                onPress={ () => navigation.navigate({name: 'Cargas_M'} as never)}>
                     <Text style={styles.DivulgarTxt}>Cargas divulgadas</Text>
                     <Image  source={require('../assets/images/Caminh_2.png')}
                             className='w-32 h-32'
@@ -240,9 +242,11 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       alignItems:'center',
       flexDirection:'row',
-      gap: 45,
+      gap: 40,
+      marginLeft: '3%'
     },
     Button: {
+      marginRight: '1%',
       backgroundColor:'#E0E0E0',
       alignItems:'center',
       padding: 13,

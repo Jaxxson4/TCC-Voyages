@@ -11,28 +11,6 @@ export default function C_Princ(){
 
   const handleChatPress = () => {
     Alert.alert('Ainda em desenvolvimento 😁');
-  }
-
-  const [menuVisible, setMenuVisible] = useState(false);  // Controla a visibilidade do menu
-  const slideAnim = useRef(new Animated.Value(-width * 0.8)).current; // Posição inicial do menu fora da tela
-
-  // Função para abrir o menu
-  const openMenu = () => {
-    setMenuVisible(true);  // Define que o menu está visível
-    Animated.timing(slideAnim, {
-      toValue: 0,  // Move o menu para a posição 0 (visível)
-      duration: 300,  // Duração da animação
-      useNativeDriver: true,  // Usa a animação no thread nativo
-    }).start();
-  };
-
-  // Função para fechar o menu
-  const closeMenu = () => {
-    Animated.timing(slideAnim, {
-      toValue: -width * 0.7,  // Move o menu para fora da tela, ajustado para 80% da largura
-      duration: 300,
-      useNativeDriver: true,
-    }).start(() => setMenuVisible(false));
   };
 
     return(
@@ -44,51 +22,18 @@ export default function C_Princ(){
         <ScrollView style={{flex: 1}}
         showsHorizontalScrollIndicator={false}>
 
-          
-          <View className=" bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
-            <View>
-              <TouchableOpacity className="w-20 h-16 ml-5 rounded-full flex justify-center items-center" 
-                                style={{marginLeft: '25%', marginRight: '-20%'}}
-                                onPress={menuVisible ? closeMenu : openMenu}>
-                  <Ionicons name="menu" size={33} style={{ color: 'white' }}></Ionicons>
-              </TouchableOpacity>
-
-              {menuVisible && (
-                <>
-                 <TouchableOpacity style={styles.overlay} onPress={closeMenu} />
-              <Animated.View style={[styles.menu, { transform: [{ translateX: slideAnim }] }]}>
-                <Text style={styles.menuTitle}>VOYAGES</Text>
-                
-                <TouchableOpacity onPress={closeMenu}>
-                  <Text style={styles.menuItem}>Home</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={closeMenu}>
-                  <Text style={styles.menuItem}>Buscar Motoristas</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={closeMenu}>
-                  <Text style={styles.menuItem}>Divulgar Entrega</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={closeMenu}>
-                  <Text style={styles.menuItem}>Histórico de Pedidos</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={closeMenu}>
-                  <Text style={styles.menuItem}>Conversas</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={closeMenu}>
-                  <Text style={styles.menuItem}>Configuração</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={closeMenu}>
-                  <Text style={styles.menuItem}>Sair</Text>
-                </TouchableOpacity>
-              </Animated.View>
-              </>
-            )}
-            </View>
+        <View className=" bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
+            <TouchableOpacity className="w-20 h-16 rounded-full flex justify-center items-center " style={{marginLeft: '5%', marginRight: '-5%' }}
+                              onPress={() => navigation.navigate({name: 'home'} as never)}>
+              <Image source={require('../assets/images/sair.png')}/>
+            </TouchableOpacity>
 
             <View><Text style={{fontSize:25}} className='font-bold text-green'> VOYAGES </Text></View>
 
-            <TouchableOpacity className="ml-5 w-20 h-14 rounded-full flex justify-center items-center " style={{marginRight: '5%'}}>
-                <Feather name="bell" size={30} style={{ color: 'white' }}></Feather>
+            <TouchableOpacity className="ml-5 w-20 h-14 rounded-full flex justify-center items-center "
+                              onPress={() => navigation.navigate({name: 'CNotific'} as never)}
+                              style={{marginLeft: '-5%', marginRight: '5%'}}>
+                <Feather name="bell" size={30} style={{ color: 'white', fontWeight: '100'}}></Feather>
             </TouchableOpacity>
         </View>
 
@@ -273,54 +218,6 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
     },
-    menuButton: {
-      padding: 20,
-      backgroundColor: '#003366',
-      position: 'absolute',
-      zIndex: 10,
-    },
-    menuTitle: {
-      fontSize: 22,
-      color: '#00cc66',
-      marginBottom: 30,
-    },
-    menuText: {
-      fontSize: 25,
-      color: '#000',
-    },
-    overlay: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'rgba(0,0,0,0.5)',  // Fundo semitransparente
-      zIndex: 9,
-    },
-    menu: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '70%',  // Ajustado para 80% da largura da tela
-      height: '100%',
-      backgroundColor: '#003366',
-      paddingTop: 50,
-      paddingLeft: 20,
-      zIndex: 10,  // Garante que o menu sobreponha tudo
-    },
-    menuItem: {
-      fontSize: 18,
-      color: '#000',
-      marginBottom: 20,
-      borderBottomWidth: 1,
-      borderBottomColor: '#fff',
-      paddingBottom: 10,
-    },
-    mainContent: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
 
 
     item: {
@@ -436,6 +333,7 @@ const styles = StyleSheet.create({
     ButtonsOptions: {
       marginTop:'5%',
       marginBottom:'-5%',
+      marginLeft: '4%',
       justifyContent:'center',
       alignItems:'center',
       flexDirection:'row',

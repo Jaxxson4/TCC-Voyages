@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from '../screens/Home'; // FAZER ANIMAÇÃO
 import LoginG from '../screens/LoginG'
 import CadC from "../screens/CadC";
@@ -17,12 +18,19 @@ import PagEntregas from "../screens/PagEntregas";
 import ConfirmarPedido from "../screens/confirmarP";
 import Trajetos from "../screens/Trajetos";
 import M_Pagamento from "../screens/M_Pagamento";
+import Cargas_M from "../screens/Cargas_M";
+import CNotific from "../screens/CNotific";
+import MNotific from "../screens/MNotific";
+import { View } from "react-native-reanimated/lib/typescript/Animated";
 
-const Stack = createNativeStackNavigator()
+const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
 
 export default function StackRoutes(){
     return(
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="C_Princ">
+    
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="M_Princ">
             {/*---------------------TELAS MOTORISTA--------------------*/}
             
             <Stack.Screen
@@ -37,7 +45,13 @@ export default function StackRoutes(){
             name="M_Pagamento"
             component={ M_Pagamento }/>
 
+            <Stack.Screen
+            name="Cargas_M"
+            component={ Cargas_M } />
 
+            <Stack.Screen
+            name="MNotific"
+            component={ MNotific } />
 
 {/*--------------------TELAS DE ENTRADA---------------------*/}
             <Stack.Screen 
@@ -101,6 +115,10 @@ export default function StackRoutes(){
             <Stack.Screen 
             name="Entregas"
             component={ PagEntregas }/>
+
+            <Stack.Screen
+            name="CNotific"
+            component={ CNotific } />
 
         </Stack.Navigator>
     )
