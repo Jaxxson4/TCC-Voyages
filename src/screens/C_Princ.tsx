@@ -13,6 +13,28 @@ export default function C_Princ(){
     Alert.alert('Ainda em desenvolvimento 😁');
   };
 
+  const handleLogoutPress = () => {
+    Alert.alert(
+      "Confirmação de Logout",
+      "Deseja mesmo sair?",
+      [
+        {
+          text: "Não", // O usuário opta por cancelar
+          onPress: () => console.log("Logout cancelado"),
+          style: "cancel"
+        },
+        {
+          text: "Sim", // O usuário confirma o logout
+          onPress: () => navigation.reset({
+            index: 0,
+            routes: [{ name: 'home' } as never] // Redireciona para a tela de login
+          })
+        }
+      ],
+      { cancelable: false }
+    );
+  };
+
     return(
         <KeyboardAvoidingView  
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -22,18 +44,19 @@ export default function C_Princ(){
         <ScrollView style={{flex: 1}}
         showsHorizontalScrollIndicator={false}>
 
+        
         <View className=" bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
-            <TouchableOpacity className="w-20 h-16 rounded-full flex justify-center items-center " style={{marginLeft: '5%', marginRight: '-5%' }}
-                              onPress={() => navigation.navigate({name: 'home'} as never)}>
-              <Image source={require('../assets/images/sair.png')}/>
+            <TouchableOpacity className="w-16 h-16 rounded-full flex justify-center items-center " style={{marginLeft: '5%', marginRight: '-5%' }}
+                              onPress={handleLogoutPress}>
+              <Image className='w-8 h-8' source={require('../assets/images/sair.png')}/>
             </TouchableOpacity>
 
             <View><Text style={{fontSize:25}} className='font-bold text-green'> VOYAGES </Text></View>
 
             <TouchableOpacity className="ml-5 w-20 h-14 rounded-full flex justify-center items-center "
-                              onPress={() => navigation.navigate({name: 'CNotific'} as never)}
+                              onPress={() => navigation.navigate({name: 'MNotific'} as never)}
                               style={{marginLeft: '-5%', marginRight: '5%'}}>
-                <Feather name="bell" size={30} style={{ color: 'white', fontWeight: '100'}}></Feather>
+                <Feather name="bell" size={30} style={{ color: 'white' }}></Feather>
             </TouchableOpacity>
         </View>
 

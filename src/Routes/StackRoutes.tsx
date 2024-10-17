@@ -21,6 +21,7 @@ import M_Pagamento from "../screens/M_Pagamento";
 import Cargas_M from "../screens/Cargas_M";
 import CNotific from "../screens/CNotific";
 import MNotific from "../screens/MNotific";
+import Pedidos from "../screens/Pedidos";
 import { View } from "react-native-reanimated/lib/typescript/Animated";
 
 const Stack = createNativeStackNavigator();
@@ -30,7 +31,7 @@ const Drawer = createDrawerNavigator();
 export default function StackRoutes(){
     return(
     
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="M_Princ">
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Pedidos">
             {/*---------------------TELAS MOTORISTA--------------------*/}
             
             <Stack.Screen
@@ -53,6 +54,9 @@ export default function StackRoutes(){
             name="MNotific"
             component={ MNotific } />
 
+            <Stack.Screen
+            name="Pedidos"
+            component={ Pedidos } />
 {/*--------------------TELAS DE ENTRADA---------------------*/}
             <Stack.Screen 
             name="home" 

@@ -1,4 +1,4 @@
-import { Image, ImageBackground, KeyboardAvoidingView, StyleSheet, Text, Alert, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
+import { Image, KeyboardAvoidingView, StyleSheet, Text, Alert, TouchableOpacity, View, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 import React from 'react';
@@ -8,7 +8,27 @@ export default function M_Princ(){
   const handleChatPress = () => {
     Alert.alert('Ainda em desenvolvimento :)');
   }
-
+  const handleLogoutPress = () => {
+    Alert.alert(
+      "Confirmação de Logout",
+      "Deseja mesmo sair?",
+      [
+        {
+          text: "Não", // O usuário opta por cancelar
+          onPress: () => console.log("Logout cancelado"),
+          style: "cancel"
+        },
+        {
+          text: "Sim", // O usuário confirma o logout
+          onPress: () => navigation.reset({
+            index: 0,
+            routes: [{ name: 'home' } as never] // Redireciona para a tela de login
+          })
+        }
+      ],
+      { cancelable: false }
+    );
+  };
     return(
         <KeyboardAvoidingView  
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -19,9 +39,9 @@ export default function M_Princ(){
         showsHorizontalScrollIndicator={false}>
 
           <View className=" bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
-            <TouchableOpacity className="w-20 h-16 rounded-full flex justify-center items-center " style={{marginLeft: '5%', marginRight: '-5%' }}
-                              onPress={() => navigation.navigate({name: 'home'} as never)}>
-              <Image source={require('../assets/images/sair.png')}/>
+            <TouchableOpacity className="w-16 h-16 rounded-full flex justify-center items-center " style={{marginLeft: '5%', marginRight: '-5%' }}
+                              onPress={handleLogoutPress}>
+              <Image className='w-8 h-8' source={require('../assets/images/sair.png')}/>
             </TouchableOpacity>
 
             <View><Text style={{fontSize:25}} className='font-bold text-green'> VOYAGES </Text></View>
