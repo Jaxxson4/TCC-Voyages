@@ -31,7 +31,7 @@ const Drawer = createDrawerNavigator();
 export default function StackRoutes(){
     return(
     
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Pedidos">
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="home">
             {/*---------------------TELAS MOTORISTA--------------------*/}
             
             <Stack.Screen
