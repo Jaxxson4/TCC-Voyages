@@ -1,9 +1,11 @@
 import { ImageBackground, KeyboardAvoidingView, StyleSheet, Image, Text, TextInput, View, TouchableOpacity, Pressable, Platform, ScrollView} from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
-import { useNavigation } from 'expo-router';
+import { router, useNavigation } from 'expo-router';
 import { useState } from 'react';
 import { Stack } from 'expo-router';
 import { styles } from '../styles/styles';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../config/firebase';
 
 export default function CadC(){
   const navigation = useNavigation()
@@ -11,6 +13,35 @@ export default function CadC(){
   const [dateOfBirth, setDateOfBirth] = useState('');
 
   const [passwordVisible, setPasswordVisible] = useState(false);
+
+  //CAMPOS DE CADASTRO
+  const [userName, setUserName] = useState('');
+  const [userDate, setUserDate] = useState('');
+  const [userCPF_Cnpj, setUserCPF_Cnpj] = useState('');
+  const [userMail, setUserMail] = useState('');
+  const [userPass, setUserPass] = useState('');
+
+  function CadC(){
+    if(userName ==='' || userDate ==='' || userCPF_Cnpj ==='' || userMail ==='' || userPass ==='' ){
+      alert('Todos os campos devem ser preenchidos');
+      return;
+    }else{
+      createUserWithEmailAndPassword(auth, userMail, userPass)
+      .then((useCredential) => {
+        const user = useCredential.user;
+        alert('O usuário' + userMail + 'foi criado.');
+        console.log(user);
+        router.replace('/');
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        alert(errorMessage);
+
+        router.replace({name:'C_Princ'} as never);
+      })
+  
+    }
+  }
 
 const handleDateInput = (text: string) => {
   // Remove qualquer caractere que não seja número
@@ -90,15 +121,16 @@ const handleCpfCnpjInput = (text: string) => {
                 style={styles.inptCC}
                 placeholder='Nome completo'
                 autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                value={userName}
+                onChangeText={setUserName}/>
 
                 <TextInput
                 style={styles.inptCC}
                 placeholder='Data de nascimento'
                 autoCorrect={false}//pro corretor não funcionar
                 keyboardType='numeric'
-                value={dateOfBirth}
-                onChangeText={handleDateInput}  // Formata a entrada do usuário
+                value={userDate}
+                onChangeText={setUserDate}  // Formata a entrada do usuário
                 maxLength={10} /> 
                 
                 <TextInput
@@ -106,8 +138,9 @@ const handleCpfCnpjInput = (text: string) => {
                 placeholder='CPF/CNPJ'
                 autoCorrect={false}//pro corretor não funcionar
                 keyboardType='numeric'
-                value={cpfCnpj}
-                onChangeText={handleCpfCnpjInput}  // Formata a entrada de CPF/CNPJ
+                value={userCPF_Cnpj}
+                onChangeText={setUserCPF_Cnpj} 
+                 // Formata a entrada de CPF/CNPJ
                 maxLength={18}  // Limita a entrada para CPF (14 caracteres) ou CNPJ (18 caracteres)
                 />
                 
@@ -115,7 +148,8 @@ const handleCpfCnpjInput = (text: string) => {
                 style={styles.inptCC}
                 placeholder='Email'
                 autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                value={userMail}
+                onChangeText={setUserMail}/>
 
 
               <View style={styles.inputesCADSenha}>
@@ -124,7 +158,8 @@ const handleCpfCnpjInput = (text: string) => {
                       placeholder='Senha'
                       secureTextEntry={!passwordVisible} // alterna entre visível ou não
                       autoCorrect={false}
-                      onChangeText={() => {}}
+                      value={userPass}
+                      onChangeText={setUserPass}
                       className='ml-2'
                     />
 
@@ -137,7 +172,8 @@ const handleCpfCnpjInput = (text: string) => {
             </View> 
 
             <TouchableOpacity
-                onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}
+                onPress={CadC}
+             //  onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}
                 style={styles.ConfirmBtn}
                 activeOpacity={0.6}>
                 <Text style={styles.Confirmtxt}>Confirmar</Text>

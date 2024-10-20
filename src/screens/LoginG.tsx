@@ -1,9 +1,29 @@
 import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, View, TouchableOpacity, Pressable, Platform, Image} from 'react-native';
 import { useNavigation } from 'expo-router';
 import { styles } from '../styles/styles';
+import { useReducer, useState } from 'react';
+import { auth } from '../config/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login(){
   const navigation = useNavigation()
+  const [userMail, setUserMail] = useState('');
+  const [userPass, setUserPass] = useState('');
+
+  function userLogin(){
+    signInWithEmailAndPassword(auth, userMail, userPass)
+    .then((useCredential) => {
+      const user = useCredential.user;
+      alert('Login efetuado com sucesso.');
+      console.log(user);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+    })
+  }
+
   return(
     <KeyboardAvoidingView  
     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -33,18 +53,21 @@ export default function Login(){
                 style={styles.input}
                 placeholder='Email'
                 autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                value={userMail}
+                onChangeText={setUserMail}/>
 
                 <TextInput
                 style={styles.input}
                 placeholder='Senha'
                 secureTextEntry
                 autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                value={userPass}
+                onChangeText={setUserPass}/>
 
                 <View>
                     <TouchableOpacity
-                        onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}
+                        onPress = {userLogin}
+                        //onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}
                         style={styles.BtnEntrar}
                         activeOpacity={0.6}>
                         <Text style={styles.BtnEntrarTxt}>Entrar</Text>
