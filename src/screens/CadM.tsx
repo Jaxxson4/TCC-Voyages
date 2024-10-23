@@ -1,9 +1,11 @@
 import { ImageBackground, KeyboardAvoidingView, Image, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
-import { useNavigation } from 'expo-router';
+import { useNavigation, router } from 'expo-router';
 import { useState } from 'react';
 import { styles } from '../styles/styles';
 import React from 'react';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../config/firebase';
 
 
 export default function CadMotorista(){
@@ -13,6 +15,37 @@ export default function CadMotorista(){
 
   const [passwordVisible, setPasswordVisible] = useState(false);
 
+
+  //CAMPOS DE CADASTRO
+  const [userName, setUserName] = useState('');
+  const [userMail, setUserMail] = useState('');
+  const [userPass, setUserPass] = useState('');
+  const [userDate, setUserDate] = useState('');
+  const [userCPF_Cnpj, setUserCPF_Cnpj] = useState('');
+  const [userCNH, setUserCNH] = useState('');
+
+  function CadM(){
+    if(userName ==='' || userDate ==='' || userCPF_Cnpj ==='' || userMail ==='' || userPass ==='' ){
+      alert('Todos os campos devem ser preenchidos');
+      return;
+    }else{
+      createUserWithEmailAndPassword(auth, userMail, userPass)
+      .then((useCredential) => {
+        const user = useCredential.user;
+        alert('O usuário' + userMail + 'foi criado.');
+        console.log(user);
+        router.replace('/');
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        alert(errorMessage);
+
+        router.replace({name:'C_Princ'} as never);
+      })
+    }
+  }
+
+  //---------------------------------------------------------------------------------
   const handleDateInput = (text: string) => {
     // Remove qualquer caractere que não seja número
     let cleaned = text.replace(/[^0-9]/g, '');
@@ -54,7 +87,7 @@ export default function CadMotorista(){
   
     setCpfCnpj(cleaned);
   };
-  
+  //----------------------------------------------------------------------------------------
 
     return(
         <KeyboardAvoidingView  
@@ -88,15 +121,16 @@ export default function CadMotorista(){
                 style={styles.inputCadM}
                 placeholder='Nome completo'
                 autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                value={userName}
+                onChangeText={setUserName}/>
 
             <TextInput
                 style={styles.inputCadM}
                 placeholder='Data de Nascimento'
                 autoCorrect={false}//pro corretor não funcionar
                 keyboardType='numeric'
-                value={dateOfBirth}
-                onChangeText={handleDateInput}  // Formata a entrada do usuário
+                value={userDate}
+                onChangeText={setUserDate}  // Formata a entrada do usuário
                 maxLength={10}/>
 
             <TextInput
@@ -104,8 +138,8 @@ export default function CadMotorista(){
                 placeholder='CPF'
                 autoCorrect={false}//pro corretor não funcionar
                 keyboardType='numeric'
-                value={cpfCnpj}
-                onChangeText={handleCpfCnpjInput}  // Formata a entrada de CPF/CNPJ
+                value={userCPF_Cnpj}
+                onChangeText={setUserCPF_Cnpj}  // Formata a entrada de CPF/CNPJ
                 maxLength={14}/>
 
                 <TextInput
@@ -113,14 +147,16 @@ export default function CadMotorista(){
                 placeholder='CNH'
                 autoCorrect={false}//pro corretor não funcionar
                 keyboardType='numeric'
-                onChangeText={() => {}}  // Formata a entrada do usuário
+                value={userCNH}
+                onChangeText={setUserCNH}  // Formata a entrada do usuário
                 maxLength={9}/>
 
                 <TextInput
                 style={styles.inputCadM}
                 placeholder='Email'
                 autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                value={userMail}
+                onChangeText={setUserMail}/>
 
                 <View style={styles.inputesCADSenha}>
                     <TextInput
@@ -128,7 +164,8 @@ export default function CadMotorista(){
                       placeholder='Senha'
                       secureTextEntry={!passwordVisible} // alterna entre visível ou não
                       autoCorrect={false}
-                      onChangeText={() => {}}
+                      value={userPass}
+                      onChangeText={setUserPass}
                       className='ml-2'
                     />
 

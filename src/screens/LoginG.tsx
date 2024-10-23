@@ -16,6 +16,7 @@ export default function Login(){
       const user = useCredential.user;
       alert('Login efetuado com sucesso.');
       console.log(user);
+      
     })
     .catch((error) => {
       const errorCode = error.code;

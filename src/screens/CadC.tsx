@@ -2,7 +2,6 @@ import { ImageBackground, KeyboardAvoidingView, StyleSheet, Image, Text, TextInp
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { router, useNavigation } from 'expo-router';
 import { useState } from 'react';
-import { Stack } from 'expo-router';
 import { styles } from '../styles/styles';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
@@ -37,9 +36,8 @@ export default function CadC(){
         const errorMessage = error.message;
         alert(errorMessage);
 
-        router.replace({name:'C_Princ'} as never);
+        navigation.navigate({name:'C_Princ'} as never);
       })
-  
     }
   }
 
@@ -98,7 +96,6 @@ const handleCpfCnpjInput = (text: string) => {
     <ImageBackground
       source={require('../assets/images/bg-white.png')}
       style={styles.bkgd}>
-
         <View className=" bg-blue-III h-24 shadow-slate-300 items-center justify-between flex flex-row">
             <TouchableOpacity className="w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center "
             onPress={ () => navigation.navigate({name: 'Cad'} as never)}>

@@ -202,8 +202,8 @@ export default function CadMotorista() {
                     <CheckBox
                       style={styles.checkbox}
                       color="#163D89"
-                      value={selectedTrucks.includes('Cegonha')}
-                      onValueChange={() => handleCheckBoxChange('Cegonha')}
+                      value={selectedTrucks.includes('Carro')}
+                      onValueChange={() => handleCheckBoxChange('Carro')}
                     />
                     <Text>Cegonha</Text>
                   </View>
