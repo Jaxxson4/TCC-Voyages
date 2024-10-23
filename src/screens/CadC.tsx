@@ -30,7 +30,7 @@ export default function CadC(){
         const user = useCredential.user;
         alert('O usuário' + userMail + 'foi criado.');
         console.log(user);
-        router.replace('/');
+        navigation.navigate({name:'login'} as never);
       })
       .catch((error) => {
         const errorMessage = error.message;
