@@ -1,4 +1,4 @@
-import { ImageBackground, KeyboardAvoidingView, StyleSheet, Image, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
+import { ImageBackground, KeyboardAvoidingView, Image, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 import CheckBox from 'expo-checkbox';
@@ -74,7 +74,7 @@ export default function CadMotorista() {
             </View>
   
             <View style={styles.txt2}>
-              <Text style={styles.texto2}>Insira os dados do caminhão</Text>
+              <Text style={styles.texto2}>Insira os dados do veículo</Text>
             </View>
   
             <View style={styles.CadMimputes2}>
@@ -205,7 +205,7 @@ export default function CadMotorista() {
                       value={selectedTrucks.includes('Carro')}
                       onValueChange={() => handleCheckBoxChange('Carro')}
                     />
-                    <Text>Cegonha</Text>
+                    <Text>Carro</Text>
                   </View>
                 </View>
               </View>

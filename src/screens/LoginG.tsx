@@ -2,26 +2,70 @@ import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, TextInput, Vie
 import { useNavigation } from 'expo-router';
 import { styles } from '../styles/styles';
 import { useReducer, useState } from 'react';
-import { auth } from '../config/firebase';
+import { auth, db } from '../config/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getDoc, doc } from 'firebase/firestore';
 
 export default function Login(){
   const navigation = useNavigation()
   const [userMail, setUserMail] = useState('');
   const [userPass, setUserPass] = useState('');
 
+  const userPassTable = "teste";
+  const userMailTable = "mail@mail.com"
+
+  const handleLogin = (email: string, password: string) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+  
+        // Busca os dados do usuário no Firestore
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const userType = userData.userType; // Pega o tipo de usuário
+  
+          // Redireciona para a tela correta
+          if (userType === 'motorista') {
+            navigation.navigate('M_Princ' as never); // Exemplo de rota para motorista
+          } else if (userType === 'contratante') {
+            navigation.navigate('C_Princ' as never); // Exemplo de rota para contratante
+          }
+        } else {
+          console.log('Nenhum dado de usuário encontrado');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   function userLogin(){
     signInWithEmailAndPassword(auth, userMail, userPass)
     .then((useCredential) => {
       const user = useCredential.user;
       alert('Login efetuado com sucesso.');
+      navigation.navigate('C_Princ' as never);
       console.log(user);
-      
     })
     .catch((error) => {
+      
+      // pesquisar forma para pegar os dados do usuario na tabela (dentro do firebase) para realizar um 
+      // comparativo com o que foi digitado pelo usuário caso seja usuário e/ou senha errado.
+
+    /*if(auth != userPass || auth != userMail){
       const errorCode = error.code;
       const errorMessage = error.message;
-      alert(errorMessage);
+      //alert(errorMessage);
+      alert('Usuario e/ou senha incorretos, tente novamente!');
+      console.log(errorMessage);
+    }else{*/
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      //alert(errorMessage);
+      alert('Falha ao tentar efetuar o login, tente novamente!');
+      console.log(errorMessage);
+    //}
     })
   }
 
