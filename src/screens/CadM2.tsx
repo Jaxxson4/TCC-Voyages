@@ -1,14 +1,13 @@
 import { ImageBackground, KeyboardAvoidingView, Image, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
-import CheckBox from 'expo-checkbox';
 import { styles } from '../styles/styles';
-import React from 'react';
 import { useState } from 'react';
+import CheckBox from 'expo-checkbox';
+import React from 'react';
 
 export default function CadMotorista() {
-    const navigation = useNavigation()
 
+    const navigation = useNavigation()
     const [selectedTrucks, setSelectedTrucks] = useState<string[]>([]); // Armazena os tipos de caminhões selecionados
   
     const handleCheckBoxChange = (truckType: string) => {
@@ -22,8 +21,6 @@ export default function CadMotorista() {
     };
 
     const [chassi, setChassi] = useState(''); // Estado para armazenar o valor do chassi
-
-    // Função para formatar a entrada no estilo "XXX-XXXXX-X-XX-XXXXXX"
     const formatChassi = (text:string) => {
       // Remove todos os caracteres que não sejam números ou letras
       let cleaned = text.replace(/[^A-Za-z0-9]/g, '');
