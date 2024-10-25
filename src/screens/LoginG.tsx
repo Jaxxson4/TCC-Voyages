@@ -5,11 +5,13 @@ import { useReducer, useState } from 'react';
 import { auth, db } from '../config/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { getDoc, doc } from 'firebase/firestore';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Login(){
   const navigation = useNavigation()
   const [userMail, setUserMail] = useState('');
   const [userPass, setUserPass] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const userPassTable = "teste";
   const userMailTable = "mail@mail.com"
@@ -101,13 +103,12 @@ export default function Login(){
                 value={userMail}
                 onChangeText={setUserMail}/>
 
-                <TextInput
-                style={styles.input}
-                placeholder='Senha'
-                secureTextEntry
-                autoCorrect={false}//pro corretor não funcionar
-                value={userPass}
-                onChangeText={setUserPass}/>
+              <View style={styles.inputesCADSenha}>
+                <TextInput style={styles.inptCC} placeholder='Senha' secureTextEntry={!passwordVisible} autoCorrect={false} value={userPass} onChangeText={setUserPass} />
+                <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)} >
+                  <Ionicons name={passwordVisible ? 'eye-off' : 'eye'} size={24} color='#B2B2B2'/>
+                </TouchableOpacity>
+              </View>
 
                 <View>
                     <TouchableOpacity

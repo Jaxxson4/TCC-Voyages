@@ -41,7 +41,7 @@ export default function CadC(){
       alert('Todos os campos devem ser preenchidos');
       return;
     } else {
-      const userType = 'motorista'; // ou 'contratante' dependendo da tela
+      const userType = 'contratante'; // ou 'contratante' dependendo da tela
       createUserWithEmailAndPassword(auth, userMail, userPass)
         .then((userCredential) => {
           const user = userCredential.user;
@@ -56,8 +56,8 @@ export default function CadC(){
           alert('Falha na comunicação com o servidor, tente novamente!');
           console.log(errorMessage);
         });
+      }
     }
-  }
 
   const handleDateInput = (text: string) => {
     // Remove caracteres que não sejam números e formata a data

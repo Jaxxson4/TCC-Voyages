@@ -221,6 +221,8 @@ export const styles = StyleSheet.create({
         borderRadius: 13,
         padding: 10,
         marginTop: '8%',
+        marginRight: '3%',
+        marginLeft: '5%',
     },
     ConfirmBtn:{
         margin:'30%',
@@ -340,7 +342,7 @@ picker: {
 ProximoBtn:{
     marginRight:'15%',
     marginLeft:'15%',
-    marginTop:'10%',
+    marginTop:'20%',
 },
 BtnProx: {
     backgroundColor: '#10C18D',
@@ -402,13 +404,15 @@ txt2: {
     marginTop:'10%',
 },
 texto2: {
-    color:'#113164',
+    color: '#163D89',
     textAlign: 'center',
     marginTop: '7%',
     marginBottom:'20%',
-    fontSize: 25,
+    fontSize: 22,
     fontWeight: '500',
 },
+
+
 txtt2: {
 
 

@@ -110,6 +110,7 @@ export default function CadMotorista() {
               <View style={styles.txtt2}>
                 <Text style={styles.text2}>Qual o tipo do seu caminhão:</Text>
               </View>
+              
               <View style={styles.containerpai}>
                 <View style={styles.container2}>
                   <View style={styles.row}>

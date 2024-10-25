@@ -10,7 +10,7 @@ import CheckBox from 'expo-checkbox';
 import React from 'react';
 
 
-export default function CadMotorista(){
+export default function CadM(){
   const navigation = useNavigation()
   const db = getFirestore(); // Inicializa o Firestore
   const [selectedTrucks, setSelectedTrucks] = useState<string[]>([]); // Armazena os tipos de caminhões selecionados
@@ -31,14 +31,15 @@ export default function CadMotorista(){
 
     //-----------------------------------------------------------------------------------
     const handleCheckBoxChange = (truckType: string) => {
-      if (selectedTrucks.includes(truckType)) {
-        // Se já estiver selecionado, remove o caminhão do array
-        setSelectedTrucks(selectedTrucks.filter((item) => item !== truckType));
-      } else {
-        // Caso contrário, adiciona o caminhão ao array
-        setSelectedTrucks([...selectedTrucks, truckType]);
-      }
-    };
+    if (selectedTrucks.includes(truckType)) {
+      // Se já estiver selecionado, remove o caminhão do array
+      setSelectedTrucks(selectedTrucks.filter((item) => item !== truckType));
+    } else {
+      // Caso contrário, adiciona o caminhão ao array
+      setSelectedTrucks([...selectedTrucks, truckType]);
+    }
+  };
+
 
     //000000000000000000000000000
 /*
@@ -87,9 +88,10 @@ export default function CadMotorista(){
         setDateOfBirth(cleaned);
       };
       
-      const [cpfCnpj, setCpfCnpj] = useState('');
-      
-      const handleCpfCnpjInput = (text: string) => {
+      const [cpfCnpj, setCpf] = useState('');
+      const [userCnh, setCnh] = useState('');
+       
+      const handleCpfInput = (text: string) => {
         // Remove qualquer caractere que não seja número
         let cleaned = text.replace(/[^0-9]/g, '');
       
@@ -107,8 +109,24 @@ export default function CadMotorista(){
           cleaned = cleaned.substring(0, 18);
         }
       
-        setCpfCnpj(cleaned);
-    
+        setCpf(cleaned);
+      };
+
+      const handleCnhInput = (text: string) => {
+    // Remove qualquer caractere que não seja número
+    let cleaned = text.replace(/[^0-9]/g, '');
+
+    // Aplica a máscara da CNH (assumindo um formato específico, ajuste conforme necessário)
+    cleaned = cleaned.replace(/(\d{7})(\d{1})/, '$1-$2');
+
+    // Limita a quantidade de caracteres para 9 (CNH)
+    if (cleaned.length > 9) {
+        cleaned = cleaned.substring(0, 9);
+    }
+
+    // Atualiza o estado correto (neste caso, assumindo que userCnh armazena a CNH)
+    setCnh(cleaned);  
+};
 //------------------------------------------------------------------------------------------
 
   const saveAdditionalUserData = async (uid: string, userType: string) => {
@@ -123,6 +141,7 @@ export default function CadMotorista(){
         placa: userPlaca,
         modelo: userModel,
         marca: userMarca,
+        selectedTrucks: selectedTrucks,
         userType: userType, 
         createdAt: new Date(),
       });
@@ -151,11 +170,13 @@ export default function CadMotorista(){
       })
       .catch((error) => {
         const errorMessage = error.message;
-        alert(errorMessage);
+        //alert(errorMessage);
+        //navigation.navigate('C_Princ' as never);
+        alert('Falha na comunicação com o servidor, tente novamente!');
+        console.log(errorMessage);
       });
     }
-  }
-};
+  };
 
     return(
         <KeyboardAvoidingView  
@@ -198,7 +219,7 @@ export default function CadMotorista(){
                 autoCorrect={false}//pro corretor não funcionar
                 keyboardType='numeric'
                 value={userDate}
-                onChangeText={setUserDate}  // Formata a entrada do usuário
+                onChangeText={handleDateInput}  // Formata a entrada do usuário
                 maxLength={10}/>
 
             <TextInput
@@ -207,7 +228,7 @@ export default function CadMotorista(){
                 autoCorrect={false}//pro corretor não funcionar
                 keyboardType='numeric'
                 value={userCPF}
-                onChangeText={setUserCPF}  // Formata a entrada de CPF/CNPJ
+                onChangeText={handleCpfInput}  // Formata a entrada de CPF/CNPJ
                 maxLength={14}/>
 
                 <TextInput
@@ -216,7 +237,7 @@ export default function CadMotorista(){
                 autoCorrect={false}//pro corretor não funcionar
                 keyboardType='numeric'
                 value={userCNH}
-                onChangeText={setUserCNH}  // Formata a entrada do usuário
+                onChangeText={handleCnhInput}  // Formata a entrada do usuário
                 maxLength={9}/>
 
                 <TextInput
@@ -287,10 +308,17 @@ export default function CadMotorista(){
               />
               </View>
 
+
+              <View style={styles.CadMimputes2}> 
+                <View style={{marginTop:'23%'}}/>
               <View style={styles.txtt2}>
                 <Text style={styles.text2}>Qual o tipo do seu caminhão:</Text>
               </View>
+
+
+
               <View style={styles.containerpai}>
+
                 <View style={styles.container2}>
                   <View style={styles.row}>
                     <CheckBox
@@ -300,14 +328,104 @@ export default function CadMotorista(){
                       onValueChange={() => handleCheckBoxChange('VUC')}/>
                     <Text>VUC</Text>
                   </View>
+
+                  <View style={styles.row}>
+                    <CheckBox
+                      style={styles.checkbox}
+                      color="#163D89"
+                      value={selectedTrucks.includes('Carreta')}
+                      onValueChange={() => handleCheckBoxChange('Carreta')}
+                    />
+                    <Text>Carreta</Text>
+                  </View>
+
+                  <View style={styles.row}>
+                    <CheckBox
+                      style={styles.checkbox}
+                      color="#163D89"
+                      value={selectedTrucks.includes('SemiPesado')}
+                      onValueChange={() => handleCheckBoxChange('SemiPesado')}
+                    />
+                    <Text>Semi-pesado</Text>
+                  </View>
+
+                  <View style={styles.row}>
+                    <CheckBox
+                      style={styles.checkbox}
+                      color="#163D89"
+                      value={selectedTrucks.includes('Bitrem')}
+                      onValueChange={() => handleCheckBoxChange('Bitrem')}
+                    />
+                    <Text>Bitrem</Text>
+                  </View>
+
+                  <View style={styles.row}>
+                    <CheckBox
+                      style={styles.checkbox}
+                      color="#163D89"
+                      value={selectedTrucks.includes('Pesado')}
+                      onValueChange={() => handleCheckBoxChange('Pesado')}
+                    />
+                    <Text>Pesado</Text>
+                  </View>
                 </View>
+
+                <View style={styles.container22}>
+                  <View style={styles.column}>
+                    <CheckBox
+                      style={styles.checkbox}
+                      color="#163D89"
+                      value={selectedTrucks.includes('Tanque')}
+                      onValueChange={() => handleCheckBoxChange('Tanque')}
+                    />
+                    <Text>Tanque</Text>
+                  </View>
+                  <View style={styles.column}>
+                    <CheckBox
+                      style={styles.checkbox}
+                      color="#163D89"
+                      value={selectedTrucks.includes('Basculante')}
+                      onValueChange={() => handleCheckBoxChange('Basculante')}
+                    />
+                    <Text>Basculante</Text>
+                  </View>
+                  <View style={styles.column}>
+                    <CheckBox
+                      style={styles.checkbox}
+                      color="#163D89"
+                      value={selectedTrucks.includes('Rodotrem')}
+                      onValueChange={() => handleCheckBoxChange('Rodotrem')}
+                    />
+                    <Text>Rodotrem</Text>
+                  </View>
+                  <View style={styles.column}>
+                    <CheckBox
+                      style={styles.checkbox}
+                      color="#163D89"
+                      value={selectedTrucks.includes('Tritrem')}
+                      onValueChange={() => handleCheckBoxChange('Tritrem')}
+                    />
+                    <Text>Tritrem</Text>
+                  </View>
+                  <View style={styles.column}>
+                    <CheckBox
+                      style={styles.checkbox}
+                      color="#163D89"
+                      value={selectedTrucks.includes('Carro')}
+                      onValueChange={() => handleCheckBoxChange('Carro')}
+                    />
+                    <Text>Carro</Text>
+                  </View>
+                </View>
+              </View>
+
               </View>
               <View style={styles.ProximoBtn}>
                     <TouchableOpacity
                         style={styles.BtnProx}
                         activeOpacity={0.6}
-                        onPress={ () => navigation.navigate({name: 'CadM2'} as never)}>
-                        <Text style={styles.BtnProxTxt}>Próximo</Text>
+                        onPress={CadMotorista}>
+                        <Text style={styles.BtnProxTxt}>Confirmar</Text>
                     </TouchableOpacity>
                 </View>
               
@@ -315,4 +433,4 @@ export default function CadMotorista(){
             </ScrollView>
             </KeyboardAvoidingView>
 
-        )}
+)}
