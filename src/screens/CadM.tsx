@@ -15,8 +15,7 @@ export default function CadM(){
   const db = getFirestore(); // Inicializa o Firestore
   const [selectedTrucks, setSelectedTrucks] = useState<string[]>([]); // Armazena os tipos de caminhões selecionados
 
-  const [dateOfBirth, setDateOfBirth] = useState('');
-    //CAMPOS DE CADASTRO
+  //CAMPOS DE CADASTRO
     const [userName, setUserName] = useState('');
     const [userMail, setUserMail] = useState('');
     const [userPass, setUserPass] = useState('');
@@ -40,94 +39,40 @@ export default function CadM(){
     }
   };
 
-
-    //000000000000000000000000000
-/*
-    const [chassi, setChassi] = useState(''); // Estado para armazenar o valor do chassi
-    const formatChassi = (text:string) => {
-      // Remove todos os caracteres que não sejam números ou letras
-      let cleaned = text.replace(/[^A-Za-z0-9]/g, '');
-
-      // Aplica a formatação "XXX-XXXXX-X-XX-XXXXXX"
-      if (cleaned.length > 3) {
-        cleaned = cleaned.slice(0, 3) + '-' + cleaned.slice(3);
-      }
-      if (cleaned.length > 9) {
-        cleaned = cleaned.slice(0, 9) + '-' + cleaned.slice(9);
-      }
-      if (cleaned.length > 11) {
-        cleaned = cleaned.slice(0, 11) + '-' + cleaned.slice(11);
-      }
-      if (cleaned.length > 14) {
-        cleaned = cleaned.slice(0, 14) + '-' + cleaned.slice(14);
-      }
-  
-      // Atualiza o estado com a string formatada
-      setChassi(cleaned);
-    }
-      */
     //-----------------------------------------------------------------------------------
 
     const handleDateInput = (text: string) => {
-      console.log('sua puta');
-        // Remove qualquer caractere que não seja número
-        let cleaned = text.replace(/[^0-9]/g, '');
+      let cleaned = text.replace(/[^0-9]/g, '');
+      if (cleaned.length > 8) cleaned = cleaned.substring(0, 8);
+      if (cleaned.length > 4) cleaned = cleaned.replace(/(\d{2})(\d{2})(\d{0,4})/, '$1/$2/$3');
+      else if (cleaned.length > 2) cleaned = cleaned.replace(/(\d{2})(\d{0,2})/, '$1/$2');
+      setUserDate(cleaned);
+        };
       
-        // Limita a quantidade de caracteres
-        if (cleaned.length > 8) {
-          cleaned = cleaned.substring(0, 8);
-        }
-      
-        // Adiciona as barrinhas de formatação
-        if (cleaned.length > 4) {
-          cleaned = cleaned.replace(/(\d{2})(\d{2})(\d{0,4})/, '$1/$2/$3');
-        } else if (cleaned.length > 2) {
-          cleaned = cleaned.replace(/(\d{2})(\d{0,2})/, '$1/$2');
-        }
-      
-        setDateOfBirth(cleaned);
-      };
-      
-      const [cpfCnpj, setCpf] = useState('');
-      const [userCnh, setCnh] = useState('');
-       
       const handleCpfInput = (text: string) => {
-        // Remove qualquer caractere que não seja número
         let cleaned = text.replace(/[^0-9]/g, '');
-      
-        // Aplica a máscara do CPF (11 dígitos)
         if (cleaned.length <= 11) {
           cleaned = cleaned.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
         }
-        // Aplica a máscara do CNPJ (14 dígitos)
         else if (cleaned.length <= 14) {
           cleaned = cleaned.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{0,2})/, '$1.$2.$3/$4-$5');
         }
-      
-        // Limita a quantidade de caracteres ao máximo (14 para CNPJ)
         if (cleaned.length > 18) {
           cleaned = cleaned.substring(0, 18);
         }
-      
-        setCpf(cleaned);
+        setUserCPF(cleaned);
       };
 
       const handleCnhInput = (text: string) => {
-    // Remove qualquer caractere que não seja número
-    let cleaned = text.replace(/[^0-9]/g, '');
-
-    // Aplica a máscara da CNH (assumindo um formato específico, ajuste conforme necessário)
-    cleaned = cleaned.replace(/(\d{7})(\d{1})/, '$1-$2');
-
-    // Limita a quantidade de caracteres para 9 (CNH)
-    if (cleaned.length > 9) {
-        cleaned = cleaned.substring(0, 9);
-    }
-
-    // Atualiza o estado correto (neste caso, assumindo que userCnh armazena a CNH)
-    setCnh(cleaned);  
-};
-//------------------------------------------------------------------------------------------
+        let cleaned = text.replace(/[^0-9]/g, ''); // Remove caracteres não numéricos
+        if (cleaned.length > 11) {
+            cleaned = cleaned.substring(0, 11); // Limita a 11 dígitos
+        }
+        setUserCNH(cleaned);
+    };
+        
+    
+  //------------------------------------------------------------------------------------------
 
   const saveAdditionalUserData = async (uid: string, userType: string) => {
     try {
@@ -154,13 +99,12 @@ export default function CadM(){
 //----------------------------------------------------
 
   function CadMotorista(){
-    console.log('olaa');
     if(userName ==='' || userDate ==='' || userCPF ==='' || userCNH === '' || userPix === '' || userMail ==='' || userPass ==='' || userMarca === '' || userModel ==='' || userPlaca === ''){
       alert('Todos os campos devem ser preenchidos');
       return;
     } 
     else{
-      const userType = 'motorista'; // ou 'contratante' dependendo da tela
+      const userType = 'motorista';
       createUserWithEmailAndPassword(auth, userMail, userPass)
       .then((useCredential) => {
         const user = useCredential.user;
@@ -238,7 +182,7 @@ export default function CadM(){
                 keyboardType='numeric'
                 value={userCNH}
                 onChangeText={handleCnhInput}  // Formata a entrada do usuário
-                maxLength={9}/>
+                maxLength={11}/>
 
                 <TextInput
                 style={styles.inputCadM}

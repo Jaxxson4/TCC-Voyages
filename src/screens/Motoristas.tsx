@@ -1,10 +1,57 @@
-import { ImageBackground, KeyboardAvoidingView, StyleSheet, Text, Image, TouchableOpacity, View, Pressable, ScrollView, Platform, StatusBar, Linking } from 'react-native';
-import { useState } from 'react';
+import { KeyboardAvoidingView, StyleSheet, Text, Image, FlatList,TouchableOpacity, View, ScrollView, Platform } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from 'expo-router';
-import React from 'react';
+import { db } from '../config/firebase'; // Caminho para o seu arquivo de configuração do Firebase
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 export default function CargasDivulgadas(){
     const navigation = useNavigation()
+
+    interface Motorista {
+      id: string;
+      name: string;
+      email: string;
+      selectedTrucks: string;
+      userPlaca: string;
+    }
+     const [motoristas, setMotoristas] = useState<Motorista[]>([]); // Definindo o tipo do estado
+
+  useEffect(() => {
+    const fetchMotoristas = async () => {
+      try {
+        const q = query(collection(db, "users"), where("userType", "==", "motorista"));
+        const querySnapshot = await getDocs(q);
+        const motoristasList = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as Motorista[]; // Assegurando que os dados estão no tipo correto
+        setMotoristas(motoristasList);
+      } catch (error) {
+        console.error("Erro ao buscar motoristas: ", error);
+      }
+    };
+
+    fetchMotoristas();
+  }, []);
+
+  const renderMotorista = ({ item }: { item: Motorista }) => ( // Definindo o tipo do item
+    <View style={stylemotoristas.ContainerMotoristas}>
+    <View style={stylemotoristas.div}>
+      <Image className='w-10 h-10 ml-7' source={require("../assets/images/perfil.png")} />
+      <View style={{flexDirection:'column', marginVertical: '2%'}}>
+        <Text style={stylemotoristas.TxtNome}>{item.name}</Text>
+        <Text style={stylemotoristas.TxtTruck}>{item.selectedTrucks}</Text>
+        <Text style={stylemotoristas.TxtPlaca}>{item.userPlaca}</Text>
+      </View>
+      <TouchableOpacity style={stylemotoristas.ButtonPerfil} 
+      onPress={ () => navigation.navigate({name: 'perfil'} as never)}>
+        <Text style={stylemotoristas.TxtButton}>Perfil</Text>
+      </TouchableOpacity>
+    </View>
+</View>
+);
+
+
 
     return(
         <KeyboardAvoidingView  
@@ -25,74 +72,12 @@ export default function CargasDivulgadas(){
                   className='mr-44'>Buscar motoristas</Text>
         </View>
 
-        <View style={stylemotoristas.ContainerMotoristas}>
-
-            <View style={stylemotoristas.div}>
-              <Image className='w-10 h-10 ml-7' source={require("../assets/images/perfil.png")} />
-              <View style={{flexDirection:'column', marginVertical: '2%'}}>
-                <Text style={stylemotoristas.TxtNome}>Nome</Text>
-                <Text style={stylemotoristas.TxtTruck}>Tipo caminhão - Marca</Text>
-                <Text style={stylemotoristas.TxtPlaca}>Placa</Text>
-              </View>
-              <TouchableOpacity style={stylemotoristas.ButtonPerfil} 
-              onPress={ () => navigation.navigate({name: 'perfil'} as never)}>
-                <Text style={stylemotoristas.TxtButton}>Perfil</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={stylemotoristas.div}>
-              <Image className='w-10 h-10 ml-7' source={require("../assets/images/perfil.png")} />
-              <View style={{flexDirection:'column', marginVertical: '2%'}}>
-                <Text style={stylemotoristas.TxtNome}>Nome</Text>
-                <Text style={stylemotoristas.TxtTruck}>Tipo caminhão - Marca</Text>
-                <Text style={stylemotoristas.TxtPlaca}>Placa</Text>
-              </View>
-              <TouchableOpacity style={stylemotoristas.ButtonPerfil} 
-              onPress={ () => navigation.navigate({name: 'perfil'} as never)}>
-                <Text style={stylemotoristas.TxtButton}>Perfil</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={stylemotoristas.div}>
-              <Image className='w-10 h-10 ml-7' source={require("../assets/images/perfil.png")} />
-              <View style={{flexDirection:'column', marginVertical: '2%'}}>
-                <Text style={stylemotoristas.TxtNome}>Nome</Text>
-                <Text style={stylemotoristas.TxtTruck}>Tipo caminhão - Marca</Text>
-                <Text style={stylemotoristas.TxtPlaca}>Placa</Text>
-              </View>
-              <TouchableOpacity style={stylemotoristas.ButtonPerfil} 
-              onPress={ () => navigation.navigate({name: 'perfil'} as never)}>
-                <Text style={stylemotoristas.TxtButton}>Perfil</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={stylemotoristas.div}>
-              <Image className='w-10 h-10 ml-7' source={require("../assets/images/perfil.png")} />
-              <View style={{flexDirection:'column', marginVertical: '2%'}}>
-                <Text style={stylemotoristas.TxtNome}>Nome</Text>
-                <Text style={stylemotoristas.TxtTruck}>Tipo caminhão - Marca</Text>
-                <Text style={stylemotoristas.TxtPlaca}>Placa</Text>
-              </View>
-              <TouchableOpacity style={stylemotoristas.ButtonPerfil} 
-              onPress={ () => navigation.navigate({name: 'perfil'} as never)}>
-                <Text style={stylemotoristas.TxtButton}>Perfil</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={stylemotoristas.div}>
-              <Image className='w-10 h-10 ml-7' source={require("../assets/images/perfil.png")} />
-              <View style={{flexDirection:'column', marginVertical: '2%'}}>
-                <Text style={stylemotoristas.TxtNome}>Nome</Text>
-                <Text style={stylemotoristas.TxtTruck}>Tipo caminhão - Marca</Text>
-                <Text style={stylemotoristas.TxtPlaca}>Placa</Text>
-              </View>
-              <TouchableOpacity style={stylemotoristas.ButtonPerfil} 
-              onPress={ () => navigation.navigate({name: 'perfil'} as never)}>
-                <Text style={stylemotoristas.TxtButton}>Perfil</Text>
-              </TouchableOpacity>
-            </View>
-
-        </View>
+        <FlatList
+        data={motoristas}
+        renderItem={renderMotorista}
+        keyExtractor={(item) => item.id}
+        />
+        
         </ScrollView>
         </KeyboardAvoidingView>
   );
@@ -137,6 +122,18 @@ const stylemotoristas = StyleSheet.create({
     fontSize: 17,
     fontWeight:'500',
     color:'#FFF',
+  },
+
+  motoristaContainer: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    marginBottom: 10,
+  },
+  motoristaName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000',
   },
 });
 

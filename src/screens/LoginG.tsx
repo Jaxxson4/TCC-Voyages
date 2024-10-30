@@ -20,55 +20,39 @@ export default function Login(){
     signInWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         const user = userCredential.user;
-  
-        // Busca os dados do usuário no Firestore
-        const userDoc = await getDoc(doc(db, 'users', user.uid));
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          const userType = userData.userType; // Pega o tipo de usuário
-  
-          // Redireciona para a tela correta
-          if (userType === 'motorista') {
-            navigation.navigate('M_Princ' as never); // Exemplo de rota para motorista
-          } else if (userType === 'contratante') {
-            navigation.navigate('C_Princ' as never); // Exemplo de rota para contratante
+        alert('Login efetuado com sucesso.');
+
+        try {
+          const userDoc = await getDoc(doc(db, 'users', user.uid));
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            const userType = userData.userType;
+
+            // Redireciona com base no tipo de usuário
+            if (userType === 'motorista') {
+              navigation.navigate('M_Princ' as never);
+            } else if (userType === 'contratante') {
+              navigation.navigate('C_Princ' as never);
+            }
+          } else {
+            console.log('Nenhum dado de usuário encontrado');
           }
-        } else {
-          console.log('Nenhum dado de usuário encontrado');
+        } catch (error) {
+          console.error('Erro ao acessar dados do usuário:', error);
         }
       })
       .catch((error) => {
-        console.error(error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        if (errorCode === 'auth/wrong-password' || errorCode === 'auth/user-not-found') {
+          alert('Usuário e/ou senha incorretos, tente novamente!');
+        } else {
+          alert('Falha ao tentar efetuar o login, tente novamente!');
+        }
+        console.error(errorMessage);
       });
-  };
 
-  function userLogin(){
-    signInWithEmailAndPassword(auth, userMail, userPass)
-    .then((useCredential) => {
-      const user = useCredential.user;
-      alert('Login efetuado com sucesso.');
-      navigation.navigate('C_Princ' as never);
-      console.log(user);
-    })
-    .catch((error) => {
-      
-      // pesquisar forma para pegar os dados do usuario na tabela (dentro do firebase) para realizar um 
-      // comparativo com o que foi digitado pelo usuário caso seja usuário e/ou senha errado.
-
-    /*if(auth != userPass || auth != userMail){
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      //alert(errorMessage);
-      alert('Usuario e/ou senha incorretos, tente novamente!');
-      console.log(errorMessage);
-    }else{*/
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      //alert(errorMessage);
-      alert('Falha ao tentar efetuar o login, tente novamente!');
-      console.log(errorMessage);
-    //}
-    })
   }
 
   return(
@@ -112,8 +96,7 @@ export default function Login(){
 
                 <View>
                     <TouchableOpacity
-                        onPress = {userLogin}
-                        //onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}
+                        onPress={() => handleLogin(userMail, userPass)}
                         style={styles.BtnEntrar}
                         activeOpacity={0.6}>
                         <Text style={styles.BtnEntrarTxt}>Entrar</Text>

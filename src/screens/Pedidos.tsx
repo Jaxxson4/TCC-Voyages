@@ -18,7 +18,7 @@ export default function Pedidos(){
 
         <View className=" bg-blue-III h-28 shadow-slate-300 items-center justify-between flex-row">
             <TouchableOpacity 
-            onPress={ () => navigation.navigate({name: 'Sol_Servico'} as never)}>
+            onPress={ () => navigation.navigate({name: 'MNotific'} as never)}>
               <Image source={require("../assets/images/arrow-back.png")} 
                     className='w-7 h-7 ml-7 -mr-11 mt-5' />
             </TouchableOpacity>
@@ -96,7 +96,7 @@ export default function Pedidos(){
                     </View>
             </View>
             <TouchableOpacity style={styles.ButtonPerfil} 
-              onPress={ () => navigation.navigate({name: 'C_Princ'} as never)}>
+              onPress={ () => navigation.navigate({name: 'M_Princ'} as never)}>
                 <Text style={styles.TxtButton}>Enviar</Text>
             </TouchableOpacity>
 
