@@ -1,121 +1,162 @@
-import { Image, KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View, ScrollView, Platform, StatusBar, Linking, ViewBase } from 'react-native';
-import { useNavigation } from 'expo-router';
-import { useState } from 'react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { FlatList, Image, KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, Alert, View, Platform, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { onSnapshot, query, where, collection, doc, updateDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import { getAuth } from 'firebase/auth';
 
-export default function MNotific(){
-    const navigation = useNavigation()
+interface Notificacao {
+    id: string;
+    tipoCarga: string;
+    status: string;
+    motorista_id: string;
+}
 
-    return(
-        <KeyboardAvoidingView  
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })} // ajustar
-        style={{ flex: 1 }}>
+export default function MNotific() {
+    const navigation = useNavigation();
+    const [notificacoes, setNotificacoes] = useState<Notificacao[]>([]);
+    const auth = getAuth();
+    const usuarioId = auth.currentUser?.uid;
     
-        <ScrollView style={{flex: 1}}
-        showsHorizontalScrollIndicator={false}>
+    useEffect(() => {
+        if (!usuarioId) return;
 
-        <View className=" bg-blue-III h-28 shadow-slate-300 items-center justify-between flex-row">
-            <TouchableOpacity 
-            onPress={ () => navigation.navigate({name: 'M_Princ'} as never)}>
-              <Image source={require("../assets/images/arrow-back.png")} 
-                    className='w-7 h-7 ml-7 mt-5' />
-            </TouchableOpacity>
-            <Text 
-            style={{color: '#10C18D', fontSize: 24, marginRight:'48%', marginTop:'3%', fontWeight:'500',}}
-            >Notificações</Text>
-        </View>
+        const q = query(
+            collection(db, "solicitacoes_servico"),
+            where("motorista_id", "==", usuarioId)
+        );
 
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const novasNotificacoes: Notificacao[] = [];
+            querySnapshot.forEach((doc) => {
+                novasNotificacoes.push({ id: doc.id, ...doc.data() } as Notificacao);
+            });
+            console.log("Notificações carregadas:", novasNotificacoes); // Verifique o conteúdo aqui
+            setNotificacoes(novasNotificacoes);
+        });
 
-        <View style={styles.Notifications}>
-            <View style={styles.Novo}>
-                <Text style={styles.txtNovo}>Novo</Text>
+        return () => unsubscribe();
+    }, [usuarioId]);
+
+    const responderSolicitacao = async (solicitacaoId: string, status: string) => {
+        try {
+            const solicitacaoRef = doc(db, "solicitacoes_servico", solicitacaoId);
+            await updateDoc(solicitacaoRef, { status });
+            Alert.alert(`Serviço ${status === "aceito" ? "aceito" : "recusado"} com sucesso!`);
+        } catch (error) {
+            console.error("Erro ao atualizar solicitação:", error);
+        }
+    };
+
+    return (
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })}
+            style={{ flex: 1 }}
+        >
+            <View className=" bg-blue-III h-24 shadow-slate-300 items-center justify-between flex flex-row">
+                    <TouchableOpacity className="w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center "
+                    onPress={() => navigation.navigate({name: 'M_Princ'} as never)}>
+                        <Image source={require("../assets/images/arrow-back.png")} className='w-7 h-7 ml-7 mt-5' />
+                    </TouchableOpacity>
+                    <Text style={{color: '#10C18D', fontSize: 22, marginLeft:'8%', marginTop:'3%', fontWeight:'600',}}
+                  className='mr-52'>Notificações</Text>
             </View>
-            <View style={styles.div}>
-              <Image className='w-10 h-10 ml-7' source={require("../assets/images/perfil.png")} />
-              <View style={{flexDirection:'column', marginVertical: '2%'}}>
-                <Text style={styles.TxtNome}>Solicitação de serviço</Text>
-              </View>
-              <TouchableOpacity style={styles.ButtonPerfil} 
-              onPress={ () => navigation.navigate({name: 'Pedidos'} as never)}>
-                <Text style={styles.TxtButton}>Ver mais</Text>
-              </TouchableOpacity>
-            </View>
 
-            <View style={styles.EntregaConluida}>
-                <Image source={require("../assets/images/true.png")}/>
-                <Text style={styles.Text_Entregas} >Cadastro concluído</Text>
-            </View>
-        </View>
-        <View style={styles.Line}/>
+            <FlatList
+                data={notificacoes}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <View style={styles.Notifications}>
+                        <View style={styles.div}>
+                            <Image style={styles.profileImage} source={require("../assets/images/perfil.png")} />
+                            <View style={styles.notificationDetails}>
+                                <Text style={styles.TxtNome}>Tipo de carga: {item.tipoCarga}</Text>
+                                <Text>Status: {item.status}</Text>
+                            </View>
+                            <TouchableOpacity
+                                style={styles.ButtonPerfil}
+                                onPress={() => navigation.navigate('Pedidos' as never)}>
+                                <Text style={styles.TxtButton}>Ver mais</Text>
+                            </TouchableOpacity>
+                        </View>
 
-    </ScrollView>
-    </KeyboardAvoidingView>
+                        {item.status === "pendente" && (
+                            <View style={styles.actionButtons}>
+                                <Button title="Aceitar" onPress={() => responderSolicitacao(item.id, "aceito")} />
+                                <Button title="Recusar" onPress={() => responderSolicitacao(item.id, "recusado")} />
+                            </View>
+                        )}
+                    </View>
+                )}
+                ListEmptyComponent={<Text style={styles.emptyText}>Nenhuma notificação de pedido de serviço disponível.</Text>}
+            />
+        </KeyboardAvoidingView>
+    );
+}
 
-)}   
-
-const styles =  StyleSheet.create ({ 
-    Notifications:{
-        margin: '8%',
-    },
-    EntregaConluida:{
-        flexDirection: 'row',
+const styles = StyleSheet.create({
+    header: {
+        backgroundColor: '#0A74DA',
+        height: 80,
         alignItems: 'center',
-        gap: 15,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        paddingHorizontal: 16,
     },
-    Text_Entregas:{
-        fontSize: 20,
-        color: 'blue',
+    backButton: {
+        position: 'absolute',
+        left: 16,
+    },
+    backIcon: {
+        width: 24,
+        height: 24,
+    },
+    title: {
+        color: '#10C18D',
+        fontSize: 22,
         fontWeight: '600',
     },
-    div:{
-        flexDirection:'row',
-        alignItems: 'center',
-        justifyContent:'center',
-        gap: 25,
-        marginTop: '3%',
-        marginLeft: '2%'
-      },
-      TxtNome:{
-        fontSize: 17,
-        fontWeight:'600',
-      },
-      TxtTruck:{
-        fontSize: 14,
-        fontWeight:'500',
-        color:'grey',
-      },
-      TxtPlaca:{
-        fontSize: 14,
-        fontWeight:'600',
-        color:'#484848',
-      }, 
-      ButtonPerfil:{
-        backgroundColor:'#10C18D',
-        marginVertical: '3%',
-        marginRight: '5%',
-        borderRadius: 40,
-        height: 30,
-        width: 100,
-        paddingVertical: 2,
-        justifyContent: "center",
-        alignItems: 'center',
-      }, 
-      TxtButton:{
-        fontSize: 17,
-        fontWeight:'500',
-        color:'#FFF',
-      },
-      Novo:{
-      },
-      txtNovo:{
-        fontWeight: '700',
-        fontSize: 20,
-        color: '#10C18D'      
+    Notifications: {
+        padding: 16,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
     },
-    Line:{
-        height: 1,
-        width: '100%',
-        backgroundColor: '#BCBCBC',
+    div: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
-})
+    profileImage: {
+        width: 40,
+        height: 40,
+        marginRight: 16,
+    },
+    notificationDetails: {
+        flex: 1,
+    },
+    TxtNome: {
+        fontSize: 17,
+        fontWeight: '600',
+    },
+    ButtonPerfil: {
+        backgroundColor: '#10C18D',
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        borderRadius: 5,
+    },
+    TxtButton: {
+        color: '#FFF',
+        fontSize: 16,
+    },
+    actionButtons: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+    },
+    emptyText: {
+        textAlign: 'center',
+        marginTop: 20,
+        fontSize: 16,
+        color: '#666',
+    },
+});

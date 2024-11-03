@@ -1,4 +1,4 @@
-import { ImageBackground, KeyboardAvoidingView, Image, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
+import { ImageBackground, KeyboardAvoidingView, Image, Text, TextInput, TouchableOpacity, View, ScrollView, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, router } from 'expo-router';
 import { useState } from 'react';

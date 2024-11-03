@@ -1,10 +1,12 @@
 import { KeyboardAvoidingView, Image, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform, StatusBar, Linking } from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons';
 import CheckBox from 'expo-checkbox';
 import { stylesContrat } from '../styles/stylesContrat';
 import { useState } from 'react';
 import React from 'react';
 import { useNavigation } from 'expo-router';
+import { addDoc, collection } from "firebase/firestore";
+import { db } from '../config/firebase';
+import { Alert } from "react-native";
 
 export default function SolicitarServico(){
   const handleLinkPress = () => {
@@ -13,10 +15,54 @@ export default function SolicitarServico(){
   const navigation = useNavigation()
 
   const [isChecked, setChecked] = useState(false);
+
   function setSelectedLanguages(selected: any, arg1: any) {
   throw new Error('Function not implemented.');
   }
-    return(
+
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+
+  const [dataRetirada, setDataRetirada] = useState('');
+  const [enderecoRetirada, setEnderecoRetirada] = useState('');
+  const [enderecoEntrega, setEnderecoEntrega] = useState('');
+
+  const [tipoCarga, setTipoCarga] = useState('');
+  const [quantidade, setQuantidade] = useState('');
+  const [peso, setPeso] = useState('');
+  const [infoSeguranca, setInfoSeguranca] = useState('');
+
+    const enviarSolicitcao = async () => {
+      try{
+        console.log('Solicitação')
+        await addDoc(collection(db, "solicitacoes_servico"), {
+          contratante: {
+            nome: nome,
+            email: email,
+          },
+          detalhesEntrega: {
+            dataRetirada: dataRetirada,
+            enderecoRetirada: enderecoRetirada,
+            enderecoEntrega: enderecoEntrega,
+          },
+          carga: {
+            tipoCarga: tipoCarga,
+            quantidade: quantidade,
+            peso: peso,
+            infoSeguranca: infoSeguranca,
+          },
+          status: "pendente",
+          data_criacao: new Date(),
+        });
+         Alert.alert("Sucesso", "Solicitação enviada com sucesso!");
+          navigation.navigate({ name: 'Conf_Pedido' } as never); 
+      } catch (error) {
+        console.error("Erro ao enviar solicitação:", error);
+        Alert.alert("Erro", "Não foi possível enviar a solicitação.");
+      }
+    }
+  
+  return(
         <KeyboardAvoidingView  
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })} // ajustar
@@ -43,14 +89,16 @@ export default function SolicitarServico(){
                 <TextInput
                     style={stylesContrat.inputservico}
                     placeholder='Nome completo'
-                    autoCorrect={false}//pro corretor não funcionar
-                    onChangeText={() => {}}/>
+                    autoCorrect={false}
+                    value={nome}
+                    onChangeText={setNome}/>
 
                 <TextInput
                     style={stylesContrat.inputservico}
                     placeholder='E-mail'
-                    autoCorrect={false}//pro corretor não funcionar
-                    onChangeText={() => {}}/>
+                    autoCorrect={false}
+                    value={email}
+                    onChangeText={setEmail}/>
             </View>
         </View>
 
@@ -61,20 +109,23 @@ export default function SolicitarServico(){
                   <TextInput
                   style={stylesContrat.inputservico2}
                   placeholder='Data para retirar a carga'
-                  autoCorrect={false}//pro corretor não funcionar
-                  onChangeText={() => {}}/>
+                  autoCorrect={false}
+                  value={dataRetirada}
+                  onChangeText={setDataRetirada}/>
 
                   <TextInput
                   style={stylesContrat.inputservico2}
                   placeholder='Endereço de retirada'
-                  autoCorrect={false}//pro corretor não funcionar
-                  onChangeText={() => {}}/>
+                  autoCorrect={false}
+                  value={enderecoRetirada}
+                  onChangeText={setEnderecoRetirada}/>
 
                   <TextInput
                   style={stylesContrat.inputservico2}
                   placeholder='Endereço de entrega'
-                  autoCorrect={false}//pro corretor não funcionar
-                  onChangeText={() => {}}/>
+                  autoCorrect={false}
+                  value={enderecoEntrega}
+                  onChangeText={setEnderecoEntrega}/>
               </View>
         </View>
 
@@ -85,26 +136,30 @@ export default function SolicitarServico(){
             <TextInput
                 style={stylesContrat.inputservico3}
                 placeholder='Tipo carga'
-                autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                autoCorrect={false}
+                value={tipoCarga}
+                onChangeText={setTipoCarga}/>
 
                 <TextInput
                 style={stylesContrat.inputservico3}
                 placeholder='Quantidade (caso tenha)'
-                autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                autoCorrect={false}
+                value={quantidade}
+                onChangeText={setQuantidade}/>
 
                 <TextInput
                 style={stylesContrat.inputservico3}
                 placeholder='Peso aproximadamente'
-                autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                autoCorrect={false}
+                value={peso}
+                onChangeText={setPeso}/>
 
                 <TextInput
                 style={stylesContrat.inputservico3}
                 placeholder='Informações de segurança'
-                autoCorrect={false}//pro corretor não funcionar
-                onChangeText={() => {}}/>
+                autoCorrect={false}
+                value={infoSeguranca}
+                onChangeText={setInfoSeguranca}/>
               </View>
         </View>
     </View>
@@ -123,7 +178,7 @@ export default function SolicitarServico(){
              }}> Política de privacidade</Text>
 
                 <TouchableOpacity style={stylesContrat.BtnConfirmar} activeOpacity={0.6}
-                  onPress={ () => navigation.navigate({name:'Conf_Pedido'} as never)}>
+                  onPress={enviarSolicitcao}>
                 <Text style={stylesContrat.BtnConfirmarTxt}>Confirmar</Text>
               </TouchableOpacity>
         </ScrollView>

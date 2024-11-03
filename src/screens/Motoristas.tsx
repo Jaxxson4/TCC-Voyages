@@ -59,8 +59,6 @@ export default function CargasDivulgadas(){
         keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })} // ajustar
         style={{ flex: 1 }}>
     
-        <ScrollView style={{flex: 1}}
-        showsHorizontalScrollIndicator={false}>
 
         <View className= " bg-blue-III h-24 shadow-slate-300 items-center justify-between flex flex-row">
             <TouchableOpacity className= "w-14 h-14 mt-9 ml-2 rounded-full flex justify-center items-center"
@@ -78,7 +76,6 @@ export default function CargasDivulgadas(){
         keyExtractor={(item) => item.id}
         />
         
-        </ScrollView>
         </KeyboardAvoidingView>
   );
 };
