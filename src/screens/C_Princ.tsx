@@ -1,13 +1,22 @@
-import { Image, ImageBackground, KeyboardAvoidingView, StyleSheet, Animated, Dimensions, Alert, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
+import { Image, ImageBackground, KeyboardAvoidingView, StyleSheet, FlatList, Dimensions, Alert, Text, TextInput, TouchableOpacity, View, Pressable, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { stylesContrat } from '../styles/stylesContrat';
 import { useNavigation } from 'expo-router';
-import React, { useState, useRef } from 'react';
-  
+import React, { useState, useRef, useEffect } from 'react';
+import { db } from '../config/firebase';
+import { collection, onSnapshot, query, orderBy, DocumentData } from 'firebase/firestore';
+
 const { width } = Dimensions.get('window');
 
-export default function C_Princ(){
-  const navigation = useNavigation()
+interface Update {
+  id: string;
+  description: string;
+  timestamp: any; // Defina o tipo corretamente
+}
+
+export default function C_Princ() {
+  const navigation = useNavigation();
+  const [updates, setUpdates] = useState<Update[]>([]); // Corrija o tipo aqui
 
   const handleChatPress = () => {
     Alert.alert('Ainda em desenvolvimento 😁');
@@ -19,15 +28,15 @@ export default function C_Princ(){
       "Deseja mesmo sair?",
       [
         {
-          text: "Não", // O usuário opta por cancelar
+          text: "Não",
           onPress: () => console.log("Logout cancelado"),
           style: "cancel"
         },
         {
-          text: "Sim", // O usuário confirma o logout
+          text: "Sim",
           onPress: () => navigation.reset({
             index: 0,
-            routes: [{ name: 'home' } as never] // Redireciona para a tela de login
+            routes: [{ name: 'home' } as never]
           })
         }
       ],
@@ -35,29 +44,45 @@ export default function C_Princ(){
     );
   };
 
-    return(
-        <KeyboardAvoidingView  
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })} // ajustar
-        style={{ flex: 1 }}>
-    
-        <ScrollView style={{flex: 1}}
-        showsHorizontalScrollIndicator={false}>
+  useEffect(() => {
+    const q = query(collection(db, 'trajetos'), orderBy('timestamp', 'desc'));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      setUpdates(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        } as Update)) // Defina o tipo de dados mapeados explicitamente
+      );
+    });
 
-        
-        <View className=" bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
-            <TouchableOpacity className="w-16 h-16 rounded-full flex justify-center items-center " style={{marginLeft: '5%', marginRight: '-5%' }}
-                              onPress={handleLogoutPress}>
-              <Image className='w-8 h-8' source={require('../assets/images/sair.png')}/>
-            </TouchableOpacity>
+    return unsubscribe;
+  }, []);
 
-            <View><Text style={{fontSize:25}} className='font-bold text-green'> VOYAGES </Text></View>
+  return (
+    <KeyboardAvoidingView  
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })}
+      style={{ flex: 1 }}
+    >
+      <ScrollView style={{ flex: 1 }} showsHorizontalScrollIndicator={false}>
+        <View className="bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
+          <TouchableOpacity
+            className="w-16 h-16 rounded-full flex justify-center items-center"
+            style={{ marginLeft: '5%', marginRight: '-5%' }}
+            onPress={handleLogoutPress}
+          >
+            <Image className='w-8 h-8' source={require('../assets/images/sair.png')}/>
+          </TouchableOpacity>
 
-            <TouchableOpacity className="ml-5 w-20 h-14 rounded-full flex justify-center items-center "
-                              onPress={() => navigation.navigate({name: 'MNotific'} as never)}
-                              style={{marginLeft: '-5%', marginRight: '5%'}}>
-                <Feather name="bell" size={30} style={{ color: 'white' }}></Feather>
-            </TouchableOpacity>
+          <View><Text style={{ fontSize: 25 }} className='font-bold text-green'> VOYAGES </Text></View>
+
+          <TouchableOpacity
+            className="ml-5 w-20 h-14 rounded-full flex justify-center items-center"
+            onPress={() => navigation.navigate({ name: 'MNotific' } as never)}
+            style={{ marginLeft: '-5%', marginRight: '5%' }}
+          >
+            <Feather name="bell" size={30} style={{ color: 'white' }}></Feather>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.ButtonsOptions}>
@@ -89,55 +114,23 @@ export default function C_Princ(){
           <View style={styles.LineDivisoria} />
 
 
-    <View style={styles.container}>
-      <Text style={styles.header}>Acompanhamento da entrega</Text>
-      <ScrollView 
-        horizontal 
-        showsHorizontalScrollIndicator={false} 
-        contentContainerStyle={styles.progressContainer}
-      >
-        {/* Primeiro ponto */}
-        <View style={styles.item}>
-          <Text style={styles.label}>Pedido feito</Text>
-          <Text style={styles.date}>12/03/2024</Text>
-          <Image source={require('../assets/images/verdadeiro.png')} style={styles.imageButton} />
-        </View>
-
-        {/* Linha de conexão */}
-        <View style={styles.line} />
-
-        {/* Segundo ponto */}
-        <View style={styles.item}>
-          <Text style={styles.label}>Carga carregada</Text>
-          <Text style={styles.date}>14/03/2024</Text>
-          <Text style={styles.time}>16:21</Text>
-          <Image source={require('../assets/images/verdadeiro.png')} style={styles.imageButton} />
-        </View>
-
-        {/* Linha de conexão */}
-        <View style={styles.line} />
-
-        {/* Terceiro ponto */}
-        <View style={styles.item}>
-          <Text style={styles.label}>Sua carga saiu para entrega</Text>
-          <Text style={styles.date}>14/03/2024</Text>
-          <Text style={styles.time}>17:12</Text>
-          <Image source={require('../assets/images/verdadeiro.png')} style={styles.imageButton} />
-        </View>
-
-        {/* Linha de conexão */}
-        <View style={styles.line} />
-
-        {/* Quarto ponto */}
-        <View style={styles.item}>
-          <Text style={styles.label}>Sua carga passou pelo Km. 114</Text>
-          <Text style={styles.date}>Rod. Carvalho Pinto</Text>
-          <Text style={styles.time}>15/03/2024 - 01:43</Text>
-          <Image source={require('../assets/images/verdadeiro.png')} style={styles.imageButton} />
-        </View>
-
-      </ScrollView>
-
+          <View style={styles.container}>
+          <Text style={styles.header}>Acompanhamento da entrega</Text>
+          <FlatList
+            horizontal
+            data={updates}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={styles.progressContainer}
+            renderItem={({ item }) => (
+              <View style={styles.updateItem}>
+                <Text style={styles.date}>{new Date(item.timestamp.toDate()).toLocaleDateString()}</Text>
+                <Text style={styles.time}>{new Date(item.timestamp.toDate()).toLocaleTimeString()}</Text>
+                <Text style={styles.label}>{item.description}</Text>
+                <Image source={require('../assets/images/verdadeiro.png')} style={styles.imageButton} />
+              </View>
+            )}
+            ListEmptyComponent={<Text style={styles.emptyText}>Nenhuma atualização disponível</Text>}
+          />
 
 
         <View style={styles.LineDivisoria} />
@@ -237,11 +230,34 @@ const styles = StyleSheet.create({
       marginLeft:'3%',
       color: '#10C18D', // Verde
     },
+
     progressContainer: {
       flexDirection: 'row',
       alignItems: 'center',
     },
 
+    updateList: {
+      marginBottom: 14,
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    
+    updateItem: {
+      marginBottom: 7,
+      marginHorizontal: '1%',
+      alignItems: 'center',
+      backgroundColor: '#EBEBEB',
+      padding: 10,
+      paddingVertical: 5,
+      marginVertical: '3%',
+      borderRadius: 10,
+      justifyContent: 'center',
+      shadowColor: '#000',
+      shadowOpacity: 0.1,
+      shadowRadius: 5,
+      shadowOffset: { width: 0, height: 3 },
+      elevation: 5,
+    },
 
     item: {
       backgroundColor: '#EBEBEB',
@@ -257,6 +273,11 @@ const styles = StyleSheet.create({
       shadowOffset: { width: 0, height: 3 },
       elevation: 5,
     },
+    emptyText: {
+    textAlign: 'center',
+    color: '#666',
+    marginTop: 20,
+  },
     imageButton: {
       width: 30, // Ajuste o tamanho da imagem conforme necessário
       height: 30,
