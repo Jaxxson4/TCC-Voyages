@@ -56,10 +56,10 @@ export default function Trajetos() {
             <TouchableOpacity 
             onPress={ () => navigation.navigate({name: 'M_Princ'} as never)}>
               <Image source={require("../assets/images/arrow-back.png")} 
-                    className='w-7 h-7 ml-7 -mr-11 mt-5' />
+                    className='w-7 h-7 ml-7 mr-24 mt-5' />
             </TouchableOpacity>
             <Text style={{color: '#10C18D', fontSize: 24, marginTop:'3%' ,fontWeight:'500',}}
-                  className='mr-72'>Trajetos</Text>
+                  className='-ml-10 mr-80'>Trajetos</Text>
         </View>
         <View style={styles.container}>
         

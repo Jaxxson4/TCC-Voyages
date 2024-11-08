@@ -37,7 +37,7 @@ export default function CargasDivulgadas(){
   const renderMotorista = ({ item }: { item: Motorista }) => ( // Definindo o tipo do item
     <View style={stylemotoristas.ContainerMotoristas}>
     <View style={stylemotoristas.div}>
-      <Image className='w-10 h-10 ml-7' source={require("../assets/images/perfil.png")} />
+      <Image className='w-10 h-10 ml-7' source={require("../assets/images/homem.png")} />
       <View style={{flexDirection:'column', marginVertical: '2%'}}>
         <Text style={stylemotoristas.TxtNome}>{item.name}</Text>
         <Text style={stylemotoristas.TxtTruck}>{item.selectedTrucks}</Text>

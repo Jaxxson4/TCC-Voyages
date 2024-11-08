@@ -26,7 +26,7 @@ function onPress(){
                     <Text style={{fontSize:20}} className='font-normal text-white mt-3'> Entre fazendo Login ou Cadastro</Text>
                 </View>
 
-                <View className='mt-24 justify-center items-center' >
+                <View className='mt-24 justify-center items-center gap-3' >
                     <TouchableOpacity
                     onPress={ () => navigation.navigate({name: 'Cad'} as never)}
                     style={styles.btn1}

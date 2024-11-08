@@ -87,15 +87,6 @@ export default function C_Princ() {
 
         <View style={styles.ButtonsOptions}>
               <View style={styles.btn}>
-              <TouchableOpacity style={styles.Button}
-              onPress={handleChatPress}>
-                <Image className='w-9 h-9' source={require('../assets/images/conversas.png')}/>
-              </TouchableOpacity>
-              <Text style={styles.txtbuttons}>Chat</Text>
-              </View>
-          
-
-              <View style={styles.btn}>
                 <TouchableOpacity style={styles.Button}
                 onPress={ () => navigation.navigate({name: 'CargasD'} as never)}>
                 <Image className='w-10 h-10' source={require('../assets/images/caminhao-de-entrega.png')}/>

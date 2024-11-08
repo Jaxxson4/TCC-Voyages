@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     btn1Text:{
         textAlign: 'center',
         color: 'white',
-        fontSize: 22,
+        fontSize: 15,
         fontWeight: '600',
         paddingLeft: 40,
         paddingRight: 40,

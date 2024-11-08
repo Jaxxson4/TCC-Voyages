@@ -1,154 +1,165 @@
 import { Image, KeyboardAvoidingView, StyleSheet, Text, Alert, TouchableOpacity, View, ScrollView, Platform } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
-import React from 'react';
-  
-export default function M_Princ(){
-  const navigation = useNavigation()
-  const handleChatPress = () => {
+import React, { useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+
+export default function M_Princ() {
+  const navigation = useNavigation();
+
+  const handleChatPress = useCallback(() => {
     Alert.alert('Ainda em desenvolvimento :)');
-  }
-  const handleLogoutPress = () => {
+  }, []);
+
+  const handleLogoutPress = useCallback(() => {
     Alert.alert(
       "Confirmação de Logout",
       "Deseja mesmo sair?",
       [
         {
-          text: "Não", // O usuário opta por cancelar
+          text: "Não",
           onPress: () => console.log("Logout cancelado"),
           style: "cancel"
         },
         {
-          text: "Sim", // O usuário confirma o logout
+          text: "Sim",
           onPress: () => navigation.reset({
             index: 0,
-            routes: [{ name: 'home' } as never] // Redireciona para a tela de login
+            routes: [{ name: 'loging' } as never] // Redireciona para a tela de login
           })
         }
       ],
       { cancelable: false }
     );
-  };
-    return(
-        <KeyboardAvoidingView  
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })} // ajustar
-        style={{ flex: 1 }}>
-    
-        <ScrollView style={{flex: 1}}
-        showsHorizontalScrollIndicator={false}>
+  }, [navigation]);
 
-          <View className=" bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
-            <TouchableOpacity className="w-16 h-16 rounded-full flex justify-center items-center " style={{marginLeft: '5%', marginRight: '-5%' }}
-                              onPress={handleLogoutPress}>
-              <Image className='w-8 h-8' source={require('../assets/images/sair.png')}/>
-            </TouchableOpacity>
+  useFocusEffect(
+    useCallback(() => {
+      // Evita re-renderizações desnecessárias ao entrar na tela
+      return () => {
+        // Qualquer limpeza necessária ao sair da tela
+      };
+    }, [])
+  );
 
-            <View><Text style={{fontSize:25}} className='font-bold text-green'> VOYAGES </Text></View>
+  return (
+    <KeyboardAvoidingView  
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.select({ ios: 60, android: 80 })}
+      style={{ flex: 1 }}
+    >
+      <ScrollView style={{ flex: 1 }} showsHorizontalScrollIndicator={false}>
+        <View className="bg-blue-III h-32 mb shadow-slate-300 items-center justify-between flex flex-row">
+          <TouchableOpacity 
+            className="w-16 h-16 rounded-full flex justify-center items-center" 
+            style={{ marginLeft: '5%', marginRight: '-5%' }}
+            onPress={handleLogoutPress}
+          >
+            <Image className="w-8 h-8" source={require('../assets/images/sair.png')} />
+          </TouchableOpacity>
 
-            <TouchableOpacity className="ml-5 w-20 h-14 rounded-full flex justify-center items-center "
-                              onPress={() => navigation.navigate({name: 'MNotific'} as never)}
-                              style={{marginLeft: '-5%', marginRight: '5%'}}>
-                <Feather name="bell" size={30} style={{ color: 'white' }}></Feather>
-            </TouchableOpacity>
+          <View>
+            <Text style={{ fontSize: 25 }} className="font-bold text-green"> VOYAGES </Text>
+          </View>
+
+          <TouchableOpacity 
+            className="ml-5 w-20 h-14 rounded-full flex justify-center items-center"
+            onPress={() => navigation.navigate({ name: 'MNotific' } as never)}
+            style={{ marginLeft: '-5%', marginRight: '5%' }}
+          >
+            <Feather name="bell" size={30} style={{ color: 'white' }} />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.ButtonsOptions}>
-              <View style={styles.btn}>
-              <TouchableOpacity style={styles.Button}
-              onPress={handleChatPress}>
-                <Image className='w-9 h-9' source={require('../assets/images/conversas.png')}/>
-              </TouchableOpacity>
-              <Text style={styles.txtbuttons}>Chat</Text>
-              </View>
-          
-
-              <View style={styles.btn} className='ml-3'>
-                <TouchableOpacity style={styles.Button}
-                onPress={ () => navigation.navigate({name: 'Trajetos'} as never)}>
-                <Image className='w-10 h-10' source={require('../assets/images/rota.png')}/>
-                </TouchableOpacity>
-                <Text style={styles.txtbuttons}>Trajetos</Text>
-              </View>
-
-              <View style={styles.btn}>
-                <TouchableOpacity style={styles.Button}
-                onPress={ () => navigation.navigate({name: 'M_Pagamento'} as never)}>
-                <Image className='w-9 h-9' source={require('../assets/images/pagamento.png')}/>
-                </TouchableOpacity>
-                <Text style={styles.txtbuttons}>Pagamentos</Text>
-              </View>
+          <View style={styles.btn} className="ml-3">
+            <TouchableOpacity 
+              style={styles.Button}
+              onPress={() => navigation.navigate({ name: 'Trajetos' } as never)}
+            >
+              <Image className="w-10 h-10" source={require('../assets/images/rota.png')} />
+            </TouchableOpacity>
+            <Text style={styles.txtbuttons}>Trajetos</Text>
           </View>
-    <View style={styles.container}>
-        {/* Primeiro ponto */}
-        
 
-        <View style={styles.LineDivisoria} />
+          <View style={styles.btn}>
+            <TouchableOpacity 
+              style={styles.Button}
+              onPress={() => navigation.navigate({ name: 'M_Pagamento' } as never)}
+            >
+              <Image className="w-9 h-9" source={require('../assets/images/pagamento.png')} />
+            </TouchableOpacity>
+            <Text style={styles.txtbuttons}>Pagamentos</Text>
+          </View>
+        </View>
 
+        <View style={styles.container}>
+          <View style={styles.LineDivisoria} />
 
-        <View style={styles.Cards}>
+          <View style={styles.Cards}>
             <View style={styles.CardDivulgar}>
-
-                <TouchableOpacity style={styles.Divulgar} activeOpacity={0.6}
-                onPress={ () => navigation.navigate({name: 'Cargas_M'} as never)}>
-                    <Text style={styles.DivulgarTxt}>Cargas divulgadas</Text>
-                    <Image  source={require('../assets/images/Caminh_2.png')}
-                            className='w-32 h-32'
-                            style={styles.ImagTruck2} />
-                </TouchableOpacity>
+              <TouchableOpacity 
+                style={styles.Divulgar} 
+                activeOpacity={0.6}
+                onPress={() => navigation.navigate({ name: 'Cargas_M' } as never)}
+              >
+                <Text style={styles.DivulgarTxt}>Cargas divulgadas</Text>
+                <Image 
+                  source={require('../assets/images/Caminh_2.png')}
+                  className="w-32 h-32"
+                  style={styles.ImagTruck2}
+                />
+              </TouchableOpacity>
             </View>
-        </View>
+          </View>
 
-        <View style={styles.LineDivisoria} />
-        
-        <View>
-          <Text className='mt-8' style={styles.header} >Cargas já entregues</Text>
-        </View>
+          <View style={styles.LineDivisoria} />
+          <View>
+            <Text className="mt-8" style={styles.header}>Cargas já entregues</Text>
+          </View>
 
-      <View style={{justifyContent:'center', marginLeft: 19}}>
-             {/* Primeiro cartão */}
-        <View style={styles.card}>
-          <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>Entrega de Terra - 11 m³</Text>
-            <Text style={styles.cardDate}>21/04/2023</Text>
-          </View>
-          <View style={styles.cardBody}>
-            <Ionicons name="person" size={16} color="#666" />
-            <Text style={styles.boldText}> Felipe Braga</Text>
-            <Text style={styles.infoText}> Caminhão Basculante</Text>
-          </View>
-          <Text style={styles.locationText}>
-            Local: Rua João Alves, nº 334, Pinheiros, São Paulo - SP
-          </Text>
-          <View style={styles.cardFooter}>
-            <Text style={styles.paidText}>Pago</Text>
-          
-          </View>
-        </View>
+          <View style={{ justifyContent: 'center', marginLeft: 19 }}>
+            <View style={styles.card}>
+              <View style={styles.cardHeader}>
+                <Text style={styles.cardTitle}>Entrega de Terra - 11 m³</Text>
+                <Text style={styles.cardDate}>21/04/2023</Text>
+              </View>
+              <View style={styles.cardBody}>
+                <Ionicons name="person" size={16} color="#666" />
+                <Text style={styles.boldText}> Felipe Braga</Text>
+                <Text style={styles.infoText}> Caminhão Basculante</Text>
+              </View>
+              <Text style={styles.locationText}>
+                Local: Rua João Alves, nº 334, Pinheiros, São Paulo - SP
+              </Text>
+              <View style={styles.cardFooter}>
+                <Text style={styles.paidText}>Pago</Text>
+              </View>
+            </View>
 
-        {/* Segundo cartão */}
-        <View style={styles.card}>
-          <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>Entrega de Cimento</Text>
-            <Text style={styles.cardDate}>17/05/2023</Text>
-          </View>
-          <View style={styles.cardBody}>
-            <Ionicons name="person" size={16} color="#666" />
-            <Text style={styles.boldText}> Paulo A.</Text>
-            <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
-          </View>
-          <Text style={styles.locationText}>
-            Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
-          </Text>
-          <View style={styles.cardFooter}>
-            <Text style={styles.paidText}>Pago</Text>
+            <View style={styles.card}>
+              <View style={styles.cardHeader}>
+                <Text style={styles.cardTitle}>Entrega de Cimento</Text>
+                <Text style={styles.cardDate}>17/05/2023</Text>
+              </View>
+              <View style={styles.cardBody}>
+                <Ionicons name="person" size={16} color="#666" />
+                <Text style={styles.boldText}> Paulo A.</Text>
+                <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
+              </View>
+              <Text style={styles.locationText}>
+                Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
+              </Text>
+              <View style={styles.cardFooter}>
+                <Text style={styles.paidText}>Pago</Text>
+              </View>
+            </View>
           </View>
         </View>
-      </View>
-    </View>
-</ScrollView>
-</KeyboardAvoidingView>
-)}
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
+}
 
 
 const styles = StyleSheet.create({

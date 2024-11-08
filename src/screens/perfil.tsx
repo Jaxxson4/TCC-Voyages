@@ -27,7 +27,7 @@ export default function CargasDivulgadas(){
 
             
         <View style = {styles.container}>
-        <Image  className='w-20 h-20 ml-3 mr-3' style={styles.img} source={require("../assets/images/perfil.png")} />
+        <Image  className='w-20 h-20 ml-3 mr-3' style={styles.img} source={require("../assets/images/homem.png")} />
             <View>
                 <Text style={{fontSize: 23}}>Motorista</Text>
                 <Text style = {styles.Texto_1}> Idade: <Text style={{fontSize: 15, color:'#BCBCBC'}}>xxx</Text></Text> 
