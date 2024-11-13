@@ -1,15 +1,15 @@
-import { KeyboardAvoidingView, Text, Image, TouchableOpacity, View, ScrollView, Platform } from 'react-native';
+import { KeyboardAvoidingView, Text, Image, TouchableOpacity, View, ScrollView, Platform, Alert } from 'react-native';
 import { useNavigation } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { stylesContrat } from '../styles/stylesContrat';
-import { collection, getDocs, query, where } from "firebase/firestore"; 
-import { db } from '../config/firebase';
+import { collection, getDocs, query, where, deleteDoc, doc } from "firebase/firestore"; 
+import { db, auth } from '../config/firebase';
 
 interface Carga {
-    id: string;
+    id: string;    
+    nome: string;
     tipoCarga: string;
-    nomeContratante: string;
-    descricao: string;
+    seguranca: string;
     enderecoRetirada: string;
     enderecoEntrega: string;
     dataRetirada: string;
@@ -17,24 +17,49 @@ interface Carga {
 
 export default function CargasDivulgadas() {
     const navigation = useNavigation();
-    const [cargas, setCargas] = useState<Carga[]>([]); // Estado com tipo específico para as cargas
+    const [cargas, setCargas] = useState<Carga[]>([]);
+    const user = auth.currentUser;
 
     useEffect(() => {
         const fetchCargas = async () => {
-            try {
-                // Substitua "idDoContratante" pelo ID real do contratante atual
-                const q = query(collection(db, "cargasDivulgadas"), where("contratanteId", "==", "idDoContratante"));
-                const querySnapshot = await getDocs(q);
-                const cargasList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Carga));
-                setCargas(cargasList);
-            } catch (error) {
-                console.error("Erro ao buscar cargas divulgadas:", error);
+            if (user) {
+                try {
+                    const q = query(
+                        collection(db, "cargasDivulgadas"),
+                        //where("contratanteId", "==", user.uid)
+                    );
+                    const querySnapshot = await getDocs(q);
+                    
+                    if (querySnapshot.empty) {
+                        console.log("Nenhuma carga encontrada para o contratante:", user.uid);
+                    } else {
+                        const cargasList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Carga));
+                        console.log("Cargas encontradas:", cargasList);
+                        setCargas(cargasList);
+                    }
+                } catch (error) {
+                    console.error("Erro ao buscar cargas divulgadas:", error);
+                }
+            } else {
+                console.log("Usuário não autenticado.");
             }
         };
 
         fetchCargas();
-    }, []);
+    }, [user]);
 
+    const handleDeleteCarga = async (cargaId: string) => {
+        try {
+            await deleteDoc(doc(db, "cargasDivulgadas", cargaId));
+            setCargas((prevCargas) => prevCargas.filter((carga) => carga.id !== cargaId));
+            console.log("Carga excluída:", cargaId);
+            Alert.alert("Sucesso", "Carga excluída com sucesso.");
+        } catch (error) {
+            console.error("Erro ao excluir a carga:", error);
+            Alert.alert("Erro", "Não foi possível excluir a carga.");
+        }
+    };
+    
     return (
         <KeyboardAvoidingView  
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -60,9 +85,9 @@ export default function CargasDivulgadas() {
                     {cargas.map((carga) => (
                         <View key={carga.id} style={stylesContrat.card}>
                             <Text style={stylesContrat.title}>{carga.tipoCarga}</Text>
-                            <Text style={stylesContrat.subtitle}>{carga.nomeContratante}</Text>
+                            <Text style={stylesContrat.subtitle}>{carga.nome}</Text>
                             <Text style={stylesContrat.description}>
-                                Descrição: <Text style={{ fontWeight: '400', color: '#000' }}>{carga.descricao}</Text>
+                                Descrição: <Text style={{ fontWeight: '400', color: '#000' }}>{carga.seguranca}</Text>
                             </Text>
                             <View style={stylesContrat.infoContainer}>
                                 <Text style={stylesContrat.infoTitle}>Carregamento</Text>
@@ -76,6 +101,12 @@ export default function CargasDivulgadas() {
                                 <Text style={stylesContrat.infoTitle}>Realizar a retirada</Text>
                                 <Text style={stylesContrat.infoText}>{carga.dataRetirada}</Text>
                             </View>
+                            <TouchableOpacity 
+                                onPress={() => handleDeleteCarga(carga.id)} 
+                                style={{ marginTop: 10, backgroundColor: '#FF6347', padding: 8, borderRadius: 5 }}
+                            >
+                                <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>Excluir</Text>
+                            </TouchableOpacity>
                         </View>
                     ))}
                 </View>

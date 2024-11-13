@@ -73,7 +73,7 @@ export default function SolicitarServico(){
 
         <View className=" bg-blue-III h-28 shadow-slate-300 items-center justify-between flex-row">
             <TouchableOpacity 
-            onPress={ () => navigation.navigate({name: 'perfil'} as never)}>
+            onPress={ () => navigation.navigate({name: 'Motoristas'} as never)}>
               <Image source={require("../assets/images/arrow-back.png")} 
                     className='w-7 h-7 ml-7 -mr-11 mt-5' />
             </TouchableOpacity>

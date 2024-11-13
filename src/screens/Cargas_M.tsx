@@ -8,9 +8,9 @@ import { db } from '../config/firebase';
 
 interface Carga {
     id: string;
+    nome: string;    
     tipoCarga: string;
-    nomeContratante: string;
-    descricao: string;
+    seguranca: string;
     enderecoRetirada: string;
     enderecoEntrega: string;
     dataRetirada: string;
@@ -60,9 +60,9 @@ export default function Cargas_M() {
                     {cargas.map((carga) => (
                         <View key={carga.id} style={stylesContrat.card}>
                             <Text style={stylesContrat.title}>{carga.tipoCarga}</Text>
-                            <Text style={stylesContrat.subtitle}>{carga.nomeContratante}</Text>
+                            <Text style={stylesContrat.subtitle}>{carga.nome}</Text>
                             <Text style={stylesContrat.description}>
-                                Descrição: <Text style={{ fontWeight: '400', color: '#000' }}>{carga.descricao}</Text>
+                                Descrição: <Text style={{ fontWeight: '400', color: '#000' }}>{carga.seguranca}</Text>
                             </Text>
                             <View style={stylesContrat.infoContainer}>
                                 <Text style={stylesContrat.infoTitle}>Carregamento</Text>

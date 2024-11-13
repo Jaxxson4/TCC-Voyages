@@ -256,10 +256,8 @@ export default function CadM(){
               <View style={styles.CadMimputes2}> 
                 <View style={{marginTop:'23%'}}/>
               <View style={styles.txtt2}>
-                <Text style={styles.text2}>Qual o tipo do seu caminhão:</Text>
+                <Text style={styles.text2}>Qual o tipo do seu veículo:</Text>
               </View>
-
-
 
               <View style={styles.containerpai}>
 

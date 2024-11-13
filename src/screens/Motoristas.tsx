@@ -44,8 +44,8 @@ export default function CargasDivulgadas(){
         <Text style={stylemotoristas.TxtPlaca}>{item.userPlaca}</Text>
       </View>
       <TouchableOpacity style={stylemotoristas.ButtonPerfil} 
-      onPress={ () => navigation.navigate({name: 'perfil'} as never)}>
-        <Text style={stylemotoristas.TxtButton}>Perfil</Text>
+      onPress={ () => navigation.navigate({name: 'Sol_Servico'} as never)}>
+        <Text style={stylemotoristas.TxtButton}>Solicitar</Text>
       </TouchableOpacity>
     </View>
 </View>

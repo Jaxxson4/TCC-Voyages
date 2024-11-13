@@ -235,7 +235,8 @@ const styles = StyleSheet.create({
     
     updateItem: {
       marginBottom: 7,
-      marginHorizontal: '1%',
+      marginHorizontal: '2%',
+      paddingHorizontal: 15,
       alignItems: 'center',
       backgroundColor: '#EBEBEB',
       padding: 10,
@@ -253,7 +254,7 @@ const styles = StyleSheet.create({
     item: {
       backgroundColor: '#EBEBEB',
       padding: 12,
-      width:'20%',
+      width:'21%',
       marginVertical: '3%',
       borderRadius: 10,
       alignItems: 'center',
@@ -298,6 +299,7 @@ const styles = StyleSheet.create({
       fontSize: 11,
       color: '#666',
       textAlign: 'center',
+      width: '100%',
     },
     time: {
       fontSize: 11,

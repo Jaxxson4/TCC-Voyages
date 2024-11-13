@@ -64,9 +64,7 @@ export const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent: 'center',
         width:'70%',
-        height:'80%',
         marginLeft: '15%',
-        marginTop: '-80%',
     },
 
     input:{
