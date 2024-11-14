@@ -1,14 +1,21 @@
 import { Image, KeyboardAvoidingView, StyleSheet, Text, TouchableOpacity, View, ScrollView, Platform } from 'react-native';
-import { useNavigation } from 'expo-router';
+import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { useState, useEffect } from 'react';
 import React from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
+type ConfirmarPedidoRouteParams = {
+    solicitacaoId: string;
+};
+
 export default function ConfirmarPedido() {
     const navigation = useNavigation();
 
-    // Estados para armazenar os dados recuperados
+    // Define o tipo de `route` e usa `solicitacaoId` diretamente
+    const route = useRoute<RouteProp<{ params: ConfirmarPedidoRouteParams }, 'params'>>();
+    const { solicitacaoId } = route.params;
+
     const [solicitacao, setSolicitacao] = useState({
         nome: '',
         email: '',
@@ -21,36 +28,37 @@ export default function ConfirmarPedido() {
         infoSeguranca: '',
     });
 
-    // Função para buscar os dados da solicitação de serviço no Firestore
     useEffect(() => {
         const fetchSolicitacao = async () => {
-            try {
-                const docRef = doc(db, 'solicitacoes_servico', 'ID_DA_SOLICITACAO'); // Substitua 'ID_DA_SOLICITACAO' pelo ID correto
-                const docSnap = await getDoc(docRef);
+            if (solicitacaoId) {
+                try {
+                    const docRef = doc(db, 'solicitacoes_servico', solicitacaoId);
+                    const docSnap = await getDoc(docRef);
 
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    setSolicitacao({
-                        nome: data.contratante.nome,
-                        email: data.contratante.email,
-                        dataRetirada: data.detalhesEntrega.dataRetirada,
-                        enderecoRetirada: data.detalhesEntrega.enderecoRetirada,
-                        enderecoEntrega: data.detalhesEntrega.enderecoEntrega,
-                        tipoCarga: data.carga.tipoCarga,
-                        quantidade: data.carga.quantidade,
-                        peso: data.carga.peso,
-                        infoSeguranca: data.carga.infoSeguranca,
-                    });
-                } else {
-                    console.log("Nenhuma solicitação encontrada.");
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        setSolicitacao({
+                            nome: data.contratante.nome,
+                            email: data.contratante.email,
+                            dataRetirada: data.detalhesEntrega.dataRetirada,
+                            enderecoRetirada: data.detalhesEntrega.enderecoRetirada,
+                            enderecoEntrega: data.detalhesEntrega.enderecoEntrega,
+                            tipoCarga: data.carga.tipoCarga,
+                            quantidade: data.carga.quantidade,
+                            peso: data.carga.peso,
+                            infoSeguranca: data.carga.infoSeguranca,
+                        });
+                    } else {
+                        console.log("Nenhuma solicitação encontrada.");
+                    }
+                } catch (error) {
+                    console.error("Erro ao buscar solicitação:", error);
                 }
-            } catch (error) {
-                console.error("Erro ao buscar solicitação:", error);
             }
         };
 
         fetchSolicitacao();
-    }, []);
+    }, [solicitacaoId]);
 
     return (
         <KeyboardAvoidingView
@@ -116,7 +124,7 @@ title: {
     fontWeight: '600',
 },
 subtitle: {
-    color: '#777777',
+    color: '#000',
     fontSize: 15,
     fontWeight: '500',
     maxWidth:'90%'

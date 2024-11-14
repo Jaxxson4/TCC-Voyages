@@ -107,11 +107,11 @@ export default function StackRoutes(){
             <Stack.Screen
             name="Divulgação" //IGUAL SOLICITAÇÃO
             component={ DivulgarCarga } />
-
+{/*
             <Stack.Screen
             name="perfil"
             component={ Perfil } />
-
+*/}
             <Stack.Screen
             name="Conf_Pedido"
             component={ ConfirmarPedido } />

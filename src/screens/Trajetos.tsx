@@ -97,8 +97,12 @@ export default function Trajetos() {
             value={updateText}
             onChangeText={setUpdateText}
           />
-          <TouchableOpacity style={styles.button} onPress={handleUpdateSend}>
+          <TouchableOpacity style={styles.button} onPress={handleUpdateSend} activeOpacity={0.6}>
             <Text style={styles.buttonText}>Enviar Atualização</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.buttonT} activeOpacity={0.6}>
+            <Text style={{fontSize: 18, color: 'white', fontWeight: 500}}>Finalizar trajeto</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -146,6 +150,15 @@ const styles = StyleSheet.create({
     padding: 12,
     alignItems: 'center',
     borderRadius: 8,
+  },
+  buttonT: {
+    backgroundColor: '#10C18D',
+    padding: 12,
+    alignItems: 'center',
+    borderRadius: 15,
+    marginLeft: '10%',
+    marginRight: '10%',
+    marginTop: 15,
   },
   buttonText: {
     color: '#fff',

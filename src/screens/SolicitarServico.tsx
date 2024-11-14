@@ -55,7 +55,7 @@ export default function SolicitarServico(){
           data_criacao: new Date(),
         });
          Alert.alert("Sucesso", "Solicitação enviada com sucesso!");
-          navigation.navigate({ name: 'Conf_Pedido' } as never); 
+          navigation.navigate({ name: 'C_Princ' } as never); 
       } catch (error) {
         console.error("Erro ao enviar solicitação:", error);
         Alert.alert("Erro", "Não foi possível enviar a solicitação.");
