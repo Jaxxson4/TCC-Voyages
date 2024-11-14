@@ -57,7 +57,7 @@ export default function DivulgarCargas() {
           <TouchableOpacity onPress={() => navigation.navigate({ name: 'C_Princ' } as never)}>
             <Image source={require("../assets/images/arrow-back.png")} className='w-7 h-7 ml-7 -mr-11 mt-5' />
           </TouchableOpacity>
-          <Text style={{ color: '#10C18D', fontSize: 24, marginLeft: '20%', marginTop: '3%', fontWeight: '500' }} className='mr-44'>
+          <Text style={{ color: '#10C18D', fontSize: 24, marginLeft: '10%', marginTop: '3%', fontWeight: '500' }} className='mr-44'>
             Divulgar carga
           </Text>
         </View>

@@ -71,7 +71,7 @@ export default function CargasDivulgadas() {
                     <TouchableOpacity onPress={() => navigation.navigate({name: 'C_Princ'} as never)}>
                         <Image source={require("../assets/images/arrow-back.png")} className="w-7 h-7 ml-7 mt-5" />
                     </TouchableOpacity>
-                    <Text style={{ color: '#10C18D', fontSize: 21, marginLeft: '8%', marginTop: '3%', fontWeight: '500' }}>
+                    <Text style={{ color: '#10C18D', fontSize: 21, marginLeft:'2%', marginRight:'30%', marginTop: '3%', fontWeight: '500' }}>
                         Cargas divulgadas
                     </Text>
                 </View>

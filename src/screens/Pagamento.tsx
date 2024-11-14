@@ -22,7 +22,7 @@ export default function Pagamento(){
                     className='w-7 h-7 ml-7 -mr-11 mt-5' />
             </TouchableOpacity>
             <Text 
-            style={{color: '#10C18D', fontSize: 24,marginRight:'50%', marginTop:'3%', fontWeight:'500',}}
+            style={{color: '#10C18D', fontSize: 24,marginRight:'45%', marginTop:'3%', fontWeight:'500',}}
             >Pagamentos</Text>
         </View>
     {/*|

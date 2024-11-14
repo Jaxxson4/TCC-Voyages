@@ -51,7 +51,7 @@ export default function Cargas_M() {
                     >
                         <Image source={require("../assets/images/arrow-back.png")} className="w-7 h-7 ml-7 mt-5" />
                     </TouchableOpacity>
-                    <Text style={{ color: '#10C18D', fontSize: 21, fontWeight: '500', marginLeft: '8%', marginTop: '3%' }}>
+                    <Text style={{ color: '#10C18D', fontSize: 21, fontWeight: '500', marginLeft: '4%', marginTop: '3%', marginRight: '35%' }}>
                         Cargas divulgadas
                     </Text>
                 </View>
