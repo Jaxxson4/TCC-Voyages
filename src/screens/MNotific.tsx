@@ -62,7 +62,22 @@ export default function MNotific() {
                     <Text style={{color: '#10C18D', fontSize: 22, marginLeft:'8%', marginTop:'3%', fontWeight:'600',}}
                   className='mr-52'>Notificações</Text>
             </View>
-
+            <View>
+                <View style={styles.Notifications}>
+                        <View style={styles.div}>
+                            <View style={styles.notificationDetails}>
+                                <Text style={styles.TxtNome}><Text style={{color: '#163D89'}}>Solicitação:</Text> <Text style={{color: '#666'}}>Carga de exemplo</Text></Text>
+                            </View>
+                            <TouchableOpacity
+                                style={styles.ButtonPerfil}
+                                onPress={() => navigation.navigate('Pedidos' as never)}>
+                                <Text style={styles.TxtButton}>Ver mais</Text>
+                            </TouchableOpacity>
+                        </View>
+                        
+                    </View>
+            </View>
+            {/*
             <FlatList
                 data={notificacoes}
                 keyExtractor={(item) => item.id}
@@ -91,6 +106,8 @@ export default function MNotific() {
                 )}
                 ListEmptyComponent={<Text style={styles.emptyText}>Nenhuma notificação de pedido de serviço disponível.</Text>}
             />
+            */}
+
         </KeyboardAvoidingView>
     );
 }
@@ -133,6 +150,7 @@ const styles = StyleSheet.create({
     },
     notificationDetails: {
         flex: 1,
+        marginLeft: '5%',
     },
     TxtNome: {
         fontSize: 17,
@@ -143,6 +161,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         paddingVertical: 6,
         borderRadius: 5,
+        marginRight: '5%',
     },
     TxtButton: {
         color: '#FFF',

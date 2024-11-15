@@ -44,15 +44,15 @@ export default function M_Pagamento(){
         <View style={styles.card} id='1'>
             <TouchableOpacity onPress={() => setExpanded(!expanded)}>
             <View style={styles.cardHeader}>
-                <Text style={styles.cardTitle}>Entrega de Cimento</Text>
+                <Text style={styles.cardTitle}>Entrega de Exemplo</Text>
                 <Text style={styles.cardDate}>17/05/2023</Text>
             </View>
             <View style={styles.cardBody}>
-                <Text style={styles.boldText}> Paulo A.</Text>
-                <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
+                <Text style={styles.boldText}> Motorista</Text>
+                <Text style={styles.infoText}> Veículo do motorista</Text>
             </View>
             <Text style={styles.locationText}>
-                Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
+                Local: Rua, 123, Bairro, Cidade - SP
             </Text>
             <View style={styles.cardFooter}>
                 <TouchableOpacity> 
@@ -62,36 +62,34 @@ export default function M_Pagamento(){
             {expanded && (
                 <View style={styles.expandedContent}>
                     <Text>Data da entrega: 21/04/2023</Text>
-                    <Text>Descrição completa: A entrega de terra foi realizada com sucesso, utilizando um caminhão basculante. Todo o material foi descarregado no local combinado e a operação foi concluída sem atrasos.</Text>
-                    <Text>Contato para dúvidas: (11) 98765-4321</Text>
+                    <Text>Contato para dúvidas: motorista@gmail.com</Text>
                 </View>
             )}
             </TouchableOpacity>
         </View>
+        
         <View style={styles.card} id='2'>
         <TouchableOpacity onPress={() => setExpanded(!expanded)}>
-            <View style={styles.cardHeader}>
-                <Text style={styles.cardTitle}>Entrega de Cimento</Text>
+        <View style={styles.cardHeader}>
+                <Text style={styles.cardTitle}>Entrega de Exemplo</Text>
                 <Text style={styles.cardDate}>17/05/2023</Text>
             </View>
             <View style={styles.cardBody}>
-                <Text style={styles.boldText}> Paulo A.</Text>
-                <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
+                <Text style={styles.boldText}> Motorista</Text>
+                <Text style={styles.infoText}> Veículo do motorista</Text>
             </View>
             <Text style={styles.locationText}>
-                Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
+                Local: Rua, 123, Bairro, Cidade - SP
             </Text>
-
             <View style={styles.cardFooter}>
-            <TouchableOpacity onPress={() => setExpanded(!expanded)}> 
-            <Text style={styles.paidText}>Ver mais</Text>
+                <TouchableOpacity> 
+                <Text style={styles.paidText}>Ver mais</Text>
                 </TouchableOpacity>
             </View>
             {expanded && (
                 <View style={styles.expandedContent}>
                     <Text>Data da entrega: 21/04/2023</Text>
-                    <Text>Descrição completa: A entrega de terra foi realizada com sucesso, utilizando um caminhão basculante. Todo o material foi descarregado no local combinado e a operação foi concluída sem atrasos.</Text>
-                    <Text>Contato para dúvidas: (11) 98765-4321</Text>
+                    <Text>Contato para dúvidas: motorista@gmail.com</Text>
                 </View>
             )}
             </TouchableOpacity>
@@ -99,27 +97,26 @@ export default function M_Pagamento(){
 
         <View style={styles.card} id='3'>
         <TouchableOpacity onPress={() => setExpanded(!expanded)}>
-            <View style={styles.cardHeader}>
-                <Text style={styles.cardTitle}>Entrega de Cimento</Text>
+        <View style={styles.cardHeader}>
+                <Text style={styles.cardTitle}>Entrega de Exemplo</Text>
                 <Text style={styles.cardDate}>17/05/2023</Text>
             </View>
             <View style={styles.cardBody}>
-                <Text style={styles.boldText}> Paulo A.</Text>
-                <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
+                <Text style={styles.boldText}> Motorista</Text>
+                <Text style={styles.infoText}> Veículo do motorista</Text>
             </View>
             <Text style={styles.locationText}>
-                Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
+                Local: Rua, 123, Bairro, Cidade - SP
             </Text>
             <View style={styles.cardFooter}>
-            <TouchableOpacity onPress={() => setExpanded(!expanded)}> 
-            <Text style={styles.paidText}>Ver mais</Text>
+                <TouchableOpacity> 
+                <Text style={styles.paidText}>Ver mais</Text>
                 </TouchableOpacity>
             </View>
             {expanded && (
                 <View style={styles.expandedContent}>
                     <Text>Data da entrega: 21/04/2023</Text>
-                    <Text>Descrição completa: A entrega de terra foi realizada com sucesso, utilizando um caminhão basculante. Todo o material foi descarregado no local combinado e a operação foi concluída sem atrasos.</Text>
-                    <Text>Contato para dúvidas: (11) 98765-4321</Text>
+                    <Text>Contato para dúvidas: motorista@gmail.com</Text>
                 </View>
             )}
             </TouchableOpacity>

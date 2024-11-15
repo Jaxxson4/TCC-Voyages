@@ -30,33 +30,28 @@ export default function Pedidos(){
         <View style = {styles.paidetodos}>
 
             <Text style={styles.title}>Pedido feito por</Text>
-            <Text style={styles.subtitle}>xxxxxxxxxxxxxxxxxxx</Text>
-            <Text style={styles.subtitle}>xxxxxxxxxxxxxxxxxxxxxxx</Text>
+            <Text style={styles.subtitle}>Contratante</Text>
+            <Text style={styles.subtitle}>emailcontratante@gmail.com</Text>
 
             <Text style={styles.title}>Local de entrega</Text>
             <Text style={styles.subtitle3}>Data de retirada</Text>
-            <Text style={styles.subtitle}>xx/xx/xxxx</Text>
+            <Text style={styles.subtitle}>11/12/2024</Text>
 
             <Text style={styles.subtitle3}>Retirada</Text>
-            <Text style={styles.subtitle}>xxxxxxxxxxxxxxxxxxxxxxxxx</Text>
+            <Text style={styles.subtitle}>Rua, 111, Bairro, Cidade</Text>
 
             <Text style={styles.subtitle3}>Descarregamento</Text>
-            <Text style={styles.subtitle}>xxxxxxxxxxxxxxxxxxxxxxxxx</Text>
+            <Text style={styles.subtitle}>Rua, 222, Bairro, Cidade</Text>
 
             <Text style={styles.title}>Carga</Text>
             <Text style={styles.subtitle3}>Tipo de carga</Text>
-            <Text style={styles.subtitle}>xxxxxxxxxxx</Text>
-
-            <Text style={styles.subtitle3}>Descarregamento</Text>
-            <Text style={styles.subtitle}>xxxxxxxxxxx</Text>
+            <Text style={styles.subtitle}>Carga exemplo</Text>
 
             <Text style={styles.subtitle3}>Descrição</Text>
-            <Text style={styles.subtitle}>xxxxxxxxxxxxxxxxxxx </Text>
+            <Text style={styles.subtitle}>Produto do contratante</Text>
 
             <Text style={styles.subtitle3}>Informações de segurança</Text>
-            <Text style={styles.subtitle}>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            <Text style={styles.subtitle}>Dados sobre a carga exemplo
             </Text>
             <View style={{height: 2, width: '90%', marginTop: 15, justifyContent: 'center', alignItems: 'center', backgroundColor: "#BCBCBC"}}/>
             

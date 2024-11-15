@@ -116,21 +116,21 @@ export default function M_Princ() {
           <View style={styles.LineDivisoria} />
           <View>
             <Text className="mt-8" style={styles.header}>Cargas já entregues</Text>
-          </View>
-
+          </View>          
+          
           <View style={{ justifyContent: 'center', marginLeft: 19 }}>
             <View style={styles.card}>
               <View style={styles.cardHeader}>
-                <Text style={styles.cardTitle}>Entrega de Terra - 11 m³</Text>
+                <Text style={styles.cardTitle}>Entrega exemplo</Text>
                 <Text style={styles.cardDate}>21/04/2023</Text>
               </View>
               <View style={styles.cardBody}>
                 <Ionicons name="person" size={16} color="#666" />
-                <Text style={styles.boldText}> Felipe Braga</Text>
-                <Text style={styles.infoText}> Caminhão Basculante</Text>
+                <Text style={styles.boldText}> Motorista</Text>
+                <Text style={styles.infoText}> Veículo</Text>
               </View>
               <Text style={styles.locationText}>
-                Local: Rua João Alves, nº 334, Pinheiros, São Paulo - SP
+                Local: Rua Exemplo, 123, Bairro, Caçapava - SP
               </Text>
               <View style={styles.cardFooter}>
                 <Text style={styles.paidText}>Pago</Text>
@@ -139,16 +139,16 @@ export default function M_Princ() {
 
             <View style={styles.card}>
               <View style={styles.cardHeader}>
-                <Text style={styles.cardTitle}>Entrega de Cimento</Text>
-                <Text style={styles.cardDate}>17/05/2023</Text>
+                <Text style={styles.cardTitle}>Entrega exemplo</Text>
+                <Text style={styles.cardDate}>21/04/2023</Text>
               </View>
               <View style={styles.cardBody}>
                 <Ionicons name="person" size={16} color="#666" />
-                <Text style={styles.boldText}> Paulo A.</Text>
-                <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
+                <Text style={styles.boldText}> Motorista</Text>
+                <Text style={styles.infoText}> Veículo</Text>
               </View>
               <Text style={styles.locationText}>
-                Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
+                Local: Rua Exemplo, 123, Bairro, São Paulo - SP
               </Text>
               <View style={styles.cardFooter}>
                 <Text style={styles.paidText}>Pago</Text>
