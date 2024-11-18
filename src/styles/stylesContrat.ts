@@ -5,7 +5,7 @@ export const stylesContrat = StyleSheet.create({
     Cards:{
         flexDirection:'row',
         margin:'7%',
-        marginRight:'15%',
+        marginRight:'18%',
         marginTop:'13%',
         gap: 25,
     },

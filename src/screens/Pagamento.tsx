@@ -3,9 +3,10 @@ import { useNavigation } from 'expo-router';
 import { useState } from 'react';
 import React from 'react';
 
-export default function Pagamento(){
+export default function M_Pagamento(){
     const navigation = useNavigation()
 
+    const [expanded, setExpanded] = useState(false);
     return(
         <KeyboardAvoidingView  
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -22,7 +23,7 @@ export default function Pagamento(){
                     className='w-7 h-7 ml-7 -mr-11 mt-5' />
             </TouchableOpacity>
             <Text 
-            style={{color: '#10C18D', fontSize: 24,marginRight:'45%', marginTop:'3%', fontWeight:'500',}}
+            style={{color: '#10C18D', fontSize: 24,marginRight:'50%', marginTop:'3%', fontWeight:'500',}}
             >Pagamentos</Text>
         </View>
     {/*|
@@ -40,59 +41,85 @@ export default function Pagamento(){
                 <Image className='w-8 h-8' source={require('../assets/images/true.png')}/>
             </View>
 
-        <View style={styles.card}>
+        <View style={styles.card} id='1'>
+            <TouchableOpacity onPress={() => setExpanded(!expanded)}>
             <View style={styles.cardHeader}>
-                <Text style={styles.cardTitle}>Entrega de Cimento</Text>
+                <Text style={styles.cardTitle}>Entrega de Exemplo</Text>
                 <Text style={styles.cardDate}>17/05/2023</Text>
             </View>
             <View style={styles.cardBody}>
-                <Text style={styles.boldText}> Paulo A.</Text>
-                <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
+                <Text style={styles.boldText}> Motorista</Text>
+                <Text style={styles.infoText}> Veículo do motorista</Text>
             </View>
             <Text style={styles.locationText}>
-                Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
+                Local: Rua, 123, Bairro, Cidade - SP
             </Text>
             <View style={styles.cardFooter}>
-                <TouchableOpacity onPress={ () => navigation.navigate({name: 'Entregas'} as never)}> 
+                <TouchableOpacity> 
                 <Text style={styles.paidText}>Ver mais</Text>
                 </TouchableOpacity>
             </View>
+            {expanded && (
+                <View style={styles.expandedContent}>
+                    <Text>Data da entrega: 21/04/2023</Text>
+                    <Text>Contato para dúvidas: motorista@gmail.com</Text>
+                </View>
+            )}
+            </TouchableOpacity>
         </View>
-        <View style={styles.card}>
-            <View style={styles.cardHeader}>
-                <Text style={styles.cardTitle}>Entrega de Cimento</Text>
+        
+        <View style={styles.card} id='2'>
+        <TouchableOpacity onPress={() => setExpanded(!expanded)}>
+        <View style={styles.cardHeader}>
+                <Text style={styles.cardTitle}>Entrega de Exemplo</Text>
                 <Text style={styles.cardDate}>17/05/2023</Text>
             </View>
             <View style={styles.cardBody}>
-                <Text style={styles.boldText}> Paulo A.</Text>
-                <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
+                <Text style={styles.boldText}> Motorista</Text>
+                <Text style={styles.infoText}> Veículo do motorista</Text>
             </View>
             <Text style={styles.locationText}>
-                Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
+                Local: Rua, 123, Bairro, Cidade - SP
             </Text>
             <View style={styles.cardFooter}>
-            <TouchableOpacity onPress={ () => navigation.navigate({name: 'Entregas'} as never)}> 
-            <Text style={styles.paidText}>Ver mais</Text>
+                <TouchableOpacity> 
+                <Text style={styles.paidText}>Ver mais</Text>
                 </TouchableOpacity>
             </View>
+            {expanded && (
+                <View style={styles.expandedContent}>
+                    <Text>Data da entrega: 21/04/2023</Text>
+                    <Text>Contato para dúvidas: motorista@gmail.com</Text>
+                </View>
+            )}
+            </TouchableOpacity>
         </View>
-        <View style={styles.card}>
-            <View style={styles.cardHeader}>
-                <Text style={styles.cardTitle}>Entrega de Cimento</Text>
+
+        <View style={styles.card} id='3'>
+        <TouchableOpacity onPress={() => setExpanded(!expanded)}>
+        <View style={styles.cardHeader}>
+                <Text style={styles.cardTitle}>Entrega de Exemplo</Text>
                 <Text style={styles.cardDate}>17/05/2023</Text>
             </View>
             <View style={styles.cardBody}>
-                <Text style={styles.boldText}> Paulo A.</Text>
-                <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
+                <Text style={styles.boldText}> Motorista</Text>
+                <Text style={styles.infoText}> Veículo do motorista</Text>
             </View>
             <Text style={styles.locationText}>
-                Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
+                Local: Rua, 123, Bairro, Cidade - SP
             </Text>
             <View style={styles.cardFooter}>
-            <TouchableOpacity onPress={ () => navigation.navigate({name: 'Entregas'} as never)}> 
-            <Text style={styles.paidText}>Ver mais</Text>
+                <TouchableOpacity> 
+                <Text style={styles.paidText}>Ver mais</Text>
                 </TouchableOpacity>
             </View>
+            {expanded && (
+                <View style={styles.expandedContent}>
+                    <Text>Data da entrega: 21/04/2023</Text>
+                    <Text>Contato para dúvidas: motorista@gmail.com</Text>
+                </View>
+            )}
+            </TouchableOpacity>
         </View>
         </View>
     </ScrollView>
@@ -158,9 +185,13 @@ card: {
     marginTop: 10,
   },
   paidText: {
-    color: 'grey',
+    color: '#057856',
     fontWeight: 'bold',
-  },
+    fontSize: 16
+},
+expandedContent:{
+    marginTop: 10, 
+},
 
 
 

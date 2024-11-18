@@ -78,7 +78,7 @@ export default function C_Princ() {
 
           <TouchableOpacity
             className="ml-5 w-20 h-14 rounded-full flex justify-center items-center"
-            onPress={() => navigation.navigate({ name: 'MNotific' } as never)}
+            onPress={() => navigation.navigate({ name: 'CNotific' } as never)}
             style={{ marginLeft: '-5%', marginRight: '5%' }}
           >
             <Feather name="bell" size={30} style={{ color: 'white' }}></Feather>
@@ -162,47 +162,45 @@ export default function C_Princ() {
           <Text className='mt-8' style={styles.header} >Cargas já entregues</Text>
         </View>
 
-      <View style={{justifyContent:'center', marginLeft: 19}}>
-             {/* Primeiro cartão */}
-        <View style={styles.card}>
-          <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>Entrega de Terra</Text>
-            <Text style={styles.cardDate}>21/04/2023</Text>
-          </View>
-          <View style={styles.cardBody}>
-            <Ionicons name="person" size={16} color="#666" />
-            <Text style={styles.boldText}> Felipe Braga</Text>
-            <Text style={styles.infoText}> Caminhão Basculante</Text>
-          </View>
-          <Text style={styles.locationText}>
-            Local: Rua João Alves, nº 334, Pinheiros, São Paulo - SP
-          </Text>
-          <View style={styles.cardFooter}>
-            <Text style={styles.paidText}>Pago</Text>
-          
-          </View>
-        </View>
+      <View style={{ justifyContent: 'center', marginLeft: 19 }}>
+            <View style={styles.card}>
+              <View style={styles.cardHeader}>
+                <Text style={styles.cardTitle}>Entrega exemplo</Text>
+                <Text style={styles.cardDate}>21/04/2024</Text>
+              </View>
+              <View style={styles.cardBody}>
+                <Ionicons name="person" size={16} color="#666" />
+                <Text style={styles.boldText}> Motorista</Text>
+                <Text style={styles.infoText}> Veículo</Text>
+              </View>
+              <Text style={styles.locationText}>
+                Local: Rua Exemplo, 123, Bairro, Caçapava - SP
+              </Text>
+              <View style={styles.cardFooter}>
+                <Text style={styles.paidText}>Pago</Text>
+              </View>
+            </View>
 
-        {/* Segundo cartão */}
-        <View style={styles.card}>
-          <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>Entrega de Cimento</Text>
-            <Text style={styles.cardDate}>17/05/2023</Text>
-          </View>
-          <View style={styles.cardBody}>
-            <Ionicons name="person" size={16} color="#666" />
-      
-            <Text style={styles.boldText}> Paulo A.</Text>
-            <Text style={styles.infoText}> Caminhão Semi-Pesado</Text>
-          </View>
-          <Text style={styles.locationText}>
-            Local: Rua Fernando Pinho, nº 1003, Bela Vista, São Paulo - SP
-          </Text>
-          <View style={styles.cardFooter}>
-            <Text style={styles.paidText}>Pago</Text>
-          </View>
-        </View>
+            <View style={styles.card}>
+              <View style={styles.cardHeader}>
+                <Text style={styles.cardTitle}>Entrega exemplo</Text>
+                <Text style={styles.cardDate}>21/04/2024</Text>
+              </View>
+              <View style={styles.cardBody}>
+                <Ionicons name="person" size={16} color="#666" />
+                <Text style={styles.boldText}> Motorista</Text>
+                <Text style={styles.infoText}> Veículo</Text>
+              </View>
+              <Text style={styles.locationText}>
+                Local: Rua Exemplo, 123, Bairro, Caçapava - SP
+              </Text>
+              <View style={styles.cardFooter}>
+                <Text style={styles.paidText}>Pago</Text>
+              </View>
+            </View>
+
       </View>
+
     </View>
 </ScrollView>
 </KeyboardAvoidingView>

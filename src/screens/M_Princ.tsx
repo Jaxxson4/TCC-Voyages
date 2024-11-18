@@ -122,7 +122,7 @@ export default function M_Princ() {
             <View style={styles.card}>
               <View style={styles.cardHeader}>
                 <Text style={styles.cardTitle}>Entrega exemplo</Text>
-                <Text style={styles.cardDate}>21/04/2023</Text>
+                <Text style={styles.cardDate}>21/04/2024</Text>
               </View>
               <View style={styles.cardBody}>
                 <Ionicons name="person" size={16} color="#666" />
@@ -140,7 +140,7 @@ export default function M_Princ() {
             <View style={styles.card}>
               <View style={styles.cardHeader}>
                 <Text style={styles.cardTitle}>Entrega exemplo</Text>
-                <Text style={styles.cardDate}>21/04/2023</Text>
+                <Text style={styles.cardDate}>21/04/2024</Text>
               </View>
               <View style={styles.cardBody}>
                 <Ionicons name="person" size={16} color="#666" />
