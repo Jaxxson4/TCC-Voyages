@@ -17,7 +17,7 @@ interface Update {
 export default function C_Princ() {
   const navigation = useNavigation();
   const [updates, setUpdates] = useState<Update[]>([]); // Corrija o tipo aqui
-
+  
   const handleChatPress = () => {
     Alert.alert('Ainda em desenvolvimento 😁');
   };
@@ -107,21 +107,35 @@ export default function C_Princ() {
 
           <View style={styles.container}>
           <Text style={styles.header}>Acompanhamento da entrega</Text>
+
           <FlatList
-            horizontal
-            data={updates}
-            keyExtractor={(item) => item.id}
-            contentContainerStyle={styles.progressContainer}
-            renderItem={({ item }) => (
-              <View style={styles.updateItem}>
-                <Text style={styles.date}>{new Date(item.timestamp.toDate()).toLocaleDateString()}</Text>
-                <Text style={styles.time}>{new Date(item.timestamp.toDate()).toLocaleTimeString()}</Text>
-                <Text style={styles.label}>{item.description}</Text>
-                <Image source={require('../assets/images/verdadeiro.png')} style={styles.imageButton} />
-              </View>
-            )}
-            ListEmptyComponent={<Text style={styles.emptyText}>Nenhuma atualização disponível</Text>}
-          />
+          horizontal
+          data={updates}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.progressContainer}
+          renderItem={({ item }) => (
+            <View style={styles.updateItem}>
+              {/* Formatação da data */}
+              <Text style={styles.date}>{new Date(item.timestamp.toDate()).toLocaleDateString()}</Text>
+              
+              {/* Formatação da hora */}
+              <Text style={styles.time}>{new Date(item.timestamp.toDate()).toLocaleTimeString()}</Text>
+              
+              <Text style={styles.label}>{item.description}</Text>
+
+              {/* Verificação para exibir o botão de pagamento */}
+              {item.description === "Serviço concluído" && (
+                <TouchableOpacity
+                  style={styles.paymentButton}
+                  onPress={() => navigation.navigate({name: 'Entregas'} as never)}
+                >
+                  <Text style={styles.paymentText}>Pagar serviço</Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          )}
+          ListEmptyComponent={<Text style={styles.emptyText}>Nenhuma atualização disponível</Text>}
+        />
 
 
         <View style={styles.LineDivisoria} />
@@ -394,5 +408,19 @@ const styles = StyleSheet.create({
       fontWeight: '500',
       marginTop:'10%',
       color:'#10C18D',
+    },
+
+    paymentButton: {
+      backgroundColor: "#10C18D",
+      padding: 10,
+      borderRadius: 8,
+      alignItems: "center",
+      marginTop: 10,
+      justifyContent: 'center',
+    },
+    paymentText: {
+      color: "white",
+      fontSize: 15,
+      fontWeight: '500',
     },
   });

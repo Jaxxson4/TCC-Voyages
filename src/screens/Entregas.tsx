@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Button, TextInput, Clipboard } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, Button, TextInput } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { useNavigation } from 'expo-router';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 const navigation = useNavigation() 
 
@@ -20,14 +21,14 @@ export default function Entregas (){
           } else if (response.errorMessage) {
             console.log('Erro ao selecionar imagem: ', response.errorMessage);
           } else if (response.assets && response.assets.length > 0) {
-            setImageUri(response.assets[0].uri || null); // Garantindo que o URI seja string ou null
+            setImageUri(response.assets[0].uri || null);
           }
         }
       );
     };  
 
   const handleCopyToClipboard = () => {
-    Clipboard.setString('joaopaulo2@gmail.com');
+    Clipboard.setString('joaom@gmail.com');
     alert('Chave Pix copiada!');
 
 
@@ -35,33 +36,19 @@ export default function Entregas (){
     <View style={styles.container}>
       {/* Status de entrega */}
       <Text style={styles.title}>Entrega concluída ✔</Text>
-      <Text style={styles.subtitle}>Relatório do serviço</Text>
-      <Text style={styles.text}>Carga: Sementes para aves</Text>
+      <Text style={styles.text}>Carga: Exemplo de carga</Text>
       <Text style={styles.text}>Entrega: Caçapava - SP</Text>
-      <Text style={styles.text}>Km rodados: 39 Km</Text>
-      <Text style={styles.text}>Motorista: João Paulo</Text>
-      <Text style={styles.text}>Placa: SHW-5IP2</Text>
-      <Text style={[styles.text, styles.price]}>Valor total do serviço: R$ 1.170</Text>
+      <Text style={styles.text}>Motorista: João</Text>
+      <Text style={styles.text}>Placa: "AK47I1J"</Text>
+      <Text style={[styles.text, styles.price]}>Valor do serviço: R$ 1.000</Text>
 
       {/* Pagamento no Pix */}
       <Text style={styles.sectionTitle}>Pagamento no Pix</Text>
-      <Text style={styles.text}>Escaneie este QR code ou copie a chave do pix motorista</Text>
-      <Text style={styles.textBold}>OBS: É obrigatório o envio do comprovante de pagamento para o motorista</Text>
-
-      {/* Upload de comprovante */}
-      <TouchableOpacity style={styles.uploadContainer} onPress={handleSelectImage}>
-        {imageUri ? (
-          <Image source={{ uri: imageUri }} style={styles.image} />
-        ) : (
-          <Text style={styles.uploadText}>Colar comprovante</Text>
-        )}
-      </TouchableOpacity>
-
       {/* Chave Pix */}
       <View style={styles.pixContainer}>
         <TextInput
           style={styles.pixKey}
-          value="Chave do motorista: joaopaulo2@gmail.com"
+          value="Chave do motorista: joaom@gmail.com"
           editable={false}
         />
         <TouchableOpacity style={styles.copyButton} onPress={handleCopyToClipboard}>

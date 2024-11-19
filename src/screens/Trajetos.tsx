@@ -49,6 +49,33 @@ export default function Trajetos() {
     }
   };
 
+  const handleEndService = () => {
+    Alert.alert(
+      "Encerrar trajeto",
+      "Deseja mesmo encerrar o serviço?",
+      [
+        {
+          text: "Não",
+          style: "cancel",
+        },
+        {
+          text: "Sim",
+          onPress: async () => {
+            try {
+              await addDoc(collection(db, "trajetos"), {
+                description: "Serviço concluído",
+                timestamp: serverTimestamp(),
+              });
+              Alert.alert("Serviço encerrado", "O status foi atualizado para concluído.");
+            } catch (error) {
+              Alert.alert("Erro", "Não foi possível encerrar o serviço.");
+            }
+          },
+        },
+      ]
+    );
+  };
+
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }} showsHorizontalScrollIndicator={false}>
@@ -101,9 +128,15 @@ export default function Trajetos() {
             <Text style={styles.buttonText}>Enviar Atualização</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.buttonT} activeOpacity={0.6}>
-            <Text style={{fontSize: 18, color: 'white', fontWeight: 500}}>Finalizar trajeto</Text>
-          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, { backgroundColor: "red", marginTop: '5%' }]}
+          onPress={handleEndService}
+          activeOpacity={0.6}>
+
+          <Text style={{ fontSize: 17, color: "white", fontWeight: '500'}}>
+            Finalizar trajeto
+          </Text>
+        </TouchableOpacity>
+
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -163,5 +196,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 16,
+    fontWeight: '500',
   },
 });
